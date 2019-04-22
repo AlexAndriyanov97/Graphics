@@ -102,5 +102,18 @@ public class MainView extends JFrame {
 
         functionBar.setVisible(true);
         add(functionBar, BorderLayout.PAGE_START);
+
+        JPanel content = new JPanel(new GridBagLayout());
+
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        constraints.gridheight = 3;
+        constraints.gridwidth = 3;
+        constraints.weightx = 100;
+        constraints.weighty = 100;
+        constraints.fill = GridBagConstraints.BOTH;
+
+
     }
 }
