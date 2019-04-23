@@ -10,6 +10,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
+import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
@@ -39,14 +40,14 @@ public class IsolineView extends JPanel {
         this.model = funcModel;
         isInterpolate = false;
         isGridActivated = false;
-        isPaintActivated=false;
-        isDotsActivated=false;
+        isPaintActivated = false;
+        isDotsActivated = false;
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
                 Point point = e.getPoint();
-                valueOfDinamicIsoline = CalculateValueForPoint(GetPointIntoField(point,model.GetFieldOfDefinition()));
+                valueOfDinamicIsoline = CalculateValueForPoint(GetPointIntoField(point, model.GetFieldOfDefinition()));
                 repaint();
             }
 
@@ -61,17 +62,16 @@ public class IsolineView extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent e) {
-                Point point =e.getPoint();
-                valueOfDinamicIsoline = CalculateValueForPoint(GetPointIntoField(point,model.GetFieldOfDefinition()));
+                Point point = e.getPoint();
+                valueOfDinamicIsoline = CalculateValueForPoint(GetPointIntoField(point, model.GetFieldOfDefinition()));
                 repaint();
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-                if(isPaintActivated){
-                   customIsolines.add(valueOfDinamicIsoline);
-                }
-                else {
+                if (isPaintActivated) {
+                    customIsolines.add(valueOfDinamicIsoline);
+                } else {
                     valueOfDinamicIsoline = null;
                     repaint();
                 }
@@ -83,7 +83,7 @@ public class IsolineView extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         updateImage();
-        g.drawImage(image,0,0,image.getWidth(),image.getHeight(),this);
+        g.drawImage(image, 0, 0, image.getWidth(), image.getHeight(), this);
     }
 
     private void updateImage() {
@@ -100,69 +100,140 @@ public class IsolineView extends JPanel {
         int k = settings.GetK();
         int m = settings.GetM();
 
-        if(isIsolineActivated){
+        if (isIsolineActivated) {
             double[] valueOfIsolines = model.GetAllValuesOfIsolines();
             for (double valueOfIsoline : valueOfIsolines) {
                 DrawIsoline(k, m, valueOfIsoline);
             }
-            for(Double isoline : customIsolines){
-                DrawIsoline(k,m,isoline);
+            for (Double isoline : customIsolines) {
+                DrawIsoline(k, m, isoline);
             }
-            if(valueOfDinamicIsoline!=null){
-                DrawIsoline(k,m,valueOfDinamicIsoline);
+            if (valueOfDinamicIsoline != null) {
+                DrawIsoline(k, m, valueOfDinamicIsoline);
             }
 
         }
     }
 
 
+    private void DrawIsoline(int k, int m, double valueOfIsoline) {
+        for (int i = 0; i < k; i++) {
+            for (int j = 0; j < m; j++) {
+                DrawIsolineIntoTheGrid(i, j, valueOfIsoline);
+            }
+        }
+    }
 
-    private void DrawIsoline(int k,int m,double valueOfIsoline){
-        for (int i=0;i<k;i++){
-            for (int j = 0;j<m;j++){
+    private void DrawIsolineIntoTheGrid(int i, int j, double valueOfIsoline) {
+        int COUNT_ANGLE = 4;
+
+        List<Point> crossingPoint = new ArrayList<>();
+        Point[] angles = GetAngleOfRect(i, j);
+        boolean[] valueOfAngle = new boolean[COUNT_ANGLE];
+
+        for (int l = 0; l < COUNT_ANGLE; l++) {
+            valueOfAngle[l] = Double.compare(CalculateValueForPoint(angles[l]), valueOfIsoline) > 0;
+        }
+
+
+        for (int l = 0; l < COUNT_ANGLE; l++) {
+            if (valueOfAngle[l] != valueOfAngle[l + 1 % COUNT_ANGLE]) {
+                crossingPoint.add(CalculatePointOfCrossing(angles[l], angles[l + 1 % COUNT_ANGLE], valueOfIsoline));
+            }
+        }
+        Graphics graphics = image.getGraphics();
+
+        if (crossingPoint.size() == 2) {
+            graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(1).x, crossingPoint.get(1).y);
+        }
+
+        CalculateFourCrossingPoint(valueOfIsoline, crossingPoint, angles, valueOfAngle, graphics);
+
+        if (isDotsActivated) {
+            for (Point point : crossingPoint) {
+                DrawDot(graphics, point);
+            }
+        }
+
+    }
+
+    private void CalculateFourCrossingPoint(double valueOfIsoline, List<Point> crossingPoint, Point[] angles, boolean[] valueOfAngle, Graphics graphics) {
+        if (crossingPoint.size() == 4) {
+            Point centerOfRect = new Point((angles[0].x + angles[2].x) / 2, (angles[0].y + angles[2].y) / 2);
+            boolean isMarkedCenter = Double.compare(CalculateValueForPoint(centerOfRect), valueOfIsoline) > 0;
+            if (isMarkedCenter) {
+                if (valueOfAngle[0]) {
+                    graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(1).x, crossingPoint.get(1).y);
+                    graphics.drawLine(crossingPoint.get(2).x, crossingPoint.get(2).y, crossingPoint.get(3).x, crossingPoint.get(3).y);
+                } else {
+                    graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(3).x, crossingPoint.get(3).y);
+                    graphics.drawLine(crossingPoint.get(1).x, crossingPoint.get(1).y, crossingPoint.get(2).x, crossingPoint.get(2).y);
+                }
+            } else {
+                if (valueOfAngle[0]) {
+                    graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(3).x, crossingPoint.get(3).y);
+                    graphics.drawLine(crossingPoint.get(1).x, crossingPoint.get(1).y, crossingPoint.get(2).x, crossingPoint.get(2).y);
+                } else {
+                    graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(1).x, crossingPoint.get(1).y);
+                    graphics.drawLine(crossingPoint.get(2).x, crossingPoint.get(2).y, crossingPoint.get(3).x, crossingPoint.get(3).y);
+                }
 
             }
         }
     }
 
-    private void DrawIsolineIntoTheGrid(int i, int j, double valueOfIsoline){
-        Point[] angles = GetAngleOfRect(i,j);
+
+    private Point CalculatePointOfCrossing(Point f1, Point f2, double valueIsoline) {
+        double valueOfFirstPoint = CalculateValueForPoint(f1);
+        double valueOfSecondPoint = CalculateValueForPoint(f2);
+
+        if (f1.y != f2.y) {
+            double dy = f2.y - f1.y;
+            double x = 0;
+            double y = dy * scaleY * (valueIsoline - valueOfFirstPoint) / (valueOfSecondPoint - valueOfFirstPoint);
+            return new Point((int) (f1.x + x / scaleX), (int) (f1.y + y / scaleY));
+        } else {
+            double dx = f2.x - f1.x;
+            double x = dx * scaleX * (valueIsoline - valueOfFirstPoint) / (valueOfSecondPoint - valueOfFirstPoint);
+            double y = 0;
+            return new Point((int) (f1.x + x / scaleX), (int) (f1.y + y / scaleY));
+        }
     }
 
-    private void DrawGrid(int k,int m){
-        double widthGrid = (double) image.getWidth()/k;
-        double heightGrid = (double) image.getHeight()/m;
+    private void DrawGrid(int k, int m) {
+        double widthGrid = (double) image.getWidth() / k;
+        double heightGrid = (double) image.getHeight() / m;
         Graphics graphics = image.getGraphics();
         graphics.setXORMode(Color.RED);
-        for (int i=0;i<k-1;i++){
-            int x = (int) widthGrid*(i+1);
-            graphics.drawLine(x,0,x,image.getHeight());
+        for (int i = 0; i < k - 1; i++) {
+            int x = (int) widthGrid * (i + 1);
+            graphics.drawLine(x, 0, x, image.getHeight());
         }
-        for (int i=0;i<m-1;i++){
-            int y = (int) heightGrid*(i+1);
-            graphics.drawLine(0,y,image.getWidth(),y);
+        for (int i = 0; i < m - 1; i++) {
+            int y = (int) heightGrid * (i + 1);
+            graphics.drawLine(0, y, image.getWidth(), y);
         }
     }
 
 
-    private Point[] GetAngleOfRect(int i,int j){
+    private Point[] GetAngleOfRect(int i, int j) {
         Settings settings = model.GetSettings();
         int k = settings.GetK();
         int m = settings.GetM();
-        double widthGrid = (double) image.getWidth()/k;
-        double heightGrid = (double) image.getHeight()/m;
+        double widthGrid = (double) image.getWidth() / k;
+        double heightGrid = (double) image.getHeight() / m;
         Point[] angles = new Point[4];
-        angles[0] = new Point((int)(i*widthGrid),(int)(j*heightGrid));
-        angles[1] = new Point((int)((i+1)*widthGrid),(int)(j*heightGrid));
-        angles[2] = new Point((int)((i+1)*widthGrid),(int)((j+1)*heightGrid));
-        angles[3] = new Point((int)(i*widthGrid),(int)((j+1)*heightGrid));
+        angles[0] = new Point((int) (i * widthGrid), (int) (j * heightGrid));
+        angles[1] = new Point((int) ((i + 1) * widthGrid), (int) (j * heightGrid));
+        angles[2] = new Point((int) ((i + 1) * widthGrid), (int) ((j + 1) * heightGrid));
+        angles[3] = new Point((int) (i * widthGrid), (int) ((j + 1) * heightGrid));
         return angles;
     }
 
-    private void DrawDot(Graphics graphics, Point centr){
+    private void DrawDot(Graphics graphics, Point centr) {
         // Захардкодим радиус точки
         int radius = 3;
-        graphics.fillOval(centr.x-radius,centr.y-radius,2*radius,2*radius);
+        graphics.fillOval(centr.x - radius, centr.y - radius, 2 * radius, 2 * radius);
     }
 
     private void Draw() {
