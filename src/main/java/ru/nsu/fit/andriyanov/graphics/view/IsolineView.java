@@ -305,6 +305,11 @@ public class IsolineView extends JPanel {
         repaint();
     }
 
+    public void ChangeInterpolate(){
+        isInterpolate = !isInterpolate;
+        repaint();
+    }
+
     public void ChangePaintActivated() {
         isPaintActivated = !isGridActivated;
         repaint();

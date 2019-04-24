@@ -14,15 +14,17 @@ public class MainView extends JFrame {
     private MainController controller;
     private ValueBar valueBar;
 
+    private LegendView legendView;
     private IsolineView isolineView;
 
 
-    public MainView(MainController controller, Func functionModel) {
+    public MainView(MainController controller, Func functionModel,Func legend) {
         this.controller = controller;
+        BuildMenuBar(functionModel,legend);
 
     }
 
-    private void BuildMenuBar(Func function) {
+    private void BuildMenuBar(Func function,Func legend) {
 
         // Create the file bar.
         menuBar = new JMenuBar();
@@ -125,43 +127,47 @@ public class MainView extends JFrame {
 
         isolineView = new IsolineView(function);
         isolineView.SetFunctionOfListenerChangedPoint(this::GetValueByChangedPosition);
-        panel.add(isolineView,constraints);
-        constraints.gridy=4;
-        constraints.gridheight=1;
-        constraints.weighty=30;
+        panel.add(isolineView, constraints);
+        constraints.gridy = 4;
+        constraints.gridheight = 1;
+        constraints.weighty = 30;
         constraints.anchor = GridBagConstraints.PAGE_END;
 
-        //
-        //
+        legendView = new LegendView(legend);
+        panel.add(legendView,constraints);
+
 
         JScrollPane jScrollPane = new JScrollPane(panel);
         jScrollPane.setPreferredSize(panel.getPreferredSize());
         add(new JPanel().add(jScrollPane));
 
         valueBar = new ValueBar();
-        add(valueBar,BorderLayout.SOUTH);
+        add(valueBar, BorderLayout.SOUTH);
 
     }
 
 
-
-    public void GetValueByChangedPosition(ChangedPoint point){
-        valueBar.SetText(String.format("[x: %.1f, y: %.1f] => %.1f",point.getX(),point.getValue(),point.getValue()));
+    public void GetValueByChangedPosition(ChangedPoint point) {
+        valueBar.SetText(String.format("[x: %.1f, y: %.1f] => %.1f", point.getX(), point.getValue(), point.getValue()));
     }
 
-    public void  ChangeGridState(){
+    public void ChangeGridState() {
         isolineView.ChangeGridActivated();
     }
 
-    public void ChangePaintState(){
+    public void ChangeInterpolate(){
+        isolineView.ChangeInterpolate();
+    }
+
+    public void ChangePaintState() {
         isolineView.ChangePaintActivated();
     }
 
-    public void ChangeDotsState(){
+    public void ChangeDotsState() {
         isolineView.ChangeDotsActivated();
     }
 
-    public void ChangeIsolineState(){
+    public void ChangeIsolineState() {
         isolineView.ChangeIsolineActivated();
     }
 }
