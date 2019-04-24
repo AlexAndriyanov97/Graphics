@@ -25,8 +25,8 @@ public class Main {
                 new Color(90, 56, 38)
         }, Color.BLACK);
 
-        BiFunction<Double, Double, Double> function = (x, y) -> x * y;
-        FieldOfDefinition fieldOfDefinition = new FieldOfDefinition(10, 10, 10, 10);
+        BiFunction<Double, Double, Double> function = (x, y) -> x * y + x * y;
+        FieldOfDefinition fieldOfDefinition = new FieldOfDefinition(-5, 5, -5, 5);
         Func func = new Func(function, fieldOfDefinition, settings);
 
         MainController mainController = new MainController(func);

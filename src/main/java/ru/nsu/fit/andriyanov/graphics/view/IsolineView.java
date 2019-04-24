@@ -278,6 +278,8 @@ public class IsolineView extends JPanel {
         for (int i = 0; i < image.getWidth(); i++) {
             for (int j = 0; j < image.getHeight(); j++) {
                 Point2D point = GetPointIntoField(new Point(i, j), model.GetFieldOfDefinition());
+                double value = CalculateValueForPoint(point);
+                int rgb = model.GetColorByValue(CalculateValueForPoint(point), isInterpolate).getRGB();
                 image.setRGB(i, j, model.GetColorByValue(CalculateValueForPoint(point), isInterpolate).getRGB());
             }
         }

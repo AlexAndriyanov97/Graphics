@@ -105,6 +105,7 @@ public class Func implements IFuncModel {
 
     @Override
     public double Calculate(double x, double y) {
+        double value = mainFunction.apply(x,y);
         return mainFunction.apply(x, y);
     }
 

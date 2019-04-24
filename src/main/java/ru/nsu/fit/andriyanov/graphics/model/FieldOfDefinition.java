@@ -12,11 +12,11 @@ public class FieldOfDefinition {
     }
 
     public int GetWidth(){
-        return a-b;
+        return Math.abs(a-b);
     }
 
     public int GetHeight(){
-        return c-d;
+        return Math.abs(c-d);
     }
 
     public int getA() {
