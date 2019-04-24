@@ -1,5 +1,8 @@
 package main.java.ru.nsu.fit.andriyanov.graphics.view;
 
+import main.java.ru.nsu.fit.andriyanov.graphics.controller.MainController;
+import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -8,7 +11,7 @@ public class MainView extends JFrame {
     private JMenuBar menuBar;
     private JToolBar functionBar;
 
-    public MainView() {
+    public MainView(MainController controller, Func functionModel) {
 
     }
     private void BuildMenuBar() {

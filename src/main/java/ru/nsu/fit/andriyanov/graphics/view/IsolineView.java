@@ -147,6 +147,7 @@ public class IsolineView extends JPanel {
             graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(1).x, crossingPoint.get(1).y);
         }
 
+        CalculateThreeCrossingPoint(COUNT_ANGLE, crossingPoint, angles);
         CalculateFourCrossingPoint(valueOfIsoline, crossingPoint, angles, valueOfAngle, graphics);
 
         if (isDotsActivated) {
@@ -155,6 +156,43 @@ public class IsolineView extends JPanel {
             }
         }
 
+    }
+
+    private void CalculateThreeCrossingPoint(int COUNT_ANGLE, List<Point> crossingPoint, Point[] angles) {
+        if (crossingPoint.size() == 3) {
+            for (int l = 0; l < 3; l++) {
+                for (int k = 0; k < COUNT_ANGLE; k++) {
+                    // Если точка угловая, заменяем её на две точки смещённые от этого угла..
+                    if (crossingPoint.get(l).equals(angles[k])) {
+                        int dx = 0;
+                        int dy = 0;
+                        switch (k){
+                            case 0:
+                                dx=1;
+                                dy = 1;
+                                break;
+                            case 1:
+                                dx=-1;
+                                dy=1;
+                                break;
+                            case 2:
+                                dx=-1;
+                                dy=-1;
+                                break;
+                            case 3:
+                                dx=1;
+                                dy=-1;
+                                break;
+                        }
+                        crossingPoint.remove(l);
+                        Point firstPoint = new Point(angles[k].x+dx,angles[k].y);
+                        crossingPoint.add(l,firstPoint);
+                        Point secondPoint = new Point(angles[k].x, angles[k].y+dy);
+                        crossingPoint.add(l,secondPoint);
+                    }
+                }
+            }
+        }
     }
 
     private void CalculateFourCrossingPoint(double valueOfIsoline, List<Point> crossingPoint, Point[] angles, boolean[] valueOfAngle, Graphics graphics) {
@@ -260,5 +298,25 @@ public class IsolineView extends JPanel {
         double scaleY = (double) fieldOfDefinition.GetHeight() / (double) image.getHeight();
 
         return new Point2D.Double(point.x * scaleX + fieldOfDefinition.getA(), point.y * scaleY + fieldOfDefinition.getC());
+    }
+
+    public void ChangeGridActivated() {
+        isGridActivated = !isGridActivated;
+        repaint();
+    }
+
+    public void ChangePaintActivated() {
+        isPaintActivated = !isGridActivated;
+        repaint();
+    }
+
+    public void ChangeDotsActivated() {
+        isDotsActivated = !isGridActivated;
+        repaint();
+    }
+
+    public void ChangeIsolineActivated() {
+        isIsolineActivated = !isIsolineActivated;
+        repaint();
     }
 }

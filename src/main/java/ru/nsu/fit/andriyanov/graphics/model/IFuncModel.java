@@ -14,6 +14,9 @@ public interface IFuncModel {
 
     Settings GetSettings();
 
+    void SetSettings(Settings settings);
+
     double[] GetAllValuesOfIsolines();
+
 
 }
