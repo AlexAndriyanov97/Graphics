@@ -1,6 +1,7 @@
 package main.java.ru.nsu.fit.andriyanov.graphics.view;
 
 import main.java.ru.nsu.fit.andriyanov.graphics.controller.MainController;
+import main.java.ru.nsu.fit.andriyanov.graphics.model.ChangedPoint;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
 
 import javax.swing.*;
@@ -10,11 +11,18 @@ public class MainView extends JFrame {
 
     private JMenuBar menuBar;
     private JToolBar functionBar;
+    private MainController controller;
+    private ValueBar valueBar;
+
+    private IsolineView isolineView;
+
 
     public MainView(MainController controller, Func functionModel) {
+        this.controller = controller;
 
     }
-    private void BuildMenuBar() {
+
+    private void BuildMenuBar(Func function) {
 
         // Create the file bar.
         menuBar = new JMenuBar();
@@ -97,7 +105,7 @@ public class MainView extends JFrame {
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/Settings32.png"));
-        var iconSettings= icon.getImage().getScaledInstance(30,30,0);
+        var iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton settingsButton = new JButton(new ImageIcon(iconSettings));
         settingsButton.setToolTipText("Settings");
         functionBar.add(settingsButton);
@@ -106,17 +114,54 @@ public class MainView extends JFrame {
         functionBar.setVisible(true);
         add(functionBar, BorderLayout.PAGE_START);
 
-        JPanel content = new JPanel(new GridBagLayout());
+        JPanel panel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx = 0;
-        constraints.gridy = 0;
         constraints.gridheight = 3;
         constraints.gridwidth = 3;
         constraints.weightx = 100;
         constraints.weighty = 100;
         constraints.fill = GridBagConstraints.BOTH;
 
+        isolineView = new IsolineView(function);
+        isolineView.SetFunctionOfListenerChangedPoint(this::GetValueByChangedPosition);
+        panel.add(isolineView,constraints);
+        constraints.gridy=4;
+        constraints.gridheight=1;
+        constraints.weighty=30;
+        constraints.anchor = GridBagConstraints.PAGE_END;
 
+        //
+        //
+
+        JScrollPane jScrollPane = new JScrollPane(panel);
+        jScrollPane.setPreferredSize(panel.getPreferredSize());
+        add(new JPanel().add(jScrollPane));
+
+        valueBar = new ValueBar();
+        add(valueBar,BorderLayout.SOUTH);
+
+    }
+
+
+
+    public void GetValueByChangedPosition(ChangedPoint point){
+        valueBar.SetText(String.format("[x: %.1f, y: %.1f] => %.1f",point.getX(),point.getValue(),point.getValue()));
+    }
+
+    public void  ChangeGridState(){
+        isolineView.ChangeGridActivated();
+    }
+
+    public void ChangePaintState(){
+        isolineView.ChangePaintActivated();
+    }
+
+    public void ChangeDotsState(){
+        isolineView.ChangeDotsActivated();
+    }
+
+    public void ChangeIsolineState(){
+        isolineView.ChangeIsolineActivated();
     }
 }

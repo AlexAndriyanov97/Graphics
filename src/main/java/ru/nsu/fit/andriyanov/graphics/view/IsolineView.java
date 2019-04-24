@@ -1,5 +1,6 @@
 package main.java.ru.nsu.fit.andriyanov.graphics.view;
 
+import main.java.ru.nsu.fit.andriyanov.graphics.model.ChangedPoint;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.IFuncModel;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Settings;
@@ -10,7 +11,6 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.Point2D;
 import java.awt.image.BufferedImage;
-import java.security.cert.PolicyNode;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;

@@ -66,6 +66,11 @@ public class Func implements IFuncModel {
         return colorsOfLegend[settings.GetN()];
     }
 
+    @Override
+    public Color GetColorByValue(double value) {
+        return GetColorByValue(value,false);
+    }
+
     private Color GetInterpolatedColorByValue(double value) {
         Color[] colorsOfLegend = settings.GetColorsOfLegend();
         double[] valuesOfIsolines = GetAllValuesOfIsolines();

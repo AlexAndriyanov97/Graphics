@@ -10,6 +10,8 @@ public interface IFuncModel {
 
     Color GetColorByValue(double value,boolean isInterpolate);
 
+    Color GetColorByValue(double value);
+
     double Calculate(double x,double y);
 
     Settings GetSettings();

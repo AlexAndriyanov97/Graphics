@@ -16,6 +16,18 @@ public class MainController {
     }
 
     public void GridPressed(){
+        mainView.ChangeGridState();
+    }
 
+    public void PaintPressed(){
+        mainView.ChangePaintState();
+    }
+
+    public void DotsPressed(){
+        mainView.ChangeDotsState();
+    }
+
+    public void IsolinePressed(){
+        mainView.ChangeIsolineState();
     }
 }
