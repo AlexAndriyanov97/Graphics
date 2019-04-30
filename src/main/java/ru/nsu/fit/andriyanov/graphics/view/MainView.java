@@ -142,8 +142,8 @@ public class MainView extends JFrame {
         constraints.weighty = 30;
         constraints.anchor = GridBagConstraints.PAGE_END;
 
-        //legendView = new LegendView(legend);
-        //panel.add(legendView,constraints);
+        legendView = new LegendView(legend);
+        panel.add(legendView,constraints);
 
 
         JScrollPane jScrollPane = new JScrollPane(panel);

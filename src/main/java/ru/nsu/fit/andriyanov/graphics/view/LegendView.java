@@ -19,6 +19,12 @@ public class LegendView extends JPanel {
         this.func=func;
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        UpdateImage();
+        g.drawImage(image,0,0,image.getWidth(),image.getHeight(),this);
+    }
+
     private void UpdateImage(){
         Dimension size = getSize();
         image = new BufferedImage(size.width,size.height,BufferedImage.TYPE_INT_RGB);

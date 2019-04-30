@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="af4f1432-4e8c-44c5-8df7-c8d34e4d2397" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/MainView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/MainView.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -23,8 +22,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
+            <state relative-caret-position="419">
+              <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -32,13 +31,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1635">
-              <caret line="230" column="68" selection-start-line="230" selection-start-column="68" selection-end-line="230" selection-end-column="68" />
+            <state relative-caret-position="-2773">
+              <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#1367#1637#0" expanded="true" />
+                <element signature="e#1636#1637#0" expanded="true" />
+                <element signature="e#1675#2157#0" expanded="true" />
+                <element signature="e#2156#2157#0" expanded="true" />
                 <element signature="e#11735#11736#0" expanded="true" />
                 <element signature="e#11801#11802#0" expanded="true" />
               </folding>
@@ -49,7 +52,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/Settings.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1170">
+            <state relative-caret-position="538">
               <caret line="82" selection-start-line="82" selection-end-line="82" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -65,13 +68,17 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="900">
-              <caret line="68" selection-start-line="68" selection-end-line="68" />
+            <state relative-caret-position="323">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#525#526#0" expanded="true" />
+                <element signature="e#555#556#0" expanded="true" />
+                <element signature="e#3645#3646#0" expanded="true" />
+                <element signature="e#3710#3711#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -80,7 +87,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/ValueBar.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
+            <state relative-caret-position="300">
               <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -101,8 +108,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/MainView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1200">
-              <caret line="87" column="50" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+            <state relative-caret-position="325">
+              <caret line="144" column="31" lean-forward="true" selection-start-line="144" selection-start-column="31" selection-end-line="144" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#5980#5981#0" expanded="true" />
@@ -123,8 +130,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/controller/MainController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="36" selection-start-line="36" selection-end-line="36" />
+            <state relative-caret-position="240">
+              <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1138#1139#0" expanded="true" />
@@ -134,6 +141,7 @@
                 <element signature="e#1290#1291#0" expanded="true" />
                 <element signature="e#1332#1333#0" expanded="true" />
                 <element signature="e#1368#1369#0" expanded="true" />
+                <element signature="e#1413#1414#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,11 +150,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/Func.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1545">
-              <caret line="108" selection-start-line="108" selection-end-line="108" />
+            <state relative-caret-position="563">
+              <caret line="50" selection-start-line="50" selection-end-line="50" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1736#1737#0" expanded="true" />
                 <element signature="e#1776#1777#0" expanded="true" />
                 <element signature="e#2363#2364#0" expanded="true" />
                 <element signature="e#2414#2415#0" expanded="true" />
@@ -182,6 +189,7 @@
       <find>isIsolineActivated</find>
       <find>Color.B</find>
       <find>DrawIsoline</find>
+      <find>Black</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -194,20 +202,20 @@
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/ValueBar.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/ChangedPoint.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/IFuncModel.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/ModelOfLegend.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/Func.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/FieldOfDefinition.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java" />
+        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/controller/MainController.java" />
         <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/MainView.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/Main.java" />
-        <option value="$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="y" value="30" />
-    <option name="width" value="974" />
+    <option name="width" value="1146" />
     <option name="height" value="1050" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -215,7 +223,39 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Isoline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Isoline" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Isoline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Isoline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Isoline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Isoline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="graphics" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Isoline" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Isoline" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="graphics" type="462c0819:PsiDirectoryNode" />
+              <item name="view" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -272,7 +312,7 @@
       <workItem from="1556603448369" duration="4352000" />
       <workItem from="1556610538289" duration="130000" />
       <workItem from="1556610730707" duration="599000" />
-      <workItem from="1556656550771" duration="688000" />
+      <workItem from="1556656550771" duration="6236000" />
     </task>
     <task id="LOCAL-00001" summary="add base view">
       <created>1555965293662</created>
@@ -330,17 +370,30 @@
       <option name="project" value="LOCAL" />
       <updated>1556141986598</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="fix bug with draw isolines">
+      <created>1556657343799</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1556657343799</updated>
+    </task>
+    <task id="LOCAL-00010" summary="fix bug with draw dynamic isolines">
+      <created>1556660141267</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1556660141267</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="70186000" />
+    <option name="totallyTimeSpent" value="75734000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="30" width="974" height="1050" extended-state="0" />
-    <editor active="true" />
+    <frame x="0" y="30" width="1146" height="1050" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.26067072" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.21909091" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -350,7 +403,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32899022" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.30184582" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.30184582" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -383,7 +436,9 @@
     <MESSAGE value="add legendView" />
     <MESSAGE value="pre - alpha version" />
     <MESSAGE value="fix bug with mainMap" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix bug with mainMap" />
+    <MESSAGE value="fix bug with draw isolines" />
+    <MESSAGE value="fix bug with draw dynamic isolines" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug with draw dynamic isolines" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -402,13 +457,13 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>246</line>
+          <line>253</line>
           <properties />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>335</line>
+          <line>342</line>
           <properties />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -420,39 +475,39 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>167</line>
+          <line>174</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>112</line>
+          <line>119</line>
           <properties />
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>109</line>
+          <line>116</line>
           <properties />
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>262</line>
+          <line>269</line>
           <properties />
           <option name="timeStamp" value="32" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>132</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java</url>
+          <line>28</line>
           <properties />
-          <option name="timeStamp" value="36" />
+          <option name="timeStamp" value="41" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java</url>
-          <line>147</line>
+          <url>file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java</url>
+          <line>23</line>
           <properties />
-          <option name="timeStamp" value="39" />
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -597,19 +652,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/IFuncModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="25" column="24" selection-start-line="25" selection-start-column="24" selection-end-line="25" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="210">
+          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/Settings.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1170">
+        <state relative-caret-position="538">
           <caret line="82" selection-start-line="82" selection-end-line="82" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -624,19 +676,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="68" selection-start-line="68" selection-end-line="68" />
+        <state relative-caret-position="-2773">
+          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1367#1637#0" expanded="true" />
+            <element signature="e#1636#1637#0" expanded="true" />
+            <element signature="e#1675#2157#0" expanded="true" />
+            <element signature="e#2156#2157#0" expanded="true" />
+            <element signature="e#11735#11736#0" expanded="true" />
+            <element signature="e#11801#11802#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/ValueBar.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
+        <state relative-caret-position="300">
           <caret line="20" column="10" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -644,17 +702,38 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/IFuncModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        <state relative-caret-position="419">
+          <caret line="31" column="47" lean-forward="true" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/controller/MainController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="19" column="39" lean-forward="true" selection-start-line="19" selection-start-column="39" selection-end-line="19" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1138#1139#0" expanded="true" />
+            <element signature="e#1180#1181#0" expanded="true" />
+            <element signature="e#1214#1215#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1290#1291#0" expanded="true" />
+            <element signature="e#1332#1333#0" expanded="true" />
+            <element signature="e#1368#1369#0" expanded="true" />
+            <element signature="e#1413#1414#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/MainView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="87" column="50" selection-start-line="87" selection-start-column="50" selection-end-line="87" selection-end-column="50" />
+        <state relative-caret-position="325">
+          <caret line="144" column="31" lean-forward="true" selection-start-line="144" selection-start-column="31" selection-end-line="144" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#5980#5981#0" expanded="true" />
@@ -671,30 +750,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/controller/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1138#1139#0" expanded="true" />
-            <element signature="e#1180#1181#0" expanded="true" />
-            <element signature="e#1214#1215#0" expanded="true" />
-            <element signature="e#1257#1258#0" expanded="true" />
-            <element signature="e#1290#1291#0" expanded="true" />
-            <element signature="e#1332#1333#0" expanded="true" />
-            <element signature="e#1368#1369#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/model/Func.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1545">
-          <caret line="108" selection-start-line="108" selection-end-line="108" />
+        <state relative-caret-position="563">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1736#1737#0" expanded="true" />
             <element signature="e#1776#1777#0" expanded="true" />
             <element signature="e#2363#2364#0" expanded="true" />
             <element signature="e#2414#2415#0" expanded="true" />
@@ -704,14 +765,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/IsolineView.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/ru/nsu/fit/andriyanov/graphics/view/LegendView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1635">
-          <caret line="230" column="68" selection-start-line="230" selection-start-column="68" selection-end-line="230" selection-end-column="68" />
+        <state relative-caret-position="323">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#11735#11736#0" expanded="true" />
-            <element signature="e#11801#11802#0" expanded="true" />
+            <element signature="e#525#526#0" expanded="true" />
+            <element signature="e#555#556#0" expanded="true" />
+            <element signature="e#3645#3646#0" expanded="true" />
+            <element signature="e#3710#3711#0" expanded="true" />
           </folding>
         </state>
       </provider>
