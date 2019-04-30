@@ -43,13 +43,18 @@ public class IsolineView extends JPanel {
         isPaintActivated = false;
         isDotsActivated = false;
 
-        addMouseListener(new MouseAdapter() {
+
+        addMouseMotionListener(new MouseAdapter() {
             @Override
             public void mouseDragged(MouseEvent e) {
                 Point point = e.getPoint();
-                valueOfDinamicIsoline = CalculateValueForPoint(GetPointIntoField(point, model.GetFieldOfDefinition()));
+                valueOfDinamicIsoline = CalculateValueForPointIntoField(point);
                 repaint();
             }
+        });
+
+
+        addMouseListener(new MouseAdapter() {
 
             @Override
             public void mouseMoved(MouseEvent e) {
@@ -59,14 +64,16 @@ public class IsolineView extends JPanel {
                     listener.accept(changedPoint);
                 }
             }
+        });
+
+        addMouseListener(new MouseAdapter() {
 
             @Override
             public void mousePressed(MouseEvent e) {
                 Point point = e.getPoint();
-                valueOfDinamicIsoline = CalculateValueForPoint(GetPointIntoField(point, model.GetFieldOfDefinition()));
+                valueOfDinamicIsoline = CalculateValueForPointIntoField(point);
                 repaint();
             }
-
             @Override
             public void mouseReleased(MouseEvent e) {
                 if (isPaintActivated) {
@@ -100,8 +107,8 @@ public class IsolineView extends JPanel {
         int k = settings.GetK();
         int m = settings.GetM();
 
-        if(isGridActivated){
-            DrawGrid(k,m);
+        if (isGridActivated) {
+            DrawGrid(k, m);
         }
 
         if (isIsolineActivated) {
@@ -171,29 +178,29 @@ public class IsolineView extends JPanel {
                     if (crossingPoint.get(l).equals(angles[k])) {
                         int dx = 0;
                         int dy = 0;
-                        switch (k){
+                        switch (k) {
                             case 0:
-                                dx=1;
+                                dx = 1;
                                 dy = 1;
                                 break;
                             case 1:
-                                dx=-1;
-                                dy=1;
+                                dx = -1;
+                                dy = 1;
                                 break;
                             case 2:
-                                dx=-1;
-                                dy=-1;
+                                dx = -1;
+                                dy = -1;
                                 break;
                             case 3:
-                                dx=1;
-                                dy=-1;
+                                dx = 1;
+                                dy = -1;
                                 break;
                         }
                         crossingPoint.remove(l);
-                        Point firstPoint = new Point(angles[k].x+dx,angles[k].y);
-                        crossingPoint.add(l,firstPoint);
-                        Point secondPoint = new Point(angles[k].x, angles[k].y+dy);
-                        crossingPoint.add(l,secondPoint);
+                        Point firstPoint = new Point(angles[k].x + dx, angles[k].y);
+                        crossingPoint.add(l, firstPoint);
+                        Point secondPoint = new Point(angles[k].x, angles[k].y + dy);
+                        crossingPoint.add(l, secondPoint);
                     }
                 }
             }
@@ -295,8 +302,8 @@ public class IsolineView extends JPanel {
         return model.Calculate(point.getX(), point.getY());
     }
 
-    private double CalculateValueForPointIntoField(Point point){
-        Point2D newPoint = GetPointIntoField(point,model.GetFieldOfDefinition());
+    private double CalculateValueForPointIntoField(Point point) {
+        Point2D newPoint = GetPointIntoField(point, model.GetFieldOfDefinition());
         return CalculateValueForPoint(newPoint);
     }
 
@@ -317,7 +324,7 @@ public class IsolineView extends JPanel {
         repaint();
     }
 
-    public void ChangeInterpolate(){
+    public void ChangeInterpolate() {
         isInterpolate = !isInterpolate;
         repaint();
     }
