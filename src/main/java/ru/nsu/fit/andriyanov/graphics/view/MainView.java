@@ -6,6 +6,8 @@ import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
 
@@ -18,13 +20,13 @@ public class MainView extends JFrame {
     private IsolineView isolineView;
 
 
-    public MainView(MainController controller, Func functionModel,Func legend) {
+    public MainView(MainController controller, Func functionModel, Func legend) {
         this.controller = controller;
-        BuildMenuBar(functionModel,legend);
+        BuildMenuBar(functionModel, legend);
 
     }
 
-    private void BuildMenuBar(Func function,Func legend) {
+    private void BuildMenuBar(Func function, Func legend) {
 
         // Create the file bar.
         menuBar = new JMenuBar();
@@ -76,12 +78,14 @@ public class MainView extends JFrame {
         var iconShowGrid = icon.getImage().getScaledInstance(30, 30, 0);
         JButton showGridButton = new JButton(new ImageIcon(iconShowGrid));
         showGridButton.setToolTipText("Show grid");
+        showGridButton.addActionListener(e -> controller.GridPressed());
         functionBar.add(showGridButton);
 
         icon = new ImageIcon(this.getClass().getResource("/resources/Isoline32.png"));
         var iconShowIsolines = icon.getImage().getScaledInstance(30, 30, 0);
         JButton showIsolinesButton = new JButton(new ImageIcon(iconShowIsolines));
         showIsolinesButton.setToolTipText("Show Isolines");
+        showIsolinesButton.addActionListener(e -> controller.IsolinePressed());
         functionBar.add(showIsolinesButton);
 
 
@@ -89,6 +93,7 @@ public class MainView extends JFrame {
         var iconInterpolation = icon.getImage().getScaledInstance(30, 30, 0);
         JButton interpolationButton = new JButton(new ImageIcon(iconInterpolation));
         interpolationButton.setToolTipText("Interpolation");
+        interpolationButton.addActionListener(e -> controller.InterpolatePressed());
         functionBar.add(interpolationButton);
 
 
@@ -96,6 +101,7 @@ public class MainView extends JFrame {
         var iconPaint = icon.getImage().getScaledInstance(30, 30, 0);
         JButton paintButton = new JButton(new ImageIcon(iconPaint));
         paintButton.setToolTipText("Paint");
+        paintButton.addActionListener(e -> controller.PaintPressed());
         functionBar.add(paintButton);
 
 
@@ -103,6 +109,7 @@ public class MainView extends JFrame {
         var iconDots = icon.getImage().getScaledInstance(30, 30, 0);
         JButton dotsButton = new JButton(new ImageIcon(iconDots));
         dotsButton.setToolTipText("Dots");
+        dotsButton.addActionListener(e -> controller.DotsPressed());
         functionBar.add(dotsButton);
 
 
@@ -119,8 +126,8 @@ public class MainView extends JFrame {
         JPanel panel = new JPanel(new GridBagLayout());
 
         GridBagConstraints constraints = new GridBagConstraints();
-        constraints.gridx=0;
-        constraints.gridy=0;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
         constraints.gridheight = 3;
         constraints.gridwidth = 3;
         constraints.weightx = 100;
@@ -135,8 +142,8 @@ public class MainView extends JFrame {
         constraints.weighty = 30;
         constraints.anchor = GridBagConstraints.PAGE_END;
 
-        legendView = new LegendView(legend);
-        panel.add(legendView,constraints);
+        //legendView = new LegendView(legend);
+        //panel.add(legendView,constraints);
 
 
         JScrollPane jScrollPane = new JScrollPane(panel);
@@ -157,7 +164,7 @@ public class MainView extends JFrame {
         isolineView.ChangeGridActivated();
     }
 
-    public void ChangeInterpolate(){
+    public void ChangeInterpolate() {
         isolineView.ChangeInterpolate();
     }
 

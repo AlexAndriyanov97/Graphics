@@ -100,6 +100,10 @@ public class IsolineView extends JPanel {
         int k = settings.GetK();
         int m = settings.GetM();
 
+        if(isGridActivated){
+            DrawGrid(k,m);
+        }
+
         if (isIsolineActivated) {
             double[] valueOfIsolines = model.GetAllValuesOfIsolines();
             for (double valueOfIsoline : valueOfIsolines) {
@@ -125,29 +129,30 @@ public class IsolineView extends JPanel {
     }
 
     private void DrawIsolineIntoTheGrid(int i, int j, double valueOfIsoline) {
-        int COUNT_ANGLE = 4;
 
         List<Point> crossingPoint = new ArrayList<>();
         Point[] angles = GetAngleOfRect(i, j);
-        boolean[] valueOfAngle = new boolean[COUNT_ANGLE];
+        int countAngle = angles.length;
+        boolean[] valueOfAngle = new boolean[countAngle];
 
-        for (int l = 0; l < COUNT_ANGLE; l++) {
-            valueOfAngle[l] = Double.compare(CalculateValueForPoint(angles[l]), valueOfIsoline) > 0;
+        for (int l = 0; l < countAngle; l++) {
+            valueOfAngle[l] = Double.compare(CalculateValueForPointIntoField(angles[l]), valueOfIsoline) > 0;
         }
 
 
-        for (int l = 0; l < COUNT_ANGLE; l++) {
-            if (valueOfAngle[l] != valueOfAngle[l + 1 % COUNT_ANGLE]) {
-                crossingPoint.add(CalculatePointOfCrossing(angles[l], angles[l + 1 % COUNT_ANGLE], valueOfIsoline));
+        for (int l = 0; l < countAngle; l++) {
+            if (valueOfAngle[l] != valueOfAngle[(l + 1) % countAngle]) {
+                crossingPoint.add(CalculatePointOfCrossing(angles[l], angles[(l + 1) % countAngle], valueOfIsoline));
             }
         }
         Graphics graphics = image.getGraphics();
+        graphics.setColor(Color.WHITE);
 
         if (crossingPoint.size() == 2) {
             graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(1).x, crossingPoint.get(1).y);
         }
 
-        CalculateThreeCrossingPoint(COUNT_ANGLE, crossingPoint, angles);
+        CalculateThreeCrossingPoint(countAngle, crossingPoint, angles);
         CalculateFourCrossingPoint(valueOfIsoline, crossingPoint, angles, valueOfAngle, graphics);
 
         if (isDotsActivated) {
@@ -222,8 +227,8 @@ public class IsolineView extends JPanel {
 
 
     private Point CalculatePointOfCrossing(Point f1, Point f2, double valueIsoline) {
-        double valueOfFirstPoint = CalculateValueForPoint(f1);
-        double valueOfSecondPoint = CalculateValueForPoint(f2);
+        double valueOfFirstPoint = CalculateValueForPointIntoField(f1);
+        double valueOfSecondPoint = CalculateValueForPointIntoField(f2);
 
         if (f1.y != f2.y) {
             double dy = f2.y - f1.y;
@@ -290,6 +295,11 @@ public class IsolineView extends JPanel {
         return model.Calculate(point.getX(), point.getY());
     }
 
+    private double CalculateValueForPointIntoField(Point point){
+        Point2D newPoint = GetPointIntoField(point,model.GetFieldOfDefinition());
+        return CalculateValueForPoint(newPoint);
+    }
+
 
     public void SetFunctionOfListenerChangedPoint(Consumer<ChangedPoint> listener) {
         listChangedPoint.add(listener);
@@ -313,12 +323,12 @@ public class IsolineView extends JPanel {
     }
 
     public void ChangePaintActivated() {
-        isPaintActivated = !isGridActivated;
+        isPaintActivated = !isPaintActivated;
         repaint();
     }
 
     public void ChangeDotsActivated() {
-        isDotsActivated = !isGridActivated;
+        isDotsActivated = !isDotsActivated;
         repaint();
     }
 

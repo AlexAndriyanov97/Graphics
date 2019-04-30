@@ -36,5 +36,9 @@ public class MainController {
         mainView.ChangeIsolineState();
     }
 
+    public void InterpolatePressed(){
+        mainView.ChangeInterpolate();
+    }
+
 
 }
