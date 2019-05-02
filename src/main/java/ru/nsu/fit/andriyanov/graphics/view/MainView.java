@@ -152,7 +152,6 @@ public class MainView extends JFrame {
 
         valueBar = new ValueBar();
         add(valueBar, BorderLayout.SOUTH);
-
     }
 
 
@@ -166,6 +165,7 @@ public class MainView extends JFrame {
 
     public void ChangeInterpolate() {
         isolineView.ChangeInterpolate();
+        legendView.ChangeInterpolate();
     }
 
     public void ChangePaintState() {

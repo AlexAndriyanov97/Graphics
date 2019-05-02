@@ -15,6 +15,7 @@ public class LegendView extends JPanel {
     private BufferedImage legendImage;
     private int widthOfLegend;
     private int heightOfLegend;
+    private boolean interpolate = false;
     private Point pointOfBegan;
 
     public LegendView(Func func) {
@@ -79,7 +80,7 @@ public class LegendView extends JPanel {
         for (int i = 0; i < legendImage.getWidth(); i++) {
             for (int j = 0; j < legendImage.getHeight(); j++) {
                 Point2D point = GetPointIntoField(new Point(i, j), func.GetFieldOfDefinition());
-                legendImage.setRGB(i, j, func.GetColorByValue(CalculateValueForPoint(point)).getRGB());
+                legendImage.setRGB(i, j, func.GetColorByValue(CalculateValueForPoint(point),interpolate).getRGB());
             }
         }
     }
@@ -95,4 +96,8 @@ public class LegendView extends JPanel {
     }
 
 
+    public void ChangeInterpolate() {
+        interpolate=!interpolate;
+        repaint();
+    }
 }
