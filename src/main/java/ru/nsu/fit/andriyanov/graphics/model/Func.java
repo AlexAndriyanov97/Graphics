@@ -22,8 +22,8 @@ public class Func implements IFuncModel {
     public double GetMax() {
         if (max == null) {
             max = mainFunction.apply((double) fieldOfDefinition.getA(), (double) fieldOfDefinition.getC());
-            for (int i = fieldOfDefinition.getA(); i < fieldOfDefinition.getB(); i++) {
-                for (int j = fieldOfDefinition.getC(); j < fieldOfDefinition.getD(); j++) {
+            for (int i = fieldOfDefinition.getA(); i <= fieldOfDefinition.getB(); i++) {
+                for (int j = fieldOfDefinition.getC(); j <= fieldOfDefinition.getD(); j++) {
                     double value = Calculate(i, j);
                     max = (value > max) ? value : max;
                 }
@@ -36,8 +36,8 @@ public class Func implements IFuncModel {
     public double GetMin() {
         if (min == null) {
             min = mainFunction.apply((double) fieldOfDefinition.getA(), (double) fieldOfDefinition.getC());
-            for (int x = fieldOfDefinition.getA(); x < fieldOfDefinition.getB(); x++) {
-                for (int y = fieldOfDefinition.getC(); y < fieldOfDefinition.getD(); y++) {
+            for (int x = fieldOfDefinition.getA(); x <= fieldOfDefinition.getB(); x++) {
+                for (int y = fieldOfDefinition.getC(); y <= fieldOfDefinition.getD(); y++) {
                     double value = Calculate(x, y);
                     min = (value < min) ? value : min;
                 }

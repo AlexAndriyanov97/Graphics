@@ -34,8 +34,8 @@ public class LegendView extends JPanel {
         graphics.setColor(Color.WHITE);
         graphics.fillRect(0,0,image.getWidth(),image.getHeight());
 
-        double percentOfFreeFillByX = 0.9;
-        double percentOfFreeFillByY = 0.8;
+        double percentOfFreeFillByX = 0.95;
+        double percentOfFreeFillByY = 0.85;
 
         int x = (int) (image.getWidth()*(1-percentOfFreeFillByX)*0.5);
         int y = (int) (image.getHeight()*(1-percentOfFreeFillByY));
@@ -79,7 +79,6 @@ public class LegendView extends JPanel {
         for (int i = 0; i < legendImage.getWidth(); i++) {
             for (int j = 0; j < legendImage.getHeight(); j++) {
                 Point2D point = GetPointIntoField(new Point(i, j), func.GetFieldOfDefinition());
-                //legendImage.setRGB(i,j, Color.WHITE.getRGB());
                 legendImage.setRGB(i, j, func.GetColorByValue(CalculateValueForPoint(point)).getRGB());
             }
         }

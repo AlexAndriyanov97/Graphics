@@ -54,7 +54,7 @@ public class IsolineView extends JPanel {
         });
 
 
-        addMouseListener(new MouseAdapter() {
+        addMouseMotionListener(new MouseAdapter() {
 
             @Override
             public void mouseMoved(MouseEvent e) {

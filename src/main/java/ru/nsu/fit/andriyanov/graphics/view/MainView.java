@@ -150,14 +150,14 @@ public class MainView extends JFrame {
         jScrollPane.setPreferredSize(panel.getPreferredSize());
         add(new JPanel().add(jScrollPane));
 
-        //valueBar = new ValueBar();
-        //add(valueBar, BorderLayout.SOUTH);
+        valueBar = new ValueBar();
+        add(valueBar, BorderLayout.SOUTH);
 
     }
 
 
     public void GetValueByChangedPosition(ChangedPoint point) {
-        valueBar.SetText(String.format("[x: %.1f, y: %.1f] => %.1f", point.getX(), point.getValue(), point.getValue()));
+        valueBar.SetText(String.format("[x: %.1f, y: %.1f] => %.1f", point.getX(), point.getY(), point.getValue()));
     }
 
     public void ChangeGridState() {

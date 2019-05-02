@@ -14,7 +14,7 @@ public class ValueBar extends JPanel {
         BoxLayout boxLayout = new BoxLayout(this,BoxLayout.X_AXIS);
         setLayout(boxLayout);
 
-        text.setHorizontalAlignment(SwingConstants.LEFT);
+        text.setHorizontalAlignment(SwingConstants.RIGHT);
         add(text);
     }
 
