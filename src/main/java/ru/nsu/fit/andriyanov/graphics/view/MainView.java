@@ -140,7 +140,7 @@ public class MainView extends JFrame {
         constraints.gridy = 4;
         constraints.gridheight = 1;
         constraints.weighty = 30;
-        constraints.anchor = GridBagConstraints.PAGE_END;
+        constraints.anchor = GridBagConstraints.SOUTH;
 
         legendView = new LegendView(legend);
         panel.add(legendView,constraints);
@@ -150,8 +150,8 @@ public class MainView extends JFrame {
         jScrollPane.setPreferredSize(panel.getPreferredSize());
         add(new JPanel().add(jScrollPane));
 
-        valueBar = new ValueBar();
-        add(valueBar, BorderLayout.SOUTH);
+        //valueBar = new ValueBar();
+        //add(valueBar, BorderLayout.SOUTH);
 
     }
 

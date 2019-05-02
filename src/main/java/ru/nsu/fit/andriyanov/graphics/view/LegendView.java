@@ -2,6 +2,7 @@ package main.java.ru.nsu.fit.andriyanov.graphics.view;
 
 import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
+import org.w3c.dom.css.RGBColor;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 public class LegendView extends JPanel {
     private Func func;
     private BufferedImage image;
+    private BufferedImage legendImage;
     private int widthOfLegend;
     private int heightOfLegend;
     private Point pointOfBegan;
@@ -42,9 +44,9 @@ public class LegendView extends JPanel {
         widthOfLegend = (int) (image.getWidth()*percentOfFreeFillByX);
         heightOfLegend = (int) (image.getHeight()*percentOfFreeFillByY);
 
-        BufferedImage legendMap = new BufferedImage(widthOfLegend,heightOfLegend,BufferedImage.TYPE_INT_RGB);
+        legendImage = new BufferedImage(widthOfLegend,heightOfLegend,BufferedImage.TYPE_INT_RGB);
         Draw();
-        image.getGraphics().drawImage(legendMap,x,y,widthOfLegend,heightOfLegend,this);
+        image.getGraphics().drawImage(legendImage,x,y,widthOfLegend,heightOfLegend,this);
         DrawValueOfLegends();
     }
 
@@ -74,10 +76,11 @@ public class LegendView extends JPanel {
     }
 
     private void Draw() {
-        for (int i = 0; i < image.getWidth(); i++) {
-            for (int j = 0; j < image.getHeight(); j++) {
+        for (int i = 0; i < legendImage.getWidth(); i++) {
+            for (int j = 0; j < legendImage.getHeight(); j++) {
                 Point2D point = GetPointIntoField(new Point(i, j), func.GetFieldOfDefinition());
-                image.setRGB(i, j, func.GetColorByValue(CalculateValueForPoint(point)).getRGB());
+                //legendImage.setRGB(i,j, Color.WHITE.getRGB());
+                legendImage.setRGB(i, j, func.GetColorByValue(CalculateValueForPoint(point)).getRGB());
             }
         }
     }
