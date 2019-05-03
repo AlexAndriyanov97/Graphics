@@ -6,8 +6,6 @@ import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.ParseException;
 
 public class MainView extends JFrame {
@@ -77,9 +75,10 @@ public class MainView extends JFrame {
 
 
         var help = new JMenu("Help");
+        var helpItem = new JMenuItem("Help");
+        helpItem.addActionListener(e->JOptionPane.showMessageDialog(this  ,"Андриянов Алексей Фит 3 курс 16208"));
+        help.add(helpItem);
         menuBar.add(help);
-
-
         setJMenuBar(menuBar);
 
 
