@@ -1,7 +1,9 @@
 package main.java.ru.nsu.fit.andriyanov.graphics.controller;
 
+import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
 import main.java.ru.nsu.fit.andriyanov.graphics.view.MainView;
+import main.java.ru.nsu.fit.andriyanov.graphics.view.SettingsView;
 
 import javax.swing.*;
 import java.util.function.BiFunction;
@@ -36,8 +38,21 @@ public class MainController {
         mainView.ChangeIsolineState();
     }
 
-    public void InterpolatePressed(){
+    public void InterpolatePressed() {
         mainView.ChangeInterpolate();
+    }
+
+    public void SettingsPressed() {
+        SettingsView settingsView = new SettingsView(functionModel.GetSettings().GetK(), functionModel.GetSettings().GetM(), functionModel.GetFieldOfDefinition());
+        settingsView.setLocationRelativeTo(mainView);
+        settingsView.setVisible(true);
+        int k = settingsView.getK();
+        int m = settingsView.getM();
+        FieldOfDefinition fieldOfDefinition = settingsView.getFieldOfDefinition();
+        functionModel.GetSettings().SetK(k);
+        functionModel.GetSettings().SetM(m);
+        functionModel.SetFieldOfDeFinition(fieldOfDefinition);
+        mainView.repaint();
     }
 
 

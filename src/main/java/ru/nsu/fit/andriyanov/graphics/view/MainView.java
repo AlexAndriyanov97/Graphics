@@ -117,6 +117,7 @@ public class MainView extends JFrame {
         var iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton settingsButton = new JButton(new ImageIcon(iconSettings));
         settingsButton.setToolTipText("Settings");
+        settingsButton.addActionListener(e -> controller.SettingsPressed());
         functionBar.add(settingsButton);
 
 
@@ -143,7 +144,7 @@ public class MainView extends JFrame {
         constraints.anchor = GridBagConstraints.SOUTH;
 
         legendView = new LegendView(legend);
-        panel.add(legendView,constraints);
+        panel.add(legendView, constraints);
 
 
         JScrollPane jScrollPane = new JScrollPane(panel);

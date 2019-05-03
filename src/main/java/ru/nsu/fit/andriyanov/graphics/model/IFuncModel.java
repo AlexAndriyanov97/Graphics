@@ -18,6 +18,8 @@ public interface IFuncModel {
 
     void SetSettings(Settings settings);
 
+    void SetFieldOfDeFinition(FieldOfDefinition fieldOfDefinition);
+
     double[] GetAllValuesOfIsolines();
 
 

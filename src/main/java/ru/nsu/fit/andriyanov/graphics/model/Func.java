@@ -66,6 +66,12 @@ public class Func implements IFuncModel {
         return colorsOfLegend[settings.GetN()];
     }
 
+
+    @Override
+    public void SetFieldOfDeFinition(FieldOfDefinition fieldOfDefinition) {
+        this.fieldOfDefinition = fieldOfDefinition;
+    }
+
     @Override
     public Color GetColorByValue(double value) {
         return GetColorByValue(value,false);

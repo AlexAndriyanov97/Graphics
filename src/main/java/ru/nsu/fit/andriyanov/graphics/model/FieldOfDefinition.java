@@ -34,4 +34,21 @@ public class FieldOfDefinition {
     public int getD() {
         return d;
     }
+
+
+    public void setA(int a) {
+        this.a = a;
+    }
+
+    public void setB(int b) {
+        this.b = b;
+    }
+
+    public void setC(int c) {
+        this.c = c;
+    }
+
+    public void setD(int d) {
+        this.d = d;
+    }
 }
