@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
 
 public class MainView extends JFrame {
 
@@ -35,6 +36,13 @@ public class MainView extends JFrame {
         menuBar.add(file);
 
         var openItem = new JMenuItem("Open");
+        openItem.addActionListener(e -> {
+            try {
+                controller.OpenPressed();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+        });
         file.add(openItem);
 
 
@@ -83,6 +91,13 @@ public class MainView extends JFrame {
         var iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
+        openButton.addActionListener(e -> {
+            try {
+                controller.OpenPressed();
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+        });
         functionBar.add(openButton);
 
 
