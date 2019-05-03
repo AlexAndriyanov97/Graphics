@@ -11,11 +11,18 @@ public class Func implements IFuncModel {
     private BiFunction<Double, Double, Double> mainFunction;
     private FieldOfDefinition fieldOfDefinition;
     private Settings settings;
+    private Color colorOfIsoline;
 
     public Func(BiFunction<Double, Double, Double> function, FieldOfDefinition field, Settings settings) {
         mainFunction = function;
         fieldOfDefinition = field;
         this.settings = settings;
+        colorOfIsoline = settings.GetColorOfIsoline();
+    }
+
+    @Override
+    public Color GetColorOfIsoline() {
+        return colorOfIsoline;
     }
 
     @Override

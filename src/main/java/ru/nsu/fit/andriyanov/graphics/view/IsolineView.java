@@ -153,7 +153,7 @@ public class IsolineView extends JPanel {
             }
         }
         Graphics graphics = image.getGraphics();
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(model.GetColorOfIsoline());
 
         if (crossingPoint.size() == 2) {
             graphics.drawLine(crossingPoint.get(0).x, crossingPoint.get(0).y, crossingPoint.get(1).x, crossingPoint.get(1).y);

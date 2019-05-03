@@ -15,7 +15,7 @@ public class MainController {
 
     public MainController(Func functionModel) {
         this.functionModel = functionModel;
-        BiFunction<Double, Double, Double> functionForLegend = (x, y) -> (functionModel.GetMax() - functionModel.GetMin()) / functionModel.GetFieldOfDefinition().GetWidth() * x + (functionModel.GetMin() - (functionModel.GetMax() - functionModel.GetMin()) / functionModel.GetFieldOfDefinition().GetWidth() * functionModel.GetFieldOfDefinition().getA());
+        BiFunction<Double, Double, Double> functionForLegend = (x, y) -> x;
         this.functionLegend = new Func(functionForLegend, functionModel.GetFieldOfDefinition(), functionModel.GetSettings());
         this.mainView = new MainView(this, functionModel, functionLegend);
         this.mainView.setSize(800, 600);

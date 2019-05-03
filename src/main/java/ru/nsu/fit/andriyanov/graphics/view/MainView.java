@@ -41,12 +41,23 @@ public class MainView extends JFrame {
         var view = new JMenu("View");
         menuBar.add(view);
 
-        var toolBarItem = new JMenuItem("Toolbar");
-        view.add(toolBarItem);
-        var statusBarItem = new JMenuItem("Status Bar");
-        view.add(statusBarItem);
-        var detailsInformationItem = new JMenuItem("Display Impact Values");
-        view.add(detailsInformationItem);
+        var gridItem = new JMenuItem("Show Grid");
+        gridItem.addActionListener(e -> controller.GridPressed());
+        view.add(gridItem);
+        var isolineItem = new JMenuItem("Show Isolines");
+        isolineItem.addActionListener(e -> controller.IsolinePressed());
+        view.add(isolineItem);
+        var interpolationItem = new JMenuItem("Interpolation");
+        interpolationItem.addActionListener(e -> controller.InterpolatePressed());
+        view.add(interpolationItem);
+
+        var paintModeItem = new JMenuItem("Paint Mode");
+        paintModeItem.addActionListener(e -> controller.PaintPressed());
+        view.add(paintModeItem);
+
+        var dotsModeItem = new JMenuItem("Dots Mode");
+        dotsModeItem.addActionListener(e -> controller.DotsPressed());
+        view.add(dotsModeItem);
 
 
         var settings = new JMenu("Settings");
@@ -54,6 +65,7 @@ public class MainView extends JFrame {
 
         var settingsItem = new JMenuItem("Settings");
         settings.add(settingsItem);
+        settingsItem.addActionListener(e -> controller.SettingsPressed());
 
 
         var help = new JMenu("Help");

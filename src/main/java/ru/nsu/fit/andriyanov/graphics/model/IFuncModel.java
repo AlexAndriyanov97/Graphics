@@ -20,6 +20,9 @@ public interface IFuncModel {
 
     void SetFieldOfDeFinition(FieldOfDefinition fieldOfDefinition);
 
+    Color GetColorOfIsoline();
+
+
     double[] GetAllValuesOfIsolines();
 
 
