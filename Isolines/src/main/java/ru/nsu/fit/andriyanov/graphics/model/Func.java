@@ -81,7 +81,7 @@ public class Func implements IFuncModel {
 
     @Override
     public Color GetColorByValue(double value) {
-        return GetColorByValue(value,false);
+        return GetColorByValue(value, false);
     }
 
     private Color GetInterpolatedColorByValue(double value) {
@@ -92,33 +92,32 @@ public class Func implements IFuncModel {
 
         double width = valuesOfIsolines[0] - min;
 
-        int position = (int)((value-min-width/2)/width);
+        int position = (int) ((value - min - width / 2) / width);
 
-        if(value-min<width/2){
+        if (value - min < width / 2) {
             return colorsOfLegend[0];
         }
-        if(GetMax()-value<width/2){
-            return colorsOfLegend[colorsOfLegend.length-1];
+        if (GetMax() - value < width / 2) {
+            return colorsOfLegend[colorsOfLegend.length - 1];
         }
 
 
-        double leftEdge = min+width/2+position*width;
-        double rightEdge = min+width/2+(position+1)*width;
-        return Interpolate(colorsOfLegend[position],colorsOfLegend[position+1],leftEdge,rightEdge,value);
+        double leftEdge = min + width / 2 + position * width;
+        double rightEdge = min + width / 2 + (position + 1) * width;
+        return Interpolate(colorsOfLegend[position], colorsOfLegend[position + 1], leftEdge, rightEdge, value);
     }
 
 
-
-    private Color Interpolate(Color firstColor,Color secondColor, double leftEdge,double rightEdge,double value){
-        int R = (int)(firstColor.getRed()*(rightEdge-value)/(rightEdge-leftEdge)+secondColor.getRed()*(value-leftEdge)/(rightEdge-leftEdge));
-        int G = (int)(firstColor.getGreen()*(rightEdge-value)/(rightEdge-leftEdge)+secondColor.getGreen()*(value-leftEdge)/(rightEdge-leftEdge));
-        int B = (int)(firstColor.getBlue()*(rightEdge-value)/(rightEdge-leftEdge)+secondColor.getBlue()*(value-leftEdge)/(rightEdge-leftEdge));
-        return new Color(R,G,B);
+    private Color Interpolate(Color firstColor, Color secondColor, double leftEdge, double rightEdge, double value) {
+        int R = (int) (firstColor.getRed() * (rightEdge - value) / (rightEdge - leftEdge) + secondColor.getRed() * (value - leftEdge) / (rightEdge - leftEdge));
+        int G = (int) (firstColor.getGreen() * (rightEdge - value) / (rightEdge - leftEdge) + secondColor.getGreen() * (value - leftEdge) / (rightEdge - leftEdge));
+        int B = (int) (firstColor.getBlue() * (rightEdge - value) / (rightEdge - leftEdge) + secondColor.getBlue() * (value - leftEdge) / (rightEdge - leftEdge));
+        return new Color(R, G, B);
     }
 
     @Override
     public double Calculate(double x, double y) {
-        double value = mainFunction.apply(x,y);
+        double value = mainFunction.apply(x, y);
         return mainFunction.apply(x, y);
     }
 

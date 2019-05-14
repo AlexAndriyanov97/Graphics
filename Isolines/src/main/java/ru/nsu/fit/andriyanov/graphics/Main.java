@@ -22,7 +22,7 @@ public class Main {
         }, Color.BLACK);
 
         BiFunction<Double, Double, Double> function = (x, y) -> x * y + x * y;
-        FieldOfDefinition fieldOfDefinition = new FieldOfDefinition(-5, 5, 2, 5);
+        FieldOfDefinition fieldOfDefinition = new FieldOfDefinition(-5, 5, -5, 5);
         Func func = new Func(function, fieldOfDefinition, settings);
 
         MainController mainController = new MainController(func);
