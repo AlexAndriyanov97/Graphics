@@ -23,6 +23,15 @@ public class Vector extends Matrix {
         return this.getValue(2, 0);
     }
 
+
+    public Vector copy() {
+        return new Vector(copy());
+    }
+
+    public static Vector zero() {
+        return new Vector(0, 0, 0);
+    }
+
     @Override
     public Vector resize(double value) {
         return (Vector) super.resize(value);

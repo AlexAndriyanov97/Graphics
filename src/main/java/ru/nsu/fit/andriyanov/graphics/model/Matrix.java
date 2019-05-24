@@ -33,7 +33,7 @@ public class Matrix {
         this.n = matrix.n;
     }
 
-    public double getValue(int i,int j){
+    public double getValue(int i, int j) {
         return matrix[i][j];
     }
 
@@ -85,6 +85,15 @@ public class Matrix {
     }
 
 
+    public Matrix copy() {
+        var newMatrix = new Matrix(m, n);
+        for (var i = 0; i < m; i++) {
+            if (n >= 0) System.arraycopy(matrix[i], 0, newMatrix.matrix[i], 0, n);
+        }
+        return newMatrix;
+    }
+
+
     public Matrix resize(double value) {
         Matrix resizeMatrix = new Matrix(new double[][]{
                 {value, 0, 0, 0},
@@ -99,17 +108,17 @@ public class Matrix {
 
     public Matrix shift(Vector vec) {
         Matrix shiftMatrix = new Matrix(new double[][]{
-                { 1, 0, 0, vec.getX() },
-                { 0, 1, 0, vec.getY() },
-                { 0, 0, 1, vec.getZ() },
-                { 0, 0, 0, 1             } });
+                {1, 0, 0, vec.getX()},
+                {0, 1, 0, vec.getY()},
+                {0, 0, 1, vec.getZ()},
+                {0, 0, 0, 1}});
         matrix = shiftMatrix.mainRotateFunc(this);
         this.m = matrix.length;
         this.n = matrix[0].length;
         return this;
     }
 
-    public Matrix apply(Matrix newMatrix){
+    public Matrix apply(Matrix newMatrix) {
         matrix = newMatrix.mainRotateFunc(this);
         this.m = matrix.length;
         this.n = matrix[0].length;
