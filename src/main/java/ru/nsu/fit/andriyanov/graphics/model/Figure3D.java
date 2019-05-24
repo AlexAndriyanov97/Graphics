@@ -40,7 +40,7 @@ public class Figure3D {
                 .addEdge(new Edge(p110, p111));
     }
 
-    private Figure3D() {
+    public Figure3D() {
         axises[0] = new Edge(
                 Vector.zero(),
                 new Vector(0.2, 0,0), Color.RED);
@@ -105,7 +105,6 @@ public class Figure3D {
                 .collect(Collectors.toList());
     }
 
-
     public void rotate(Matrix matrix) {
         rotation.apply(matrix);
     }
@@ -119,7 +118,7 @@ public class Figure3D {
         edges.clear();
     }
 
-    private Figure3D addEdge(Edge edge) {
+    public Figure3D addEdge(Edge edge) {
         Edge tmp = new Edge(
                 edge.getPoints()[0].copy(),
                 edge.getPoints()[1].copy(), edge.getColor());
