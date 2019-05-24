@@ -66,6 +66,10 @@ public class Camera extends Observable {
         return this.rotation;
     }
 
+    public static Camera getInstance() {
+        return new Camera();
+    }
+
     public void setFrontZ(double frontZ) {
         this.frontZ = frontZ;
 
