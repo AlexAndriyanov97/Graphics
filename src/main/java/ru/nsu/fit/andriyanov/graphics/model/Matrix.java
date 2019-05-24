@@ -132,18 +132,35 @@ public class Matrix {
         return this;
     }
 
-    private double[][] mainRotateFunc(Matrix var1) {
+
+    public Matrix getMatrix(int i, int j, int k, int l) {
+        Matrix resultMatrix = new Matrix(j - i + 1, l - k + 1);
+
+        for (int index = i; index <= j; ++index) {
+            if (l + 1 - k >= 0)
+                System.arraycopy(matrix[index], k, resultMatrix.matrix[index - i], k - k, l + 1 - k);
+        }
+
+        return resultMatrix;
+    }
+
+    public void instance(Matrix matrix) {
+        this.matrix = matrix.matrix;
+        this.m = matrix.m;
+        this.n = matrix.n;
+    }
+
+    public double[][] mainRotateFunc(Matrix var1) {
         Matrix resultMatrix = new Matrix(this.m, var1.n);
         double[][] valuesOfMatrix = resultMatrix.matrix;
         double[] vector = new double[this.n];
 
         for (int i = 0; i < var1.n; ++i) {
-            int j;
-            for (j = 0; j < this.n; ++j) {
+            for (int j = 0; j < this.n; ++j) {
                 vector[j] = var1.matrix[j][i];
             }
 
-            for (j = 0; j < this.m; ++j) {
+            for (int j = 0; j < this.m; ++j) {
                 double[] vectorC = this.matrix[j];
                 double sum = 0.0D;
 
@@ -161,6 +178,47 @@ public class Matrix {
 
     public double[][] getValues() {
         return matrix;
+    }
+
+    public double norm() {
+        double result = 0.0D;
+
+        for(int i = 0; i < this.m; ++i) {
+            for(int j = 0; j < this.n; ++j) {
+                result = calculate(result, matrix[i][j]);
+            }
+        }
+
+        return result;
+    }
+
+
+    public Matrix transpose() {
+        Matrix result = new Matrix(this.n, this.m);
+
+        for(int i = 0; i < this.m; ++i) {
+            for(int j = 0; j < this.n; ++j) {
+                result.matrix[j][i] = matrix[i][j];
+            }
+        }
+
+        return result;
+    }
+
+
+    private static double calculate(double result, double value) {
+        double tmp;
+        if (Math.abs(result) > Math.abs(value)) {
+            tmp = value / result;
+            tmp = Math.abs(result) * Math.sqrt(1.0D + tmp * tmp);
+        } else if (value != 0.0D) {
+            tmp = result / value;
+            tmp = Math.abs(value) * Math.sqrt(1.0D + tmp * tmp);
+        } else {
+            tmp = 0.0D;
+        }
+
+        return tmp;
     }
 
 }

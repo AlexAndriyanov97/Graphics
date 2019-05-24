@@ -2,6 +2,10 @@ package main.java.ru.nsu.fit.andriyanov.graphics.model;
 
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Figure3D {
     private Matrix rotation = Matrix.getSingleMatrix();
@@ -48,6 +52,57 @@ public class Figure3D {
         axises[2] = new Edge(
                 Vector.zero(),
                 new Vector(0, 0, 0.2), Color.BLUE);
+    }
+
+
+    public Vector[] getMinMaxPoints() {
+        double[] minMaxX = { center.getX(), center.getX() };
+        double[] minMaxY = { center.getY(), center.getY() };
+        double[] minMaxZ = { center.getZ(), center.getZ() };
+
+        edges.stream()
+                .flatMap(edge -> Arrays.stream(edge.getPoints()))
+                .forEach(vector -> {
+                    Vector __vector = vector.copy()
+                            .apply(rotation)
+                            .shift(center);
+
+                    minMaxX[0] = Double.min(__vector.getX(), minMaxX[0]);
+                    minMaxX[1] = Double.max(__vector.getX(), minMaxX[1]);
+
+                    minMaxY[0] = Double.min(__vector.getY(), minMaxY[0]);
+                    minMaxY[1] = Double.max(__vector.getY(), minMaxY[1]);
+
+                    minMaxZ[0] = Double.min(__vector.getZ(), minMaxZ[0]);
+                    minMaxZ[1] = Double.max(__vector.getZ(), minMaxZ[1]);
+                });
+
+        return new Vector[]{
+                new Vector(minMaxX[0], minMaxY[0], minMaxZ[0]),
+                new Vector(minMaxX[1], minMaxY[1], minMaxZ[1])
+        };
+    }
+
+
+    protected List<Edge> getEdges(Matrix toScene, Camera camera) {
+        Translation translation = new Translation(Vector.zero(),
+                camera.axisX, camera.axisY, camera.axisZ);
+
+        return Stream.concat(Arrays.stream(axises), edges.stream())
+                .map(edge -> {
+                    Vector[] points = Arrays.stream(edge.getPoints())
+                            .map(v -> v.copy()
+                                    .apply(rotation)
+                                    .shift(center)
+                                    .apply(toScene)
+                                    .translateTo(translation)
+                                    .apply(camera.getRotation())
+                                    .translateFrom(translation))
+                            .toArray(Vector[]::new);
+
+                    return new Edge(points[0], points[1], edge.getColor());
+                })
+                .collect(Collectors.toList());
     }
 
 

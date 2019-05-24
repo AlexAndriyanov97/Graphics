@@ -18,6 +18,19 @@ public class Camera extends Observable {
     private final Vector viewPoint = new Vector(0, 0, 0);
     private final Vector up = new Vector(0, 1, 0);
 
+
+    public final Vector axisZ = viewPoint.copy()
+            .shift(position.copy().resize(-1))
+            .normalize();
+
+    public final Vector axisX = axisZ.copy().
+            crossProduct(up).
+            normalize();
+
+    public final Vector axisY = axisZ.copy().
+            crossProduct(axisX).
+            normalize();
+
     private Color color = Color.WHITE;
 
     public Camera() {
@@ -45,9 +58,12 @@ public class Camera extends Observable {
     }
 
 
-
     public void setRotation(Matrix rotation) {
         this.rotation = rotation;
+    }
+
+    public Matrix getRotation() {
+        return this.rotation;
     }
 
     public void setFrontZ(double frontZ) {
@@ -71,7 +87,6 @@ public class Camera extends Observable {
     }
 
 
-
     public void setWidth(double width) {
         this.width = width;
 
@@ -81,7 +96,6 @@ public class Camera extends Observable {
     public double getWidth() {
         return width;
     }
-
 
 
     public void setHeight(double height) {

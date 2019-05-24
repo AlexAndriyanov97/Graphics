@@ -24,6 +24,32 @@ public class Vector extends Matrix {
     }
 
 
+    public Vector normalize() {
+        double norm = getMatrix(0, 2, 0, 0).norm();
+
+        return this.resize(1 / norm);
+    }
+
+    public Vector crossProduct(Vector other) {
+        Matrix matrix = new Vector(getY() * other.getZ() - getZ() * other.getY(),
+                getZ() * other.getX() - getX() * other.getZ(),
+                getX() * other.getY() - getY() * other.getX());
+
+        instance(matrix);
+        return this;
+    }
+
+    public Vector translateTo(Translation translation) {
+        return apply(translation);
+    }
+
+    public Vector translateFrom(Translation translation) {
+        Matrix transposed = translation. transpose();
+        Matrix newMatrix = new Matrix(transposed.mainRotateFunc(this));
+        instance(newMatrix);
+        return this;
+    }
+
     public Vector copy() {
         return new Vector(copy());
     }
