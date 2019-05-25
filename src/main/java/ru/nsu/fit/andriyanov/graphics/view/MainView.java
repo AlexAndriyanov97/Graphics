@@ -55,7 +55,7 @@ public class MainView extends JFrame {
     }
 
     private void buildMenuBar() {
-        setSize(800,600);
+        setSize(800, 600);
         setLocationByPlatform(true);
         setTitle("Wireframe");
         menuBar = new JMenuBar();
@@ -77,11 +77,13 @@ public class MainView extends JFrame {
 
         JMenuItem init = new JMenuItem("Init");
         init.addActionListener(e -> {
+            mainPanel.resetFigures();
         });
         edit.add(init);
 
         JMenuItem settings = new JMenuItem("Settings");
         settings.addActionListener(e -> {
+            splinesAction();
         });
         edit.add(settings);
 
@@ -153,6 +155,8 @@ public class MainView extends JFrame {
         JScrollPane jScrollPane = new JScrollPane(panel);
         jScrollPane.setPreferredSize(panel.getPreferredSize());
         add(new JPanel().add(jScrollPane));
+        mainPanel.setVisible(true);
+        add(mainPanel,BorderLayout.CENTER);
     }
 
     private void splinesAction() {

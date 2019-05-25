@@ -23,7 +23,7 @@ public class SplineDialog extends JDialog {
     private Map<Spline, JPanel> splinePanels = new HashMap<>();
 
     private SplineManager splineOwner = SplineManager.getInstance();
-    private Camera camera           = Camera.getInstance();
+    private Camera camera = Camera.getInstance();
 
     private Consumer<Spline> actionOnSelect;
 
@@ -85,7 +85,7 @@ public class SplineDialog extends JDialog {
         splines.add(spline);
         splinePanels.put(spline, panel);
 
-        tabbedPane.add(String.format("figure%d", figureCounter++), panel);
+        tabbedPane.add(String.format("%d", figureCounter++), panel);
     }
 
     private void removeSplinePanel(Spline spline) {
@@ -101,19 +101,11 @@ public class SplineDialog extends JDialog {
         buttonsPanel.setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-//        ------   addButton   ------
-        JButton addButton = new JButton("add");
-        addButton.addActionListener(e -> splineOwner.addSpline(new Spline()));
-
-        constraints.gridwidth = 2;
-        constraints.fill = GridBagConstraints.BOTH;
-        constraints.insets = new Insets(5, 5, 5, 5);
-        buttonsPanel.add(addButton, constraints);
 
 //        ------   n   ------
         JLabel nLabel = new JLabel("n");
 
-        constraints.gridx = 2;
+        constraints.gridx = 1;
         constraints.gridwidth = 1;
         constraints.weightx = 0.1;
         buttonsPanel.add(nLabel, constraints);
@@ -317,28 +309,27 @@ public class SplineDialog extends JDialog {
             tabbedPane.repaint();
         });
 
-        constraints.gridx = 1;
+        constraints.gridx = 5;
         constraints.gridy = 3;
         constraints.gridwidth = 4;
         buttonsPanel.add(backgroundColorButton, constraints);
 
-//        ------   rotate   ------
-        JCheckBox rotateCheckBox = new JCheckBox("rotate", FigureController.getInstance().isEnable());
-        rotateCheckBox.addChangeListener(e ->
-                FigureController.getInstance().setEnable(rotateCheckBox.isSelected()));
+        JButton addButton = new JButton("add");
+        addButton.addActionListener(e -> splineOwner.addSpline(new Spline()));
 
-        constraints.gridx = 5;
-        constraints.gridwidth = 2;
-        buttonsPanel.add(rotateCheckBox, constraints);
+        constraints.gridx = 1;
+        constraints.gridy = 3;
+        constraints.gridwidth = 4;
+        buttonsPanel.add(addButton, constraints);
 
 //        ------   end   ------
         return buttonsPanel;
     }
 
     @Override
-    public void setVisible(boolean b) {
-        super.setVisible(b);
-        if (!b)
+    public void setVisible(boolean flag) {
+        super.setVisible(flag);
+        if (!flag)
             return;
 
         JPanel panel = splinePanels.values().stream()
