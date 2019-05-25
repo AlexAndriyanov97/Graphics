@@ -83,8 +83,8 @@ public class Vector extends Matrix {
         double z = getZ();
 
         apply(projection);
-        Matrix matrix = times(1 / z);
-
+        Matrix matrix = mult(1 / z);
+        instance(matrix);
         return this;
     }
 }

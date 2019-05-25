@@ -197,16 +197,16 @@ public class Matrix {
         return result;
     }
 
-    public Matrix times(double value) {
-        Matrix var3 = new Matrix(this.m, this.n);
+    public Matrix mult(double value) {
+        Matrix result = new Matrix(this.m, this.n);
 
         for(int i = 0; i < this.m; ++i) {
             for(int j = 0; j < this.n; ++j) {
-                var3.matrix[i][j] = value * matrix[i][j];
+                result.matrix[i][j] = value * matrix[i][j];
             }
         }
 
-        return var3;
+        return result;
     }
 
 
