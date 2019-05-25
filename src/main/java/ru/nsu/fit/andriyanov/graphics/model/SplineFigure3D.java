@@ -12,7 +12,7 @@ public class SplineFigure3D extends Figure3D implements Observer {
 
     private Spline spline;
 
-    SplineFigure3D(Spline spline) {
+    public SplineFigure3D(Spline spline) {
         this.spline = spline;
         recount();
     }

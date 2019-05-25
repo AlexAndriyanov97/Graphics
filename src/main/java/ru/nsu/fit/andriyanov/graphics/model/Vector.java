@@ -51,7 +51,7 @@ public class Vector extends Matrix {
     }
 
     public Vector copy() {
-        return new Vector(copy());
+        return new Vector(super.copy());
     }
 
     public static Vector zero() {
