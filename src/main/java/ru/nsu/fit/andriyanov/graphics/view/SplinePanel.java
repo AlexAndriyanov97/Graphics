@@ -13,10 +13,9 @@ import java.awt.image.BufferedImage;
 public class SplinePanel extends JPanel {
 
 
-    private final static int DIAMETER = 20;
-
-    private Point2D from;
-    private Point2D to;
+    private final static int DIM = 10;
+    private Point2D start;
+    private Point2D end;
 
     private Spline spline;
 
@@ -30,7 +29,6 @@ public class SplinePanel extends JPanel {
         setLayout(new GridBagLayout());
         GridBagConstraints constraints = new GridBagConstraints();
 
-//        ------   image panel   ------
         createImagePanel(updateAction);
 
         constraints.gridx = 0;
@@ -41,7 +39,7 @@ public class SplinePanel extends JPanel {
         constraints.fill = GridBagConstraints.BOTH;
         add(imagePanel, constraints);
 
-//        ------   remove figure button   ------
+
         JButton removeFigureButton = new JButton("remove figure");
         removeFigureButton.addActionListener(e -> removeAction.run());
 
@@ -79,31 +77,31 @@ public class SplinePanel extends JPanel {
         }
 
         double max = Double.max(maxX, maxY);
-        max += 2 * DIAMETER / ((double) getWidth()) * max;
+        max += 2 * DIM / ((double) getWidth()) * max;
 
-        from = new Point2D.Double(-max, -max);
-        to = new Point2D.Double(max, max);
+        start = new Point2D.Double(-max, -max);
+        end = new Point2D.Double(max, max);
     }
 
     private Point2D formatToScreen(Point2D oldPoint) {
-        double kX = imagePanel.getWidth() / (to.getX() - from.getX());
-        double kY = imagePanel.getHeight() / (to.getY() - from.getY());
+        double kX = imagePanel.getWidth() / (end.getX() - start.getX());
+        double kY = imagePanel.getHeight() / (end.getY() - start.getY());
 
-        return new Point2D.Double((oldPoint.getX() - from.getX()) * kX,
-                (oldPoint.getY() - from.getY()) * kY);
+        return new Point2D.Double((oldPoint.getX() - start.getX()) * kX,
+                (oldPoint.getY() - start.getY()) * kY);
     }
 
     private Point2D formatToSpline(Point2D oldPoint) {
-        double kX = (to.getX() - from.getX()) / imagePanel.getWidth();
-        double kY = (to.getY() - from.getY()) / imagePanel.getHeight();
+        double kX = (end.getX() - start.getX()) / imagePanel.getWidth();
+        double kY = (end.getY() - start.getY()) / imagePanel.getHeight();
 
-        return new Point2D.Double(oldPoint.getX() * kX + from.getX(),
-                oldPoint.getY() * kY + from.getY());
+        return new Point2D.Double(oldPoint.getX() * kX + start.getX(),
+                oldPoint.getY() * kY + start.getY());
     }
 
     private Point2D findPoint(Point2D point) {
         return spline.getPoints().stream()
-                .filter(splinePoint -> formatToScreen(splinePoint).distance(point) < DIAMETER / 2)
+                .filter(splinePoint -> formatToScreen(splinePoint).distance(point) < DIM / 2)
                 .findFirst().orElse(null);
     }
 
@@ -115,7 +113,7 @@ public class SplinePanel extends JPanel {
             protected void paintComponent(Graphics g) {
                 recountBorders();
 
-                BufferedImage image = new SplineImage(getWidth(), getHeight(), from, to, spline);
+                BufferedImage image = new SplineImage(getWidth(), getHeight(), start, end, spline);
                 g.drawImage(image, 0, 0, this);
 
                 spline.getPoints().forEach(point2D -> {
@@ -125,9 +123,9 @@ public class SplinePanel extends JPanel {
                         g.setColor(Color.WHITE);
 
                     Point2D formatted = formatToScreen(point2D);
-                    g.drawOval((int) formatted.getX() - DIAMETER / 2,
-                            (int) formatted.getY() - DIAMETER / 2,
-                            DIAMETER, DIAMETER);
+                    g.drawOval((int) formatted.getX() - DIM / 2,
+                            (int) formatted.getY() - DIM / 2,
+                            DIM, DIM);
                 });
             }
         };

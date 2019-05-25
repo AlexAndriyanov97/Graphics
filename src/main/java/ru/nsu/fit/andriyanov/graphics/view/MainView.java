@@ -63,6 +63,7 @@ public class MainView extends JFrame {
         setTitle("Wireframe");
         JMenuBar menuBar = new JMenuBar();
         JMenu file = new JMenu("File");
+        menuBar.add(file);
 
         JMenuItem openItem = new JMenuItem("Open");
         openItem.addActionListener(e -> {

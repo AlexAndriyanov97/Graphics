@@ -1,6 +1,5 @@
 package main.java.ru.nsu.fit.andriyanov.graphics.view;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.controller.FigureController;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Camera;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Spline;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.SplineManager;
@@ -27,8 +26,8 @@ public class SplineDialog extends JDialog {
 
     private Consumer<Spline> actionOnSelect;
 
-    public SplineDialog(JFrame owner, Consumer<Spline> actionOnSelect) {
-        super(owner, "Spline");
+    public SplineDialog(JFrame parent, Consumer<Spline> actionOnSelect) {
+        super(parent, "Spline");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -37,10 +36,10 @@ public class SplineDialog extends JDialog {
             }
         });
 
-        setSize(600, 600);
+        setSize(500, 500);
         setResizable(false);
 
-        setLocationRelativeTo(owner);
+        setLocationRelativeTo(parent);
 
         this.actionOnSelect = actionOnSelect;
 
@@ -51,7 +50,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 1;
         constraints.fill = GridBagConstraints.BOTH;
 
-//        ------   tabbedPane   ------
         tabbedPane = new JTabbedPane(SwingConstants.TOP, JTabbedPane.SCROLL_TAB_LAYOUT);
         tabbedPane.addChangeListener(e -> {
             if (tabbedPane.getSelectedIndex() == -1)
@@ -66,11 +64,9 @@ public class SplineDialog extends JDialog {
         constraints.weighty = 1;
         add(tabbedPane, constraints);
 
-//        ------   buttons panel   ------
         constraints.weighty = 0.05;
         add(createButtonsPanel(), constraints);
 
-//        ------   config splineOwner   ------
         splineOwner.addActionOnAdd(this::addSplinePanel);
         splineOwner.addActionOnRemove(this::removeSplinePanel);
 
@@ -102,7 +98,6 @@ public class SplineDialog extends JDialog {
         GridBagConstraints constraints = new GridBagConstraints();
 
 
-//        ------   n   ------
         JLabel nLabel = new JLabel("n");
 
         constraints.gridx = 1;
@@ -119,7 +114,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 1;
         buttonsPanel.add(nSpinner, constraints);
 
-//        ------   m   ------
         JLabel mLabel = new JLabel("m");
 
         constraints.weightx = 0.1;
@@ -133,7 +127,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 0.9;
         buttonsPanel.add(mSpinner, constraints);
 
-//        ------   k   ------
         JLabel kLabel = new JLabel("k");
 
         constraints.weightx = 0.1;
@@ -147,7 +140,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 0.9;
         buttonsPanel.add(kSpinner, constraints);
 
-//        ------   a   ------
         JLabel aLabel = new JLabel("a");
 
         constraints.gridy = 1;
@@ -169,7 +161,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 1;
         buttonsPanel.add(aSpinner, constraints);
 
-//        ------   b   ------
         JLabel bLabel = new JLabel("b");
 
         constraints.weightx = 0.1;
@@ -190,7 +181,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 1;
         buttonsPanel.add(bSpinner, constraints);
 
-//        ------   c   ------
         JLabel cLabel = new JLabel("c");
 
         constraints.gridy = 1;
@@ -212,7 +202,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 0.9;
         buttonsPanel.add(cSpinner, constraints);
 
-//        ------   d   ------
         JLabel dLabel = new JLabel("d");
 
         constraints.weightx = 0.1;
@@ -233,7 +222,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 0.9;
         buttonsPanel.add(dSpinner, constraints);
 
-//        ------   sw   ------
         JLabel swLabel = new JLabel("sw");
 
         constraints.gridy = 2;
@@ -248,7 +236,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 1;
         buttonsPanel.add(swSpinner, constraints);
 
-//        ------   sh   ------
         JLabel shLabel = new JLabel("sh");
 
         constraints.weightx = 0.1;
@@ -262,7 +249,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 1;
         buttonsPanel.add(shSpinner, constraints);
 
-//        ------   zf   ------
         JLabel zfLabel = new JLabel("zf");
 
         constraints.weightx = 0.1;
@@ -282,7 +268,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 0.9;
         buttonsPanel.add(zfSpinner, constraints);
 
-//        ------   zb   ------
         JLabel zbLabel = new JLabel("zb");
 
         constraints.weightx = 0.1;
@@ -302,7 +287,6 @@ public class SplineDialog extends JDialog {
         constraints.weightx = 0.9;
         buttonsPanel.add(zbSpinner, constraints);
 
-//        ------   background color   ------
         JButton backgroundColorButton = new JButton("background color");
         backgroundColorButton.addActionListener(e -> {
             camera.setColor(JColorChooser.showDialog(this, "Background color", camera.getColor()));
@@ -322,7 +306,6 @@ public class SplineDialog extends JDialog {
         constraints.gridwidth = 4;
         buttonsPanel.add(addButton, constraints);
 
-//        ------   end   ------
         return buttonsPanel;
     }
 

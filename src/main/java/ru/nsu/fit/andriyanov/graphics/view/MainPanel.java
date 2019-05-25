@@ -30,7 +30,6 @@ public class MainPanel extends JPanel {
     private BufferedImage[] projectionImages;
 
     MainPanel() {
-//        ------   resize   ------
 
         addComponentListener(new ComponentAdapter() {
             @Override
@@ -39,7 +38,6 @@ public class MainPanel extends JPanel {
             }
         });
 
-//        ------   rotate   ------
 
         int[] mouseX = { 0 };
         int[] mouseY = { 0 };
@@ -81,13 +79,10 @@ public class MainPanel extends JPanel {
             }
         });
 
-//        ------   scroll   ------
 
         addMouseWheelListener(e -> {
             camera.move(e.getWheelRotation());
         });
-
-//        ------   move   ------
 
         addKeyListener(new KeyAdapter() {
             @Override
@@ -178,25 +173,25 @@ public class MainPanel extends JPanel {
 
         Matrix toScene = computeMatrixToScene();
 
-        Stream.Builder<Figure2D> __projectionImages = Stream.builder();
+        Stream.Builder<Figure2D> builder = Stream.builder();
         for (Figure3D figure : figures)
-            __projectionImages.add(new Figure2D(width, height, toScene, camera, figure));
-        __projectionImages.add(new Figure2D(width, height, Matrix.getSingleMatrix(), camera, scene));
+            builder.add(new Figure2D(width, height, toScene, camera, figure));
+        builder.add(new Figure2D(width, height, Matrix.getSingleMatrix(), camera, scene));
 
-        projectionImages = __projectionImages.build().toArray(Figure2D[]::new);
+        projectionImages = builder.build().toArray(Figure2D[]::new);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        Graphics2D g2D = (Graphics2D) g;
-        g2D.clearRect(0, 0, getWidth(), getHeight());
+        Graphics2D graphics2D = (Graphics2D) g;
+        graphics2D.clearRect(0, 0, getWidth(), getHeight());
 
-        g2D.setColor(camera.getColor());
-        g2D.fillRect(BORDER, BORDER, width, height);
+        graphics2D.setColor(camera.getColor());
+        graphics2D.fillRect(BORDER, BORDER, width, height);
 
         if (projectionImages != null) {
             for (BufferedImage projectionImage : projectionImages)
-                g2D.drawImage(projectionImage, BORDER, BORDER, this);
+                graphics2D.drawImage(projectionImage, BORDER, BORDER, this);
         }
     }
 
