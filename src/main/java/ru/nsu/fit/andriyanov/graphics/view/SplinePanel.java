@@ -122,7 +122,7 @@ public class SplinePanel extends JPanel {
 
                 spline.getPoints().forEach(point2D -> {
                     if (point2D == closest[0])
-                        g.setColor(Color.YELLOW);
+                        g.setColor(Color.RED);
                     else
                         g.setColor(Color.WHITE);
 

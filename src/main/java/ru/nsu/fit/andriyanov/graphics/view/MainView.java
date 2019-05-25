@@ -55,6 +55,9 @@ public class MainView extends JFrame {
     }
 
     private void buildMenuBar() {
+        setSize(800,600);
+        setLocationByPlatform(true);
+        setTitle("Wireframe");
         menuBar = new JMenuBar();
         JMenu file = new JMenu("File");
 

@@ -31,7 +31,7 @@ public class Camera extends Observable {
             crossProduct(axisX).
             normalize();
 
-    private Color color = Color.WHITE;
+    private Color color = Color.BLACK;
 
     public Camera() {
     }
