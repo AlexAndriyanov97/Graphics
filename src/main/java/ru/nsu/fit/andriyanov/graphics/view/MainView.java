@@ -8,6 +8,7 @@ public class MainView extends JFrame {
     private JToolBar functionBar;
 
     public MainView() {
+        buildMenuBar();
     }
 
     private void buildMenuBar(){
