@@ -17,8 +17,6 @@ import java.util.Map;
 import java.util.Observer;
 
 public class MainView extends JFrame {
-    private JMenuBar menuBar;
-    private JToolBar functionBar;
 
     private MainPanel mainPanel;
 
@@ -63,7 +61,7 @@ public class MainView extends JFrame {
         setSize(800, 600);
         setLocationByPlatform(true);
         setTitle("Wireframe");
-        menuBar = new JMenuBar();
+        JMenuBar menuBar = new JMenuBar();
         JMenu file = new JMenu("File");
 
         JMenuItem openItem = new JMenuItem("Open");
@@ -103,7 +101,7 @@ public class MainView extends JFrame {
         setJMenuBar(menuBar);
 
 
-        functionBar = new JToolBar();
+        JToolBar functionBar = new JToolBar();
         functionBar.setLayout(new BoxLayout(functionBar, BoxLayout.X_AXIS));
         functionBar.setPreferredSize(new Dimension(0, 40));
 
@@ -178,7 +176,7 @@ public class MainView extends JFrame {
             InputStream stream = new FileInputStream(fileChooser.getSelectedFile());
             FileReader.loadFile(stream, figures);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error while reading data",
+            JOptionPane.showMessageDialog(this, "Can not open file",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -192,7 +190,7 @@ public class MainView extends JFrame {
             OutputStream stream = new FileOutputStream(fileChooser.getSelectedFile());
             FileReader.saveFile(stream, figures);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error while saving data",
+            JOptionPane.showMessageDialog(this, "Can not open file",
                     "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
