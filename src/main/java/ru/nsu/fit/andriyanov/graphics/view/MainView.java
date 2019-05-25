@@ -169,7 +169,7 @@ public class MainView extends JFrame {
 
 
     private void loadFile() {
-        JFileChooser fileChooser = new JFileChooser("FIT_16208_Andriyanov_Wireframe_Data");
+        JFileChooser fileChooser = new JFileChooser("user.dir");
         if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION)
             return;
 
@@ -184,7 +184,7 @@ public class MainView extends JFrame {
 
 
     private void saveFile() {
-        JFileChooser fileChooser = new JFileChooser("FIT_16208_Andriyanov_Wireframe_Data");
+        JFileChooser fileChooser = new JFileChooser("user.dir");
         if (fileChooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION)
             return;
         try {
