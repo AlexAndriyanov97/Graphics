@@ -29,7 +29,7 @@ public class SplineManager extends Observable {
         actionsOnAdd.forEach(action -> action.accept(spline));
     }
 
-    void removeSpline(Spline spline) {
+    public void removeSpline(Spline spline) {
         splines.remove(spline);
         actionsOnRemove.forEach(action -> action.accept(spline));
     }

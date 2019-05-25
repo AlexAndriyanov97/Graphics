@@ -38,10 +38,15 @@ public class Matrix {
     }
 
     public static Matrix getSingleMatrix() {
-        Matrix singleMatrix = new Matrix(4, 4);
+        return getSingleMatrix(4,4);
+    }
 
-        for (int i = 0; i < 4; ++i) {
-            for (int j = 0; j < 4; ++j) {
+
+    public static Matrix getSingleMatrix(int m, int n) {
+        Matrix singleMatrix = new Matrix(m, n);
+
+        for (int i = 0; i < m; ++i) {
+            for (int j = 0; j < n; ++j) {
                 singleMatrix.matrix[i][j] = i == j ? 1.0D : 0.0D;
             }
         }
@@ -192,6 +197,18 @@ public class Matrix {
         return result;
     }
 
+    public Matrix times(double value) {
+        Matrix var3 = new Matrix(this.m, this.n);
+
+        for(int i = 0; i < this.m; ++i) {
+            for(int j = 0; j < this.n; ++j) {
+                var3.matrix[i][j] = value * matrix[i][j];
+            }
+        }
+
+        return var3;
+    }
+
 
     public Matrix transpose() {
         Matrix result = new Matrix(this.n, this.m);
@@ -204,6 +221,8 @@ public class Matrix {
 
         return result;
     }
+
+
 
 
     private static double calculate(double result, double value) {
@@ -221,4 +240,7 @@ public class Matrix {
         return tmp;
     }
 
+    public Matrix applyInversed(Matrix rotation) {
+        return null;
+    }
 }

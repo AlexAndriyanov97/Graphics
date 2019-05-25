@@ -46,7 +46,7 @@ public class Spline {
         segments.add(new Segment(segPoints));
     }
 
-    void removePoint() {
+    public void removePoint() {
         if (points.size() <= 4)
             return;
 

@@ -77,4 +77,14 @@ public class Vector extends Matrix {
     public Vector rotate(double angleX, double angleY, double angleZ) {
         return (Vector) super.rotate(angleX, angleY, angleZ);
     }
+
+
+    public Vector project(Projection projection) {
+        double z = getZ();
+
+        apply(projection);
+        Matrix matrix = times(1 / z);
+
+        return this;
+    }
 }
