@@ -4,9 +4,14 @@ import main.java.ru.nsu.fit.andriyanov.graphics.controller.FigureController;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.Spline;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.SplineFigure3D;
 import main.java.ru.nsu.fit.andriyanov.graphics.model.SplineManager;
+import main.java.ru.nsu.fit.andriyanov.graphics.tool.FileReader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observer;
@@ -63,11 +68,13 @@ public class MainView extends JFrame {
 
         JMenuItem openItem = new JMenuItem("Open");
         openItem.addActionListener(e -> {
+            loadFile();
         });
         file.add(openItem);
 
         JMenuItem saveItem = new JMenuItem("Save");
         saveItem.addActionListener(e -> {
+            saveFile();
         });
         file.add(saveItem);
 
@@ -83,7 +90,7 @@ public class MainView extends JFrame {
 
         JMenuItem settings = new JMenuItem("Settings");
         settings.addActionListener(e -> {
-            splinesAction();
+            getSplineView();
         });
         edit.add(settings);
 
@@ -105,6 +112,7 @@ public class MainView extends JFrame {
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
         openButton.addActionListener(e -> {
+            loadFile();
         });
         functionBar.add(openButton);
 
@@ -114,6 +122,7 @@ public class MainView extends JFrame {
         JButton saveButton = new JButton(new ImageIcon(iconSave));
         saveButton.setToolTipText("Save");
         saveButton.addActionListener(e -> {
+            saveFile();
         });
         functionBar.add(saveButton);
 
@@ -133,7 +142,7 @@ public class MainView extends JFrame {
         JButton settingsButton = new JButton(new ImageIcon(iconSettings));
         settingsButton.setToolTipText("Settings");
         settingsButton.addActionListener(e -> {
-            splinesAction();
+            getSplineView();
         });
         functionBar.add(settingsButton);
 
@@ -156,10 +165,39 @@ public class MainView extends JFrame {
         jScrollPane.setPreferredSize(panel.getPreferredSize());
         add(new JPanel().add(jScrollPane));
         mainPanel.setVisible(true);
-        add(mainPanel,BorderLayout.CENTER);
+        add(mainPanel, BorderLayout.CENTER);
     }
 
-    private void splinesAction() {
+
+    private void loadFile() {
+        JFileChooser fileChooser = new JFileChooser("FIT_16208_Andriyanov_Wireframe_Data");
+        if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION)
+            return;
+
+        try {
+            InputStream stream = new FileInputStream(fileChooser.getSelectedFile());
+            FileReader.loadFile(stream, figures);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error while reading data",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+
+    private void saveFile() {
+        JFileChooser fileChooser = new JFileChooser("FIT_16208_Andriyanov_Wireframe_Data");
+        if (fileChooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION)
+            return;
+        try {
+            OutputStream stream = new FileOutputStream(fileChooser.getSelectedFile());
+            FileReader.saveFile(stream, figures);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error while saving data",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void getSplineView() {
         splineDialog.setVisible(true);
     }
 }

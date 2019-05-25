@@ -53,7 +53,6 @@ public class SplinePanel extends JPanel {
         constraints.fill = GridBagConstraints.NONE;
         add(removeFigureButton, constraints);
 
-//        ------   color button   ------
         JButton colorButton = new JButton("color");
         colorButton.addActionListener(e -> {
             spline.setColor(JColorChooser.showDialog(this, "Spline color", spline.getColor()));
@@ -62,7 +61,6 @@ public class SplinePanel extends JPanel {
 
         add(colorButton, constraints);
 
-//        ------   remove point button   ------
         JButton removePointButton = new JButton("remove point");
         removePointButton.addActionListener(e -> {
             spline.removePoint();
