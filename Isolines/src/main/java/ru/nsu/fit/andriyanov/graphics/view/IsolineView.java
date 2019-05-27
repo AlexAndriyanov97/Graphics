@@ -233,20 +233,20 @@ public class IsolineView extends JPanel {
     }
 
 
-    private Point CalculatePointOfCrossing(Point f1, Point f2, double valueIsoline) {
-        double valueOfFirstPoint = CalculateValueForPointIntoField(f1);
-        double valueOfSecondPoint = CalculateValueForPointIntoField(f2);
+    private Point CalculatePointOfCrossing(Point firstPoint, Point secondPoint, double valueIsoline) {
+        double valueOfFirstPoint = CalculateValueForPointIntoField(firstPoint);
+        double valueOfSecondPoint = CalculateValueForPointIntoField(secondPoint);
 
-        if (f1.y != f2.y) {
-            double dy = f2.y - f1.y;
+        if (firstPoint.y != secondPoint.y) {
+            double dy = secondPoint.y - firstPoint.y;
             double x = 0;
             double y = dy * scaleY * (valueIsoline - valueOfFirstPoint) / (valueOfSecondPoint - valueOfFirstPoint);
-            return new Point((int) (f1.x + x / scaleX), (int) (f1.y + y / scaleY));
+            return new Point((int) (firstPoint.x + x / scaleX), (int) (firstPoint.y + y / scaleY));
         } else {
-            double dx = f2.x - f1.x;
+            double dx = secondPoint.x - firstPoint.x;
             double x = dx * scaleX * (valueIsoline - valueOfFirstPoint) / (valueOfSecondPoint - valueOfFirstPoint);
             double y = 0;
-            return new Point((int) (f1.x + x / scaleX), (int) (f1.y + y / scaleY));
+            return new Point((int) (firstPoint.x + x / scaleX), (int) (firstPoint.y + y / scaleY));
         }
     }
 
@@ -255,12 +255,12 @@ public class IsolineView extends JPanel {
         double heightGrid = (double) image.getHeight() / m;
         Graphics graphics = image.getGraphics();
         graphics.setXORMode(Color.RED);
-        for (int i = 0; i < k - 1; i++) {
-            int x = (int) widthGrid * (i + 1);
+        for (int i = 0; i < k; i++) {
+            int x = (int) (widthGrid * (i + 1));
             graphics.drawLine(x, 0, x, image.getHeight());
         }
-        for (int i = 0; i < m - 1; i++) {
-            int y = (int) heightGrid * (i + 1);
+        for (int i = 0; i < m; i++) {
+            int y = (int) (heightGrid * (i + 1));
             graphics.drawLine(0, y, image.getWidth(), y);
         }
     }
@@ -282,7 +282,7 @@ public class IsolineView extends JPanel {
 
     private void DrawDot(Graphics graphics, Point centr) {
         // Захардкодим радиус точки
-        int radius = 3;
+        int radius = 2;
         graphics.fillOval(centr.x - radius, centr.y - radius, 2 * radius, 2 * radius);
     }
 

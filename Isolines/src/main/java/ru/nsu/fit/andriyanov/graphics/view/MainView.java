@@ -26,14 +26,11 @@ public class MainView extends JFrame {
     }
 
     private void BuildMenuBar(Func function, Func legend) {
-
-        // Create the file bar.
         menuBar = new JMenuBar();
-        // Create the file and text menus.
-        var file = new JMenu("File");
+        JMenu file = new JMenu("File");
         menuBar.add(file);
 
-        var openItem = new JMenuItem("Open");
+        JMenuItem openItem = new JMenuItem("Open");
         openItem.addActionListener(e -> {
             try {
                 controller.OpenPressed();
@@ -44,38 +41,40 @@ public class MainView extends JFrame {
         file.add(openItem);
 
 
-        var view = new JMenu("View");
+        JMenuItem view = new JMenu("View");
         menuBar.add(view);
 
-        var gridItem = new JMenuItem("Show Grid");
+        JMenuItem gridItem = new JMenuItem("Show Grid");
         gridItem.addActionListener(e -> controller.GridPressed());
         view.add(gridItem);
-        var isolineItem = new JMenuItem("Show Isolines");
+
+        JMenuItem isolineItem = new JMenuItem("Show Isolines");
         isolineItem.addActionListener(e -> controller.IsolinePressed());
         view.add(isolineItem);
-        var interpolationItem = new JMenuItem("Interpolation");
+
+        JMenuItem interpolationItem = new JMenuItem("Interpolation");
         interpolationItem.addActionListener(e -> controller.InterpolatePressed());
         view.add(interpolationItem);
 
-        var paintModeItem = new JMenuItem("Paint Mode");
+        JMenuItem paintModeItem = new JMenuItem("Paint Mode");
         paintModeItem.addActionListener(e -> controller.PaintPressed());
         view.add(paintModeItem);
 
-        var dotsModeItem = new JMenuItem("Dots Mode");
+        JMenuItem dotsModeItem = new JMenuItem("Dots Mode");
         dotsModeItem.addActionListener(e -> controller.DotsPressed());
         view.add(dotsModeItem);
 
 
-        var settings = new JMenu("Settings");
+        JMenu settings = new JMenu("Settings");
         menuBar.add(settings);
 
-        var settingsItem = new JMenuItem("Settings");
+        JMenuItem settingsItem = new JMenuItem("Settings");
         settings.add(settingsItem);
         settingsItem.addActionListener(e -> controller.SettingsPressed());
 
 
-        var help = new JMenu("Help");
-        var helpItem = new JMenuItem("Help");
+        JMenu help = new JMenu("Help");
+        JMenuItem helpItem = new JMenuItem("Help");
         helpItem.addActionListener(e->JOptionPane.showMessageDialog(this  ,"Андриянов Алексей Фит 3 курс 16208"));
         help.add(helpItem);
         menuBar.add(help);
@@ -86,8 +85,8 @@ public class MainView extends JFrame {
         functionBar.setLayout(new BoxLayout(functionBar, BoxLayout.X_AXIS));
         functionBar.setPreferredSize(new Dimension(0, 40));
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/resources/Open32.png"));
-        var iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/Open32.png"));
+        Image iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
         openButton.addActionListener(e -> {
@@ -100,47 +99,47 @@ public class MainView extends JFrame {
         functionBar.add(openButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/resources/Grid32.png"));
-        var iconShowGrid = icon.getImage().getScaledInstance(30, 30, 0);
+        icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/Grid32.png"));
+        Image iconShowGrid = icon.getImage().getScaledInstance(30, 30, 0);
         JButton showGridButton = new JButton(new ImageIcon(iconShowGrid));
         showGridButton.setToolTipText("Show grid");
         showGridButton.addActionListener(e -> controller.GridPressed());
         functionBar.add(showGridButton);
 
-        icon = new ImageIcon(this.getClass().getResource("/resources/Isoline32.png"));
-        var iconShowIsolines = icon.getImage().getScaledInstance(30, 30, 0);
+        icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/Isoline32.png"));
+        Image iconShowIsolines = icon.getImage().getScaledInstance(30, 30, 0);
         JButton showIsolinesButton = new JButton(new ImageIcon(iconShowIsolines));
         showIsolinesButton.setToolTipText("Show Isolines");
         showIsolinesButton.addActionListener(e -> controller.IsolinePressed());
         functionBar.add(showIsolinesButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/resources/Interpolation32.png"));
-        var iconInterpolation = icon.getImage().getScaledInstance(30, 30, 0);
+        icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/Interpolation32.png"));
+        Image iconInterpolation = icon.getImage().getScaledInstance(30, 30, 0);
         JButton interpolationButton = new JButton(new ImageIcon(iconInterpolation));
         interpolationButton.setToolTipText("Interpolation");
         interpolationButton.addActionListener(e -> controller.InterpolatePressed());
         functionBar.add(interpolationButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/resources/PaintMode32.png"));
-        var iconPaint = icon.getImage().getScaledInstance(30, 30, 0);
+        icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/PaintMode32.png"));
+        Image iconPaint = icon.getImage().getScaledInstance(30, 30, 0);
         JButton paintButton = new JButton(new ImageIcon(iconPaint));
         paintButton.setToolTipText("Paint");
         paintButton.addActionListener(e -> controller.PaintPressed());
         functionBar.add(paintButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/resources/Dots32.png"));
-        var iconDots = icon.getImage().getScaledInstance(30, 30, 0);
+        icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/Dots32.png"));
+        Image iconDots = icon.getImage().getScaledInstance(30, 30, 0);
         JButton dotsButton = new JButton(new ImageIcon(iconDots));
         dotsButton.setToolTipText("Dots");
         dotsButton.addActionListener(e -> controller.DotsPressed());
         functionBar.add(dotsButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/resources/Settings32.png"));
-        var iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
+        icon = new ImageIcon(this.getClass().getResource("/main/java/ru/nsu/fit/andriyanov/graphics/resources/Settings32.png"));
+        Image iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton settingsButton = new JButton(new ImageIcon(iconSettings));
         settingsButton.setToolTipText("Settings");
         settingsButton.addActionListener(e -> controller.SettingsPressed());
