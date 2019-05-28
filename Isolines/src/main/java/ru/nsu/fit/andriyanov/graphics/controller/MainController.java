@@ -45,7 +45,7 @@ public class MainController {
 
     public void OpenPressed() throws ParseException {
         try {
-            JFileChooser chooser = new JFileChooser("Data");
+            JFileChooser chooser = new JFileChooser("Isolines/FIT_16208_Andriyanov_Isolines_Data");
 
         if(chooser.showOpenDialog(mainView)==JFileChooser.APPROVE_OPTION){
             File file = chooser.getSelectedFile();
