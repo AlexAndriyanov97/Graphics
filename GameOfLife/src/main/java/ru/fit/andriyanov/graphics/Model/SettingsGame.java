@@ -1,3 +1,5 @@
+package main.java.ru.fit.andriyanov.graphics.Model;
+
 public class SettingsGame {
 
     private int widthOfMap;
