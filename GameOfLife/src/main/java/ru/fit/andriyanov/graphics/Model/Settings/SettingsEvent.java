@@ -1,0 +1,14 @@
+package main.java.ru.fit.andriyanov.graphics.Model.Settings;
+
+public enum SettingsEvent {
+    LIFE_BEGIN_CHANGED,
+    LIFE_END_CHANGED,
+    BIRTH_BEGIN_CHANGED,
+    BIRTH_END_CHANGED,
+    FIRST_IMPACT_CHANGED,
+    SECOND_IMPACT_CHANGED,
+    FIELD_WIDTH_CHANGED,
+    FIELD_HEIGHT_CHANGED,
+    RADIUS_CHANGED,
+    THICKNESS_CHANGED
+}

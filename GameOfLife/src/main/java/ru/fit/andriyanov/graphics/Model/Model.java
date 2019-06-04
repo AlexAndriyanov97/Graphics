@@ -1,5 +1,7 @@
 package main.java.ru.fit.andriyanov.graphics.Model;
 
+import main.java.ru.fit.andriyanov.graphics.Model.Settings.SettingsGame;
+
 public class Model extends Observable<GameEvent> {
     public static final int SIDES = 6;
 
@@ -99,7 +101,7 @@ public class Model extends Observable<GameEvent> {
     }
 
     public void setThickness(int thickness) {
-        settingsModel.setThicknessOfLine(thickness);
+        settingsModel.setThickness(thickness);
     }
 
 
@@ -107,11 +109,11 @@ public class Model extends Observable<GameEvent> {
 
 
     public void setFieldWidth(int width) {
-        settingsModel.setWidthOfMap(width);
+        settingsModel.setFieldWidth(width);
     }
 
     public void setFieldHeight(int height) {
-        settingsModel.setHeightOfMap(height);
+        settingsModel.setFieldHeight(height);
     }
 
     public SettingsGame getSettingsModel() {
