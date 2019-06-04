@@ -1,5 +1,8 @@
 package main.java.ru.fit.andriyanov.graphics.View;
 
+import main.java.ru.fit.andriyanov.graphics.Controller.GameController;
+import main.java.ru.fit.andriyanov.graphics.Model.Model;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,10 +10,14 @@ public class GameView extends JFrame {
     private JMenuBar menuBar;
     private JToolBar functionBar;
 
-    public GameView() {
+    private HexField field;
+    private Model gameModel;
+    private GameController gameController;
+
+    public GameView(Model model) {
         super("Example Menu System");// Call the JFrame constructor.
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);   // Specify an action for the close button.
-        buildMenuBar();
+        buildMenuBar(model);
 
         // Pack and display the window.
         pack();
@@ -18,54 +25,54 @@ public class GameView extends JFrame {
         setVisible(true);
     }
 
-    private void buildMenuBar() {
-
+    private void buildMenuBar(Model model) {
+        gameModel=model;
         // Create the file bar.
         menuBar = new JMenuBar();
         // Create the file and text menus.
         var file = new JMenu("File");
         menuBar.add(file);
 
-        var newItem = new JMenuItem("New");
+        JMenuItem newItem = new JMenuItem("New");
         file.add(newItem);
-        var openItem = new JMenuItem("Open");
+        JMenuItem openItem = new JMenuItem("Open");
         file.add(openItem);
-        var saveItem = new JMenuItem("Save");
+        JMenuItem saveItem = new JMenuItem("Save");
         file.add(saveItem);
-        var saveAsItem = new JMenuItem("Save As");
+        JMenuItem saveAsItem = new JMenuItem("Save As");
         file.add(saveAsItem);
 
 
-        var edit = new JMenu("Edit");
+        JMenu edit = new JMenu("Edit");
         menuBar.add(edit);
 
-        var xorItem = new JMenuItem("XOR");
+        JMenuItem xorItem = new JMenuItem("XOR");
         edit.add(xorItem);
-        var replaceItem = new JMenuItem("Replace");
+        JMenuItem replaceItem = new JMenuItem("Replace");
         edit.add(replaceItem);
-        var clearItem = new JMenuItem("Clear");
+        JMenuItem clearItem = new JMenuItem("Clear");
         edit.add(clearItem);
-        var parametersItem = new JMenuItem("Parameters");
+        JMenuItem parametersItem = new JMenuItem("Parameters");
         edit.add(parametersItem);
 
 
-        var view = new JMenu("View");
+        JMenu view = new JMenu("View");
         menuBar.add(view);
 
-        var toolBarItem = new JMenuItem("Toolbar");
+        JMenuItem toolBarItem = new JMenuItem("Toolbar");
         view.add(toolBarItem);
-        var statusBarItem = new JMenuItem("Status Bar");
+        JMenuItem statusBarItem = new JMenuItem("Status Bar");
         view.add(statusBarItem);
-        var detailsInformationItem = new JMenuItem("Display Impact Values");
+        JMenuItem detailsInformationItem = new JMenuItem("Display Impact Values");
         view.add(detailsInformationItem);
 
 
-        var simulation = new JMenu("Simulation");
+        JMenu simulation = new JMenu("Simulation");
         menuBar.add(simulation);
 
-        var runItem = new JMenuItem("Run");
+        JMenuItem runItem = new JMenuItem("Run");
         simulation.add(runItem);
-        var stepItem = new JMenuItem("Step");
+        JMenuItem stepItem = new JMenuItem("Step");
         simulation.add(stepItem);
 
 
@@ -81,21 +88,21 @@ public class GameView extends JFrame {
         functionBar.setPreferredSize(new Dimension(0, 40));
 
         ImageIcon icon = new ImageIcon(this.getClass().getResource("/resources/new.png"));
-        var iconNew = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconNew = icon.getImage().getScaledInstance(30, 30, 0);
         JButton newButton = new JButton(new ImageIcon(iconNew));
         newButton.setToolTipText("New");
         functionBar.add(newButton);
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/load.png"));
-        var iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
         functionBar.add(openButton);
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/save.png"));
-        var iconSave = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconSave = icon.getImage().getScaledInstance(30, 30, 0);
         JButton saveButton = new JButton(new ImageIcon(iconSave));
         saveButton.setToolTipText("Save");
         functionBar.add(saveButton);
@@ -107,50 +114,47 @@ public class GameView extends JFrame {
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/intersect.png"));
-        var iconIntersect = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconIntersect = icon.getImage().getScaledInstance(30, 30, 0);
         JButton xorButton = new JButton(new ImageIcon(iconIntersect));
         xorButton.setToolTipText("Xor");
         functionBar.add(xorButton);
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/repeat.png"));
-        var iconRepeat = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconRepeat = icon.getImage().getScaledInstance(30, 30, 0);
         JButton replaceButton = new JButton(new ImageIcon(iconRepeat));
         replaceButton.setToolTipText("Replace");
         functionBar.add(replaceButton);
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/delete.png"));
-        var iconDelete = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconDelete = icon.getImage().getScaledInstance(30, 30, 0);
         JButton clearButton = new JButton(new ImageIcon(iconDelete));
         clearButton.setToolTipText("Clear");
         functionBar.add(clearButton);
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/settings.png"));
-        var iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton parametersButton = new JButton(new ImageIcon(iconSettings));
         parametersButton.setToolTipText("Settings");
         functionBar.add(parametersButton);
 
-
-        // TODO Найти иконку для run.
-
         icon = new ImageIcon(this.getClass().getResource("/resources/Run.gif"));
-        var iconRun = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconRun = icon.getImage().getScaledInstance(30, 30, 0);
         JButton runButton = new JButton(new ImageIcon(iconRun));
         runButton.setToolTipText("Run");
         functionBar.add(runButton);
 
 
         icon = new ImageIcon(this.getClass().getResource("/resources/next.png"));
-        var iconNext = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconNext = icon.getImage().getScaledInstance(30, 30, 0);
         JButton stepButton = new JButton(new ImageIcon(iconNext));
         stepButton.setToolTipText("Step");
         functionBar.add(stepButton);
 
         icon = new ImageIcon(this.getClass().getResource("/resources/info.png"));
-        var iconInfo = icon.getImage().getScaledInstance(30, 30, 0);
+        Image iconInfo = icon.getImage().getScaledInstance(30, 30, 0);
         JButton helpButton = new JButton(new ImageIcon(iconInfo));
         helpButton.setToolTipText("About");
         functionBar.add(helpButton);
@@ -158,5 +162,17 @@ public class GameView extends JFrame {
 
         functionBar.setVisible(true);
         add(functionBar, BorderLayout.PAGE_START);
+
+        gameController = new GameController(gameModel, this);
+        field = new HexField(gameModel, gameController);
+
+        JScrollPane scrollPane = new JScrollPane(field);
+        scrollPane.setPreferredSize(field.getPreferredSize());
+        add(new JPanel().add(scrollPane));
+    }
+
+
+    public HexField getField() {
+        return field;
     }
 }
