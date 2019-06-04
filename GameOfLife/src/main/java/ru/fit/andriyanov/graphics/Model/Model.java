@@ -256,4 +256,10 @@ public class Model extends Observable<GameEvent> {
         return settingsModel;
     }
 
+    public void setSettingsModel(SettingsGame settingsModel) {
+        this.settingsModel = settingsModel;
+        notifyObservers(GameEvent.SETTINGS_MODEL_UPDATED, null);
+        setInitState();
+    }
+
 }
