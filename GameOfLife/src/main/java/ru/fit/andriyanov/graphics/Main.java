@@ -80,21 +80,21 @@ class GUImenu extends JFrame {
         functionBar.setLayout(new BoxLayout(functionBar, BoxLayout.X_AXIS));
         functionBar.setPreferredSize(new Dimension(0, 40));
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/main/resources/new.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/resources/new.png"));
         var iconNew = icon.getImage().getScaledInstance(30, 30, 0);
         JButton newButton = new JButton(new ImageIcon(iconNew));
         newButton.setToolTipText("New");
         functionBar.add(newButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/load.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/load.png"));
         var iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
         functionBar.add(openButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/save.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/save.png"));
         var iconSave = icon.getImage().getScaledInstance(30, 30, 0);
         JButton saveButton = new JButton(new ImageIcon(iconSave));
         saveButton.setToolTipText("Save");
@@ -106,28 +106,28 @@ class GUImenu extends JFrame {
         functionBar.add(impactValuesButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/intersect.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/intersect.png"));
         var iconIntersect = icon.getImage().getScaledInstance(30, 30, 0);
         JButton xorButton = new JButton(new ImageIcon(iconIntersect));
         xorButton.setToolTipText("Xor");
         functionBar.add(xorButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/repeat.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/repeat.png"));
         var iconRepeat = icon.getImage().getScaledInstance(30, 30, 0);
         JButton replaceButton = new JButton(new ImageIcon(iconRepeat));
         replaceButton.setToolTipText("Replace");
         functionBar.add(replaceButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/delete.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/delete.png"));
         var iconDelete = icon.getImage().getScaledInstance(30, 30, 0);
         JButton clearButton = new JButton(new ImageIcon(iconDelete));
         clearButton.setToolTipText("Clear");
         functionBar.add(clearButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/settings.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/settings.png"));
         var iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton parametersButton = new JButton(new ImageIcon(iconSettings));
         parametersButton.setToolTipText("Settings");
@@ -136,7 +136,7 @@ class GUImenu extends JFrame {
 
         // TODO Найти иконку для run.
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Run.gif"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/Run.gif"));
         var iconRun= icon.getImage().getScaledInstance(30,30,0);
         JButton runButton = new JButton(new ImageIcon(iconRun));
         runButton.setToolTipText("Run");
@@ -144,14 +144,13 @@ class GUImenu extends JFrame {
 
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/next.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/next.png"));
         var iconNext= icon.getImage().getScaledInstance(30,30,0);
         JButton stepButton = new JButton(new ImageIcon(iconNext));
         stepButton.setToolTipText("Step");
         functionBar.add(stepButton);
 
-
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/info.png"));
+        icon = new ImageIcon(this.getClass().getResource("/resources/info.png"));
         var iconInfo= icon.getImage().getScaledInstance(30,30,0);
         JButton helpButton = new JButton(new ImageIcon(iconInfo));
         helpButton.setToolTipText("About");
