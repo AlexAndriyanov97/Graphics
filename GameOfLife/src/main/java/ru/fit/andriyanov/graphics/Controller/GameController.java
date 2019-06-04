@@ -119,6 +119,10 @@ public class GameController {
         xorMode = value;
     }
 
+    public void onXor() {
+        xorMode = !xorMode;
+    }
+
 
     public void onSettingsPressed() {
         settingsView = new SettingsView(gameModel);
