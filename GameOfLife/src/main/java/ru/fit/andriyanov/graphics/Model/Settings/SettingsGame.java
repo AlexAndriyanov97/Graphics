@@ -29,7 +29,7 @@ public class SettingsGame extends Observable<SettingsEvent> {
     }
 
     public SettingsGame() {
-        this(40,40,30,1);
+        this(20,20,30,1);
     }
 
     public boolean[] getStartFieldState() {

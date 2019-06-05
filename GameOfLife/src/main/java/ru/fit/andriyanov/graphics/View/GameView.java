@@ -92,7 +92,9 @@ public class GameView extends JFrame {
 
 
         var help = new JMenu("Help");
-        help.addActionListener(e -> JOptionPane.showMessageDialog(this, "Андриянов Алексей Фит 3 курс 16208"));
+        JMenuItem helpItem = new JMenuItem("About");
+        helpItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Андриянов Алексей Фит 3 курс 16208"));
+        help.add(helpItem);
         menuBar.add(help);
 
 
@@ -200,13 +202,13 @@ public class GameView extends JFrame {
         gameController = new GameController(gameModel, this);
         field = new HexField(gameModel, gameController);
 
+        file.setVisible(true);
+        add(field,BorderLayout.CENTER);
 
         JScrollPane scrollPane = new JScrollPane(field);
         scrollPane.setPreferredSize(field.getPreferredSize());
         add(new JPanel().add(scrollPane));
 
-        file.setVisible(true);
-        add(field,BorderLayout.CENTER);
     }
 
 
