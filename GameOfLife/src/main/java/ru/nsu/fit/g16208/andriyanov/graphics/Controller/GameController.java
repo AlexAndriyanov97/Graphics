@@ -1,10 +1,10 @@
-package main.java.ru.fit.andriyanov.graphics.Controller;
+package ru.nsu.fit.g16208.andriyanov.graphics.Controller;
 
-import main.java.ru.fit.andriyanov.graphics.Model.HexCoord;
-import main.java.ru.fit.andriyanov.graphics.Model.Model;
-import main.java.ru.fit.andriyanov.graphics.Model.Settings.SettingsGame;
-import main.java.ru.fit.andriyanov.graphics.View.GameView;
-import main.java.ru.fit.andriyanov.graphics.View.SettingsView;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.HexCoord;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Model;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings.SettingsGame;
+import ru.nsu.fit.g16208.andriyanov.graphics.View.GameView;
+import ru.nsu.fit.g16208.andriyanov.graphics.View.SettingsView;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +17,7 @@ public class GameController {
     private Model gameModel;
     private GameView view;
 
+    private final JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
     private Timer timer;
     private static final int DELAY = 1000;
 
@@ -27,7 +28,16 @@ public class GameController {
         this.gameModel = gameModel;
         this.view = view;
         timer = new Timer(DELAY, (e) -> gameModel.nextState());
+        setupFileChoosersDirs();
 
+    }
+
+
+    private void setupFileChoosersDirs(){
+        final File dataDir = new File(System.getProperty("user.dir"),"FIT_16208_Andriyanov_Life_Data");
+        if(dataDir.isDirectory()){
+            fileChooser.setCurrentDirectory(dataDir);
+        }
     }
 
     public void mouseClicked(Point click) {
@@ -65,12 +75,10 @@ public class GameController {
 
     public void onOpen() {
 
-        JFileChooser fileOpen = new JFileChooser("user.dir");
         try {
-
-            int ret = fileOpen.showDialog(null, "Open file");
+            int ret = fileChooser.showDialog(null, "Open file");
             if (ret == JFileChooser.APPROVE_OPTION) {
-                File file = fileOpen.getSelectedFile();
+                File file = fileChooser.getSelectedFile();
                 SettingsGame settingsModel = FileReader.loadFile(file);
                 gameModel.setSettingsModel(settingsModel);
             }
@@ -81,11 +89,10 @@ public class GameController {
     }
 
     public void onSave() {
-        JFileChooser fileSave = new JFileChooser("user.dir");
         try {
-            int ret = fileSave.showSaveDialog(null);
+            int ret = fileChooser.showSaveDialog(null);
             if (ret == JFileChooser.APPROVE_OPTION) {
-                File file = fileSave.getSelectedFile();
+                File file = fileChooser.getSelectedFile();
                 FileReader.saveFile(gameModel.getSettingsModel(), gameModel, file);
             }
         } catch (Exception e) {

@@ -1,8 +1,8 @@
-package main.java.ru.fit.andriyanov.graphics;
+package ru.nsu.fit.g16208.andriyanov.graphics;
 
-import main.java.ru.fit.andriyanov.graphics.Model.Model;
-import main.java.ru.fit.andriyanov.graphics.Model.Settings.SettingsGame;
-import main.java.ru.fit.andriyanov.graphics.View.GameView;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Model;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings.SettingsGame;
+import ru.nsu.fit.g16208.andriyanov.graphics.View.GameView;
 
 public  class Main{
 

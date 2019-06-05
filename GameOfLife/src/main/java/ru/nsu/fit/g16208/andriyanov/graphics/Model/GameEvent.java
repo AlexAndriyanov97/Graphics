@@ -1,4 +1,4 @@
-package main.java.ru.fit.andriyanov.graphics.Model;
+package ru.nsu.fit.g16208.andriyanov.graphics.Model;
 
 public enum GameEvent {
     STATE_CHANGED,

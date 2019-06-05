@@ -1,7 +1,7 @@
-package main.java.ru.fit.andriyanov.graphics.View;
+package ru.nsu.fit.g16208.andriyanov.graphics.View;
 
-import main.java.ru.fit.andriyanov.graphics.Controller.GameController;
-import main.java.ru.fit.andriyanov.graphics.Model.Model;
+import ru.nsu.fit.g16208.andriyanov.graphics.Controller.GameController;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Model;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,7 +30,7 @@ public class GameView extends JFrame {
         // Create the file bar.
         menuBar = new JMenuBar();
         // Create the file and text menus.
-        var file = new JMenu("File");
+        JMenu file = new JMenu("File");
         menuBar.add(file);
 
         JMenuItem newItem = new JMenuItem("New");
@@ -91,7 +91,7 @@ public class GameView extends JFrame {
         simulation.add(stepItem);
 
 
-        var help = new JMenu("Help");
+        JMenu help = new JMenu("Help");
         JMenuItem helpItem = new JMenuItem("About");
         helpItem.addActionListener(e -> JOptionPane.showMessageDialog(this, "Андриянов Алексей Фит 3 курс 16208"));
         help.add(helpItem);
@@ -105,7 +105,7 @@ public class GameView extends JFrame {
         functionBar.setLayout(new BoxLayout(functionBar, BoxLayout.X_AXIS));
         functionBar.setPreferredSize(new Dimension(0, 40));
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/main/resources/new.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/new.png"));
         Image iconNew = icon.getImage().getScaledInstance(30, 30, 0);
         JButton newButton = new JButton(new ImageIcon(iconNew));
         newButton.setToolTipText("New");
@@ -113,7 +113,7 @@ public class GameView extends JFrame {
         functionBar.add(newButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/load.png"));
+        icon = new ImageIcon(this.getClass().getResource("/load.png"));
         Image iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
@@ -121,7 +121,7 @@ public class GameView extends JFrame {
         functionBar.add(openButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/save.png"));
+        icon = new ImageIcon(this.getClass().getResource("/save.png"));
         Image iconSave = icon.getImage().getScaledInstance(30, 30, 0);
         JButton saveButton = new JButton(new ImageIcon(iconSave));
         saveButton.setToolTipText("Save");
@@ -135,7 +135,7 @@ public class GameView extends JFrame {
         functionBar.add(impactValuesButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/intersect.png"));
+        icon = new ImageIcon(this.getClass().getResource("/intersect.png"));
         Image iconIntersect = icon.getImage().getScaledInstance(30, 30, 0);
         JButton xorButton = new JButton(new ImageIcon(iconIntersect));
         xorButton.setToolTipText("Xor");
@@ -143,7 +143,7 @@ public class GameView extends JFrame {
         functionBar.add(xorButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/repeat.png"));
+        icon = new ImageIcon(this.getClass().getResource("/repeat.png"));
         Image iconRepeat = icon.getImage().getScaledInstance(30, 30, 0);
         JButton replaceButton = new JButton(new ImageIcon(iconRepeat));
         replaceButton.setToolTipText("Replace");
@@ -151,7 +151,7 @@ public class GameView extends JFrame {
         functionBar.add(replaceButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/delete.png"));
+        icon = new ImageIcon(this.getClass().getResource("/delete.png"));
         Image iconDelete = icon.getImage().getScaledInstance(30, 30, 0);
         JButton clearButton = new JButton(new ImageIcon(iconDelete));
         clearButton.setToolTipText("Clear");
@@ -159,14 +159,14 @@ public class GameView extends JFrame {
         functionBar.add(clearButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/settings.png"));
+        icon = new ImageIcon(this.getClass().getResource("/settings.png"));
         Image iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton parametersButton = new JButton(new ImageIcon(iconSettings));
         parametersButton.setToolTipText("Settings");
         parametersButton.addActionListener(e -> onSettingsPressed());
         functionBar.add(parametersButton);
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Run.gif"));
+        icon = new ImageIcon(this.getClass().getResource("/Run.gif"));
         Image iconRun = icon.getImage().getScaledInstance(30, 30, 0);
         JButton runButton = new JButton(new ImageIcon(iconRun));
         runButton.setToolTipText("Run");
@@ -181,14 +181,14 @@ public class GameView extends JFrame {
         functionBar.add(runButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/next.png"));
+        icon = new ImageIcon(this.getClass().getResource("/next.png"));
         Image iconNext = icon.getImage().getScaledInstance(30, 30, 0);
         JButton stepButton = new JButton(new ImageIcon(iconNext));
         stepButton.setToolTipText("Step");
         stepButton.addActionListener(e->onNext());
         functionBar.add(stepButton);
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/info.png"));
+        icon = new ImageIcon(this.getClass().getResource("/info.png"));
         Image iconInfo = icon.getImage().getScaledInstance(30, 30, 0);
         JButton helpButton = new JButton(new ImageIcon(iconInfo));
         helpButton.setToolTipText("About");

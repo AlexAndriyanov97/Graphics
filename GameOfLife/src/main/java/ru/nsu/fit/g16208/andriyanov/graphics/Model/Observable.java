@@ -1,4 +1,4 @@
-package main.java.ru.fit.andriyanov.graphics.Model;
+package ru.nsu.fit.g16208.andriyanov.graphics.Model;
 
 import java.util.HashMap;
 import java.util.LinkedList;

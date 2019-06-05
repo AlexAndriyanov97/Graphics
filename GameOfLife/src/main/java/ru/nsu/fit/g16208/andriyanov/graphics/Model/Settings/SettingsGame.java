@@ -1,7 +1,7 @@
-package main.java.ru.fit.andriyanov.graphics.Model.Settings;
+package ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings;
 
-import main.java.ru.fit.andriyanov.graphics.Model.Observable;
-import main.java.ru.fit.andriyanov.graphics.Model.Settings.SettingsEvent;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Observable;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings.SettingsEvent;
 
 public class SettingsGame extends Observable<SettingsEvent> {
 

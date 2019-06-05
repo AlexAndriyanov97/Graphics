@@ -1,4 +1,4 @@
-package main.java.ru.fit.andriyanov.graphics.Model.Settings;
+package ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings;
 
 public enum SettingsEvent {
     LIFE_BEGIN_CHANGED,

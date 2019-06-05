@@ -1,8 +1,8 @@
-package main.java.ru.fit.andriyanov.graphics.View;
+package ru.nsu.fit.g16208.andriyanov.graphics.View;
 
-import main.java.ru.fit.andriyanov.graphics.Controller.GameController;
-import main.java.ru.fit.andriyanov.graphics.Model.GameEvent;
-import main.java.ru.fit.andriyanov.graphics.Model.Model;
+import ru.nsu.fit.g16208.andriyanov.graphics.Controller.GameController;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.GameEvent;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Model;
 
 import javax.swing.*;
 import java.awt.*;

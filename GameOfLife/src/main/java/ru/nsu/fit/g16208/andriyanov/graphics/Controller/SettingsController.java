@@ -1,7 +1,7 @@
-package main.java.ru.fit.andriyanov.graphics.Controller;
+package ru.nsu.fit.g16208.andriyanov.graphics.Controller;
 
-import main.java.ru.fit.andriyanov.graphics.Model.Model;
-import main.java.ru.fit.andriyanov.graphics.View.SettingsView;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Model;
+import ru.nsu.fit.g16208.andriyanov.graphics.View.SettingsView;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

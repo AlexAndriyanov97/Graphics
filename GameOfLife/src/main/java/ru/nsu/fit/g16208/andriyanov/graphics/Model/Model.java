@@ -1,7 +1,7 @@
-package main.java.ru.fit.andriyanov.graphics.Model;
+package ru.nsu.fit.g16208.andriyanov.graphics.Model;
 
-import main.java.ru.fit.andriyanov.graphics.Model.Settings.SettingsEvent;
-import main.java.ru.fit.andriyanov.graphics.Model.Settings.SettingsGame;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings.SettingsEvent;
+import ru.nsu.fit.g16208.andriyanov.graphics.Model.Settings.SettingsGame;
 
 import java.util.LinkedList;
 import java.util.List;
