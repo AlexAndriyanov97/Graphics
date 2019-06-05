@@ -1,9 +1,9 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.view;
+package ru.nsu.fit.g16208.andriyanov.graphics.view;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.model.ChangedPoint;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.IFuncModel;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Settings;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.ChangedPoint;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.FieldOfDefinition;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.IFuncModel;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Settings;
 
 import javax.swing.*;
 import java.awt.*;

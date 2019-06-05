@@ -1,9 +1,9 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.model;
+package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
 import java.awt.*;
 import java.util.function.BiFunction;
 
-public class Func implements IFuncModel {
+public class Func implements ru.nsu.fit.g16208.andriyanov.graphics.model.IFuncModel {
     private Double min;
     private Double max;
     private double[] valueOfIsolines;
@@ -122,7 +122,7 @@ public class Func implements IFuncModel {
     }
 
     @Override
-    public Settings GetSettings() {
+    public ru.nsu.fit.g16208.andriyanov.graphics.model.Settings GetSettings() {
         return settings;
     }
 
@@ -141,7 +141,7 @@ public class Func implements IFuncModel {
     }
 
     @Override
-    public void SetSettings(Settings settings) {
+    public void SetSettings(ru.nsu.fit.g16208.andriyanov.graphics.model.Settings settings) {
         this.settings = settings;
         valueOfIsolines = null;
     }
