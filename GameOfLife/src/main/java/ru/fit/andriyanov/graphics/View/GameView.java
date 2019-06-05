@@ -200,9 +200,13 @@ public class GameView extends JFrame {
         gameController = new GameController(gameModel, this);
         field = new HexField(gameModel, gameController);
 
+
         JScrollPane scrollPane = new JScrollPane(field);
         scrollPane.setPreferredSize(field.getPreferredSize());
         add(new JPanel().add(scrollPane));
+
+        file.setVisible(true);
+        add(field,BorderLayout.CENTER);
     }
 
 

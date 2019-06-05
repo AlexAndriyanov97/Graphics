@@ -10,12 +10,12 @@ public class SettingsGame extends Observable<SettingsEvent> {
     private int sizeOfHex;
     private int thicknessOfLine;
 
-    private double lifeBegin;
-    private double lifeEnd;
-    private double birthBegin;
-    private double birthEnd;
-    private double firstImpact;
-    private double secondImpact;
+    private double lifeBegin = 2.0;
+    private double lifeEnd = 3.3;
+    private double birthBegin = 2.3;
+    private double birthEnd = 2.9;
+    private double firstImpact = 1.0;
+    private double secondImpact = 0.3;
 
     private boolean[] startFieldState;
 
@@ -29,12 +29,7 @@ public class SettingsGame extends Observable<SettingsEvent> {
     }
 
     public SettingsGame() {
-        lifeBegin = 2.0;
-        lifeEnd = 3.3;
-        birthBegin = 2.3;
-        birthEnd = 2.9;
-        firstImpact = 1.0;
-        secondImpact = 0.3;
+        this(40,40,30,1);
     }
 
     public boolean[] getStartFieldState() {

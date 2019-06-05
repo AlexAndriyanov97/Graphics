@@ -23,6 +23,7 @@ public class Model extends Observable<GameEvent> {
 
     public Model(SettingsGame settingsGame) {
         this.settingsModel = settingsGame;
+        setInitState();
     }
 
     private void onFieldWidthChanged(Object newWidth) {
