@@ -1,9 +1,9 @@
-package main.java.ru.nsu.fit.andriyanov.graphics;
+package ru.nsu.fit.g16208.andriyanov.graphics;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.controller.MainController;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Settings;
+import ru.nsu.fit.g16208.andriyanov.graphics.controller.MainController;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.FieldOfDefinition;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Func;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Settings;
 
 import java.awt.*;
 import java.util.function.BiFunction;

@@ -1,7 +1,7 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.view;
+package ru.nsu.fit.g16208.andriyanov.graphics.view;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.FieldOfDefinition;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Func;
 import org.w3c.dom.css.RGBColor;
 
 import javax.swing.*;

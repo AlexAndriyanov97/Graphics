@@ -1,10 +1,10 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.controller;
+package ru.nsu.fit.g16208.andriyanov.graphics.controller;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.model.FieldOfDefinition;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Func;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Settings;
-import main.java.ru.nsu.fit.andriyanov.graphics.view.MainView;
-import main.java.ru.nsu.fit.andriyanov.graphics.view.SettingsView;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.FieldOfDefinition;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Func;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Settings;
+import ru.nsu.fit.g16208.andriyanov.graphics.view.MainView;
+import ru.nsu.fit.g16208.andriyanov.graphics.view.SettingsView;
 
 import javax.swing.*;
 import java.awt.*;
