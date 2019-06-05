@@ -91,8 +91,8 @@ public class Matrix {
 
 
     public Matrix copy() {
-        var newMatrix = new Matrix(m, n);
-        for (var i = 0; i < m; i++) {
+        Matrix newMatrix = new Matrix(m, n);
+        for (int i = 0; i < m; i++) {
             if (n >= 0) System.arraycopy(matrix[i], 0, newMatrix.matrix[i], 0, n);
         }
         return newMatrix;
@@ -155,14 +155,13 @@ public class Matrix {
         this.n = matrix.n;
     }
 
-    public double[][] mainRotateFunc(Matrix var1) {
-        Matrix resultMatrix = new Matrix(this.m, var1.n);
+    public double[][] mainRotateFunc(Matrix oldMatrix) {
+        Matrix resultMatrix = new Matrix(this.m, oldMatrix.n);
         double[][] valuesOfMatrix = resultMatrix.matrix;
         double[] vector = new double[this.n];
-
-        for (int i = 0; i < var1.n; ++i) {
+        for (int i = 0; i < oldMatrix.n; ++i) {
             for (int j = 0; j < this.n; ++j) {
-                vector[j] = var1.matrix[j][i];
+                vector[j] = oldMatrix.matrix[j][i];
             }
 
             for (int j = 0; j < this.m; ++j) {
