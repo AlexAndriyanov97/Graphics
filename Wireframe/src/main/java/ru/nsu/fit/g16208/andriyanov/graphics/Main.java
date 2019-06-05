@@ -1,6 +1,6 @@
-package main.java.ru.nsu.fit.andriyanov.graphics;
+package ru.nsu.fit.g16208.andriyanov.graphics;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.view.MainView;
+import ru.nsu.fit.g16208.andriyanov.graphics.view.MainView;
 
 public class Main {
 

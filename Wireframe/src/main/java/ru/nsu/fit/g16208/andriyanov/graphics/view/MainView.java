@@ -1,17 +1,14 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.view;
+package ru.nsu.fit.g16208.andriyanov.graphics.view;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.controller.FigureController;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Spline;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.SplineFigure3D;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.SplineManager;
-import main.java.ru.nsu.fit.andriyanov.graphics.tool.FileReader;
+import ru.nsu.fit.g16208.andriyanov.graphics.controller.FigureController;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Spline;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.SplineFigure3D;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.SplineManager;
+import ru.nsu.fit.g16208.andriyanov.graphics.tool.FileReader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observer;
@@ -19,6 +16,7 @@ import java.util.Observer;
 public class MainView extends JFrame {
 
     private MainPanel mainPanel;
+    private final JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
 
     private Map<Spline, SplineFigure3D> figures = new HashMap<>();
 
@@ -54,6 +52,7 @@ public class MainView extends JFrame {
 
 
     public MainView() {
+        setupFileChoosersDirs();
         buildMenuBar();
     }
 
@@ -106,7 +105,7 @@ public class MainView extends JFrame {
         functionBar.setLayout(new BoxLayout(functionBar, BoxLayout.X_AXIS));
         functionBar.setPreferredSize(new Dimension(0, 40));
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/main/resources/Open.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/Open.png"));
         Image iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
@@ -116,7 +115,7 @@ public class MainView extends JFrame {
         functionBar.add(openButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Save.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Save.png"));
         Image iconSave = icon.getImage().getScaledInstance(30, 30, 0);
         JButton saveButton = new JButton(new ImageIcon(iconSave));
         saveButton.setToolTipText("Save");
@@ -126,7 +125,7 @@ public class MainView extends JFrame {
         functionBar.add(saveButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Init.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Init.png"));
         Image iconInit = icon.getImage().getScaledInstance(30, 30, 0);
         JButton initButton = new JButton(new ImageIcon(iconInit));
         initButton.setToolTipText("Init");
@@ -136,7 +135,7 @@ public class MainView extends JFrame {
         functionBar.add(initButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Settings.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Settings.png"));
         Image iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton settingsButton = new JButton(new ImageIcon(iconSettings));
         settingsButton.setToolTipText("Settings");
@@ -169,13 +168,11 @@ public class MainView extends JFrame {
 
 
     private void loadFile() {
-        JFileChooser fileChooser = new JFileChooser("user.dir");
-        if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION)
-            return;
-
         try {
-            InputStream stream = new FileInputStream(fileChooser.getSelectedFile());
-            FileReader.loadFile(stream, figures);
+            if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
+                InputStream stream = new FileInputStream(fileChooser.getSelectedFile());
+                FileReader.loadFile(stream, figures);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Can not open file",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -183,13 +180,20 @@ public class MainView extends JFrame {
     }
 
 
+    private void setupFileChoosersDirs() {
+        final File dataDir = new File(System.getProperty("user.dir"), "FIT_16208_Andriyanov_Wireframe_Data");
+        if (dataDir.isDirectory()) {
+            fileChooser.setCurrentDirectory(dataDir);
+        }
+    }
+
+
     private void saveFile() {
-        JFileChooser fileChooser = new JFileChooser("user.dir");
-        if (fileChooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION)
-            return;
         try {
-            OutputStream stream = new FileOutputStream(fileChooser.getSelectedFile());
-            FileReader.saveFile(stream, figures);
+            if (fileChooser.showOpenDialog(this) != JFileChooser.APPROVE_OPTION) {
+                OutputStream stream = new FileOutputStream(fileChooser.getSelectedFile());
+                FileReader.saveFile(stream, figures);
+            }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Can not open file",
                     "Error", JOptionPane.ERROR_MESSAGE);

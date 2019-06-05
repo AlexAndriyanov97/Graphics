@@ -1,4 +1,4 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.model;
+package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
 public class Translation extends Matrix{
     private static Matrix compute(Vector center, Vector axisX, Vector axisY, Vector axisZ) {

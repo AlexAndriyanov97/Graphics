@@ -1,7 +1,7 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.tool;
+package ru.nsu.fit.g16208.andriyanov.graphics.tool;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.controller.FigureController;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.*;
+import ru.nsu.fit.g16208.andriyanov.graphics.controller.FigureController;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.*;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

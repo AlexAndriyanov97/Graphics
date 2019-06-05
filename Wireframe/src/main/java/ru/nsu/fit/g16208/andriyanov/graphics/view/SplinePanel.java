@@ -1,6 +1,6 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.view;
+package ru.nsu.fit.g16208.andriyanov.graphics.view;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Spline;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Spline;
 
 import javax.swing.*;
 import java.awt.*;

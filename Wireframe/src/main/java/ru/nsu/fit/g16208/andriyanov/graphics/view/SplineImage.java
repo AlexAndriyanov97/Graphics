@@ -1,9 +1,9 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.view;
+package ru.nsu.fit.g16208.andriyanov.graphics.view;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Camera;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Separator;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Spline;
-import main.java.ru.nsu.fit.andriyanov.graphics.model.SplineManager;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Camera;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Separator;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Spline;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.SplineManager;
 
 import java.awt.*;
 import java.awt.geom.Point2D;

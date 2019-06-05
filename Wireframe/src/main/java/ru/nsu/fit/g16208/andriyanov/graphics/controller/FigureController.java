@@ -1,6 +1,6 @@
-package main.java.ru.nsu.fit.andriyanov.graphics.controller;
+package ru.nsu.fit.g16208.andriyanov.graphics.controller;
 
-import main.java.ru.nsu.fit.andriyanov.graphics.model.Figure3D;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Figure3D;
 
 public class FigureController {
 
