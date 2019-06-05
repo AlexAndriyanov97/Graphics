@@ -17,6 +17,7 @@ public class MainController {
     private MainView mainView;
     private Func functionModel;
     private Func functionLegend;
+    private final JFileChooser fileChooser = new JFileChooser(System.getProperty("user.dir"));
 
     public MainController(Func functionModel) {
         this.functionModel = functionModel;
@@ -25,6 +26,14 @@ public class MainController {
         this.mainView = new MainView(this, functionModel, functionLegend);
         this.mainView.setSize(800, 600);
         this.mainView.setVisible(true);
+        setupFileChoosersDirs();
+    }
+
+    private void setupFileChoosersDirs(){
+        final File dataDir = new File(System.getProperty("user.dir"),"FIT_16208_Andriyanov_Isolines_Data");
+        if(dataDir.isDirectory()){
+            fileChooser.setCurrentDirectory(dataDir);
+        }
     }
 
     public void GridPressed() {
@@ -45,10 +54,8 @@ public class MainController {
 
     public void OpenPressed() throws ParseException {
         try {
-            JFileChooser chooser = new JFileChooser("user.dir");
-
-        if(chooser.showOpenDialog(mainView)==JFileChooser.APPROVE_OPTION){
-            File file = chooser.getSelectedFile();
+        if(fileChooser.showOpenDialog(mainView)==JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
             functionModel.SetSettings(ReadFile(file));
             mainView.repaint();
         }}

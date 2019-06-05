@@ -85,7 +85,7 @@ public class MainView extends JFrame {
         functionBar.setLayout(new BoxLayout(functionBar, BoxLayout.X_AXIS));
         functionBar.setPreferredSize(new Dimension(0, 40));
 
-        ImageIcon icon = new ImageIcon(this.getClass().getResource("/main/resources/Open32.png"));
+        ImageIcon icon = new ImageIcon(this.getClass().getResource("/Open32.png"));
         Image iconOpen = icon.getImage().getScaledInstance(30, 30, 0);
         JButton openButton = new JButton(new ImageIcon(iconOpen));
         openButton.setToolTipText("Open");
@@ -99,14 +99,14 @@ public class MainView extends JFrame {
         functionBar.add(openButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Grid32.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Grid32.png"));
         Image iconShowGrid = icon.getImage().getScaledInstance(30, 30, 0);
         JButton showGridButton = new JButton(new ImageIcon(iconShowGrid));
         showGridButton.setToolTipText("Show grid");
         showGridButton.addActionListener(e -> controller.GridPressed());
         functionBar.add(showGridButton);
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Isoline32.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Isoline32.png"));
         Image iconShowIsolines = icon.getImage().getScaledInstance(30, 30, 0);
         JButton showIsolinesButton = new JButton(new ImageIcon(iconShowIsolines));
         showIsolinesButton.setToolTipText("Show Isolines");
@@ -114,7 +114,7 @@ public class MainView extends JFrame {
         functionBar.add(showIsolinesButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Interpolation32.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Interpolation32.png"));
         Image iconInterpolation = icon.getImage().getScaledInstance(30, 30, 0);
         JButton interpolationButton = new JButton(new ImageIcon(iconInterpolation));
         interpolationButton.setToolTipText("Interpolation");
@@ -122,7 +122,7 @@ public class MainView extends JFrame {
         functionBar.add(interpolationButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/PaintMode32.png"));
+        icon = new ImageIcon(this.getClass().getResource("/PaintMode32.png"));
         Image iconPaint = icon.getImage().getScaledInstance(30, 30, 0);
         JButton paintButton = new JButton(new ImageIcon(iconPaint));
         paintButton.setToolTipText("Paint");
@@ -130,7 +130,7 @@ public class MainView extends JFrame {
         functionBar.add(paintButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Dots32.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Dots32.png"));
         Image iconDots = icon.getImage().getScaledInstance(30, 30, 0);
         JButton dotsButton = new JButton(new ImageIcon(iconDots));
         dotsButton.setToolTipText("Dots");
@@ -138,7 +138,7 @@ public class MainView extends JFrame {
         functionBar.add(dotsButton);
 
 
-        icon = new ImageIcon(this.getClass().getResource("/main/resources/Settings32.png"));
+        icon = new ImageIcon(this.getClass().getResource("/Settings32.png"));
         Image iconSettings = icon.getImage().getScaledInstance(30, 30, 0);
         JButton settingsButton = new JButton(new ImageIcon(iconSettings));
         settingsButton.setToolTipText("Settings");
