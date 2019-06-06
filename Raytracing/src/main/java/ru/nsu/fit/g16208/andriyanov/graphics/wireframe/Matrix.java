@@ -1,4 +1,4 @@
-package ru.nsu.fit.g16208.andriyanov.graphics.model;
+package ru.nsu.fit.g16208.andriyanov.graphics.wireframe;
 
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;

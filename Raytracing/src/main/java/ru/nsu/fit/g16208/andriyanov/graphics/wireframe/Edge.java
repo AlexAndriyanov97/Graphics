@@ -1,4 +1,4 @@
-package ru.nsu.fit.g16208.andriyanov.graphics.model;
+package ru.nsu.fit.g16208.andriyanov.graphics.wireframe;
 
 import java.awt.*;
 
