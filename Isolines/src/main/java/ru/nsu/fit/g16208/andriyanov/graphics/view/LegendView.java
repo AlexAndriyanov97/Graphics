@@ -2,10 +2,6 @@ package ru.nsu.fit.g16208.andriyanov.graphics.view;
 
 import ru.nsu.fit.g16208.andriyanov.graphics.model.FieldOfDefinition;
 import ru.nsu.fit.g16208.andriyanov.graphics.model.Func;
-import org.w3c.dom.css.RGBColor;
-
-import ru.nsu.fit.g16208.andriyanov.graphics.model.FieldOfDefinition;
-import ru.nsu.fit.g16208.andriyanov.graphics.model.Func;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.Point2D;
