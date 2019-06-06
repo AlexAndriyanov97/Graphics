@@ -1,132 +1,150 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.wireframe;
 
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Drawable3D;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Point3D;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.RenderEvents;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.RenderModel;
+
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.Observable;
 
-public class Camera extends Observable {
+public class Camera {
 
-    private double frontZ = 5;
-    private double backZ = frontZ + 3;
+    private Matrix translation;
+    private Matrix rotation;
+    protected Matrix halfCubeMatrix;
 
-    private Matrix rotation = Matrix.getSingleMatrix();
+    private RenderModel renderModel;
 
-    private double width = 1;
-    private double height = 1;
+    public Camera(RenderModel renderModel) {
+        this(renderModel.getCenter(), renderModel.getUp(), renderModel.getDirection());
+        this.renderModel = renderModel;
+        renderModel.registerListener(RenderEvents.ZN_CHANGED, this::znChanged);
+        renderModel.registerListener(RenderEvents.ZF_CHANGED, this::zfChanged);
+        updateHalfCubeMatrix();
+    }
 
+    private Camera(Point3D center, Point3D up, Point3D direction) {
+        Point3D zAxis = (Point3D) center.sum(direction.multiply(-1));
 
-    public final Vector position = new Vector(-10, 0, 0);
-    private final Vector viewPoint = new Vector(0, 0, 0);
-    private final Vector up = new Vector(0, 1, 0);
+        zAxis = (Point3D) zAxis.multiply(1. / zAxis.norm());
 
+        Point3D xAxis = (Point3D) up.crossProduct(zAxis);
+        xAxis = (Point3D) xAxis.multiply(1. / xAxis.norm());
 
-    public final Vector axisZ = viewPoint.copy()
-            .shift(position.copy().resize(-1))
-            .normalize();
+        Point3D yAxis = (Point3D) zAxis.crossProduct(xAxis);
 
-    public final Vector axisX = axisZ.copy().
-            crossProduct(up).
-            normalize();
+        yAxis = (Point3D) yAxis.multiply(1. / yAxis.norm());
 
-    public final Vector axisY = axisZ.copy().
-            crossProduct(axisX).
-            normalize();
+        rotation = new Matrix(4, 4,
+                new double[]{
+                        xAxis.getX(), yAxis.getX(), zAxis.getX(), 0.,
+                        xAxis.getY(), yAxis.getY(), zAxis.getY(), 0.,
+                        xAxis.getZ(), yAxis.getZ(), zAxis.getZ(), 0.,
+                        0., 0., 0., 1.
+                }).transpose();
+        translation = new Matrix(4, 4,
+                new double[]{
+                        1., 0., 0., -center.getX(),
+                        0., 1., 0., -center.getY(),
+                        0., 0., 1., -center.getZ(),
+                        0., 0., 0., 1.
+                });
+    }
 
-    private Color color = Color.BLACK;
+    public void rotateX(double theta) {
+        Matrix rotMatrix = new Matrix(4, 4,
+                new double[]{
+                        1., 0., 0., 0.,
+                        0., Math.cos(theta), -Math.sin(theta), 0.,
+                        0., Math.sin(theta), Math.cos(theta), 0.,
+                        0., 0., 0., 1.
+                });
+        rotation = rotMatrix.multiply(rotation);
+    }
 
-    public Camera() {
+    public void rotateY(double theta) {
+        Matrix rotMatrix = new Matrix(4, 4,
+                new double[]{
+                        Math.cos(theta), 0., Math.sin(theta), 0.,
+                        0., 1., 0., 0.,
+                        -Math.sin(theta), 0., Math.cos(theta), 0.,
+                        0., 0., 0., 1.
+                });
+        rotation = rotMatrix.multiply(rotation);
     }
 
 
-    public void move(double offset) {
-        double moveZ = -offset * 0.05;
+    public void rotateZ(double theta) {
+        Matrix rotMatrix = new Matrix(4, 4,
+                new double[]{
+                        Math.cos(theta), -Math.sin(theta), 0., 0.,
+                        Math.sin(theta), Math.cos(theta), 0., 0.,
+                        0., 0., 1., 0.,
+                        0., 0., 0., 1
+                });
+        rotation = rotMatrix.multiply(rotation);
+    }
 
-        if (frontZ + moveZ >= 1 && frontZ + moveZ <= 10 &&
-                backZ + moveZ >= 1 && backZ + moveZ <= 10) {
-            frontZ += moveZ;
-            backZ += moveZ;
+    public BufferedImage getImage(Drawable3D drawable3D, int width, int height) {
+        BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+
+        Graphics g = image.getGraphics();
+        g.setColor(renderModel.getBackgroundColor());
+        g.fillRect(0, 0, image.getWidth(), image.getHeight());
+
+        drawable3D.projectTo2D(new Projection(width, height), image, Matrix.getSingleMatrix());
+        return image;
+    }
+
+    public RenderModel getRenderModel() {
+        return renderModel;
+    }
+
+    public void znChanged(Object o) {
+        updateHalfCubeMatrix();
+    }
+
+    public void zfChanged(Object o) {
+        updateHalfCubeMatrix();
+    }
+
+    private void updateHalfCubeMatrix() {
+        double near = -renderModel.getZn();
+        double far = -renderModel.getZf();
+        double sW = renderModel.getSw();
+        double sH = renderModel.getSh();
+
+        halfCubeMatrix = new Matrix(4, 4, new double[]{
+                2 * near / sW, 0., 0., 0.,
+                0., 2 * near / sH, 0., 0.,
+                0., 0., near / (far - near), -far * near / (far - near),
+                0., 0., 1., 0
+        });
+    }
+
+    public Point3D toCameraCoordinateSystem(Point3D worldPoint) {
+        Matrix transVector = translation.multiply(worldPoint.toHomogeneousVector());
+        Matrix rotVector = rotation.multiply(transVector);
+        return rotVector.toPoint3D();
+    }
+
+    public Drawable3D toCameraCoordinateSystem(Drawable3D d, Matrix sceneMatrix) {
+        return d.transform(sceneMatrix).transform(translation).transform(rotation);
+    }
+
+    public boolean isInHalfCube(Point3D p) {
+        if (p.getX() < -1 || p.getX() > 1) {
+            return false;
         }
-
-        notifyObservers();
+        if (p.getY() < -1 || p.getY() > 1) {
+            return false;
+        }
+        if (p.getZ() < -1 || p.getZ() > 0) {
+            return false;
+        }
+        return true;
     }
-
-    public void rotate(double angleX, double angleY) {
-        rotation.rotate(angleX, angleY, 0);
-    }
-
-    public void reset() {
-        rotation = Matrix.getSingleMatrix();
-    }
-
-
-    public void setRotation(Matrix rotation) {
-        this.rotation = rotation;
-    }
-
-    public Matrix getRotation() {
-        return this.rotation;
-    }
-
-    public static Camera getInstance() {
-        return new Camera();
-    }
-
-    public void setFrontZ(double frontZ) {
-        this.frontZ = frontZ;
-
-        notifyObservers();
-    }
-
-    public double getFrontZ() {
-        return frontZ;
-    }
-
-    public void setBackZ(double backZ) {
-        this.backZ = backZ;
-
-        notifyObservers();
-    }
-
-    public double getBackZ() {
-        return backZ;
-    }
-
-
-    public void setWidth(double width) {
-        this.width = width;
-
-        notifyObservers();
-    }
-
-    public double getWidth() {
-        return width;
-    }
-
-
-    public void setHeight(double height) {
-        this.height = height;
-
-        notifyObservers();
-    }
-
-    public double getHeight() {
-        return height;
-    }
-
-
-    public void setColor(Color color) {
-        this.color = color;
-
-        notifyObservers();
-    }
-
-    public Color getColor() {
-        return color;
-    }
-
-    @Override
-    public void notifyObservers(Object arg) {
-        setChanged();
-        super.notifyObservers(arg);
-    }
-
 }
+

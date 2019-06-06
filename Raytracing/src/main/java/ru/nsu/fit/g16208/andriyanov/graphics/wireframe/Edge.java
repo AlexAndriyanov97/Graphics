@@ -3,30 +3,28 @@ package ru.nsu.fit.g16208.andriyanov.graphics.wireframe;
 import java.awt.*;
 
 public class Edge {
-    private Vector[] points = new Vector[2];
-    private Color color = Color.WHITE;
 
-    public Edge(Vector p1, Vector p2, Color color) {
-        points[0] = p1;
-        points[1] = p2;
+    private Point p1;
+    private Point p2;
 
-        this.color = color;
+    public Edge(Point p1, Point p2) {
+        this.p1 = p1;
+        this.p2 = p2;
     }
 
-    public Edge(Vector p1, Vector p2) {
-        points[0] = p1;
-        points[1] = p2;
+    public Point getP1() {
+        return p1;
     }
 
-    public Vector[] getPoints() {
-        return points;
+    public void setP1(Point p1) {
+        this.p1 = p1;
     }
 
-    public Color getColor() {
-        return color;
+    public Point getP2() {
+        return p2;
     }
 
-    public void setColor(Color color) {
-        this.color = color;
+    public void setP2(Point p2) {
+        this.p2 = p2;
     }
 }

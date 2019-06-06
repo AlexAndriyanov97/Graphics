@@ -1,5 +1,7 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.wireframe;
 
+import ru.nsu.fit.g16208.andriyanov.graphics.model.Point3D;
+
 import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
@@ -33,12 +35,23 @@ public class Matrix {
         this.n = matrix.n;
     }
 
+    public Matrix(int m, int n, double[] doubles) {
+        this.m = m;
+        this.n = n;
+        this.matrix = new double[m][n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                matrix[i][j] = doubles[i * m + j];
+            }
+        }
+    }
+
     public double getValue(int i, int j) {
         return matrix[i][j];
     }
 
     public static Matrix getSingleMatrix() {
-        return getSingleMatrix(4,4);
+        return getSingleMatrix(4, 4);
     }
 
 
@@ -187,8 +200,8 @@ public class Matrix {
     public double norm() {
         double result = 0.0D;
 
-        for(int i = 0; i < this.m; ++i) {
-            for(int j = 0; j < this.n; ++j) {
+        for (int i = 0; i < this.m; ++i) {
+            for (int j = 0; j < this.n; ++j) {
                 result = calculate(result, matrix[i][j]);
             }
         }
@@ -199,8 +212,8 @@ public class Matrix {
     public Matrix mult(double value) {
         Matrix result = new Matrix(this.m, this.n);
 
-        for(int i = 0; i < this.m; ++i) {
-            for(int j = 0; j < this.n; ++j) {
+        for (int i = 0; i < this.m; ++i) {
+            for (int j = 0; j < this.n; ++j) {
                 result.matrix[i][j] = value * matrix[i][j];
             }
         }
@@ -208,20 +221,52 @@ public class Matrix {
         return result;
     }
 
+    public Point3D toPoint3D() {
+        if (m != 1 || n < 3) {
+            return null;
+        }
+
+        double coef = 1.;
+        if (n == 4) {
+            coef = getMatrixArray()[3];
+        }
+
+        return new Point3D(
+                getMatrixArray()[0] / coef,
+                getMatrixArray()[1] / coef,
+                getMatrixArray()[2] / coef
+        );
+    }
+
+    public Matrix multiply(Matrix other) {
+        int nWidth = other.m;
+        int nHeight = this.n;
+
+        double[] result = new double[nWidth * nHeight];
+        double[] otherArray = other.getMatrixArray();
+
+        for (int i = 0; i < nHeight; i++) {
+            for (int j = 0; j < nWidth; j++) {
+                for (int k = 0; k < m; k++) {
+                    result[i * nWidth + j] += matrix[i][k] * otherArray[k * nWidth + j];
+                }
+            }
+        }
+        return new Matrix(nWidth, nHeight, result);
+    }
+
 
     public Matrix transpose() {
         Matrix result = new Matrix(this.n, this.m);
 
-        for(int i = 0; i < this.m; ++i) {
-            for(int j = 0; j < this.n; ++j) {
+        for (int i = 0; i < this.m; ++i) {
+            for (int j = 0; j < this.n; ++j) {
                 result.matrix[j][i] = matrix[i][j];
             }
         }
 
         return result;
     }
-
-
 
 
     private static double calculate(double result, double value) {
@@ -241,5 +286,15 @@ public class Matrix {
 
     public Matrix applyInversed(Matrix rotation) {
         return null;
+    }
+
+    public double[] getMatrixArray() {
+        double[] matrixArray = new double[m * n];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                matrixArray[i * m + j] = matrix[i][j];
+            }
+        }
+        return matrixArray;
     }
 }
