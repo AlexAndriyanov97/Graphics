@@ -2,7 +2,6 @@ package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Camera;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Matrix;
-import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Projection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -41,7 +40,7 @@ public class Light3D implements Drawable3D {
     }
 
     @Override
-    public void projectTo2D(Projection projector, BufferedImage image, Matrix parentMatrix) {
+    public void projectTo2D(Camera.Projector projector, BufferedImage image, Matrix parentMatrix) {
         double size = 0.2;
         Edge3D e1 = new Edge3D(
                 sum(position, new Point3D(0,0,-size)),

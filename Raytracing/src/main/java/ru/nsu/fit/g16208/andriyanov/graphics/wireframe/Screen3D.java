@@ -58,8 +58,6 @@ public class Screen3D extends JPanel {
 
         scene.rotateZ(dFiX);
         scene.rotateY(dFiY);
-//        camera.rotateX(dFiX);
-//        camera.rotateZ(dFiY);
         repaint();
         anchor = currentPoint;
     }

@@ -1,7 +1,7 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
+import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Camera;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Matrix;
-import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Projection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -67,7 +67,7 @@ public class Point3D implements Vector3D {
     }
 
 
-    public void projectTo2D(Projection projector, BufferedImage image) {
+    public void projectTo2D(Camera.Projector projector, BufferedImage image) {
         Point p = projector.projectPoint(this);
         image.setRGB(p.x, p.y, Color.WHITE.getRGB());
     }

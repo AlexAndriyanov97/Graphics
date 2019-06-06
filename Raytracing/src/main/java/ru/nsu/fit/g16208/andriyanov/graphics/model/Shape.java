@@ -1,7 +1,7 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
+import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Camera;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Matrix;
-import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Projection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -22,7 +22,7 @@ public class Shape implements Drawable3D {
     }
 
     @Override
-    public void projectTo2D(Projection projector, BufferedImage image, Matrix parentMatrix) {
+    public void projectTo2D(Camera.Projector projector, BufferedImage image, Matrix parentMatrix) {
         for (Edge3D e : edgeList) {
             e.transform(parentMatrix).projectTo2D(projector, image, LINE_COLOR);
         }

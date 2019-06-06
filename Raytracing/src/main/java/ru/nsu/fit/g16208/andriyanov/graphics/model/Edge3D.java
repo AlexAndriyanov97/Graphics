@@ -1,7 +1,7 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
+import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Camera;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Matrix;
-import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Projection;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -15,7 +15,7 @@ public class Edge3D {
         this.p2 = p2;
     }
 
-    public void projectTo2D(Projection projector, BufferedImage image, Color color) {
+    public void projectTo2D(Camera.Projector projector, BufferedImage image, Color color) {
         Graphics g = image.getGraphics();
         g.setColor(color);
         Point np1 = projector.projectPoint(p1);

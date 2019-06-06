@@ -46,7 +46,7 @@ public class CoordinateSystem {
     }
 
     public void reset(){
-        rotation = Matrix.E();
+        rotation = Matrix.getSingleMatrix();
     }
 
     public void rotateZ(double theta) {

@@ -20,6 +20,10 @@ public class Loader {
 
     }
 
+    public Loader(){
+
+    }
+
     public Loader(File sceneFile) {
         this.sceneFile = sceneFile;
     }

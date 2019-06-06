@@ -1,7 +1,5 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
-import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Vector;
-
 import java.util.List;
 
 public class Ray {

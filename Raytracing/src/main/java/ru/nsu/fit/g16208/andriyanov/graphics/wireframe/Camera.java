@@ -7,9 +7,6 @@ import ru.nsu.fit.g16208.andriyanov.graphics.model.RenderModel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.Observable;
-
-import static ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Projection.findIntersection;
 
 public class Camera {
     private Matrix translation;
@@ -93,7 +90,7 @@ public class Camera {
         g.setColor(renderModel.getBackgroundColor());
         g.fillRect(0, 0, image.getWidth(), image.getHeight());
 
-        drawable3D.projectTo2D(new Projector(width, height), image, Matrix.E());
+        drawable3D.projectTo2D(new Projector(width, height), image, Matrix.getSingleMatrix());
         return image;
     }
 
@@ -127,10 +124,6 @@ public class Camera {
         Matrix transVector = translation.multiply(worldPoint.toHomogeneousVector());
         Matrix rotVector = rotation.multiply(transVector);
         return rotVector.toPoint3D();
-
-//        Matrix rotVector = rotation.multiply(worldPoint.toHomogeneousVector());
-//        Matrix transVector = translation.multiply(rotVector);
-//        return transVector.toPoint3D();
     }
 
     public Drawable3D toCameraCoordinateSystem(Drawable3D d, Matrix sceneMatrix) {
@@ -208,11 +201,27 @@ public class Camera {
 
         }
 
-//        public Point3D toCameraCoordinateSystem(Point3D worldPoint) {
-//            Matrix transVector = translation.multiply(worldPoint.toHomogeneousVector());
-//            Matrix rotVector = rotation.multiply(transVector);
-//            return rotVector.toPoint3D();
-//        }
+
+        public Point3D findIntersection(Matrix plane, Point3D p1, Point3D p2) {
+            double l = p1.getX() - p2.getX();
+            double m = p1.getY() - p2.getY();
+            double n = p1.getZ() - p2.getZ();
+
+            double[] pArr = plane.getMatrixArray();
+            double pointOnPlane = pArr[0] * p1.getX() + pArr[1] * p1.getY() + pArr[2] * p1.getZ() + pArr[3];
+            double scalarProduct = l * pArr[0] + m * pArr[1] + n * pArr[2];
+            if (scalarProduct == 0) {
+                return null;
+            }
+
+            double tmpValue = pointOnPlane / scalarProduct;
+            double x = p1.getX() - l * tmpValue;
+            double y = p1.getY() - m * tmpValue;
+            double z = p1.getZ() - n * tmpValue;
+
+            return new Point3D(x, y, z);
+        }
+
 
         private boolean isInHalfCube(Point3D p) {
             if (p.getX() < -1 || p.getX() > 1) {

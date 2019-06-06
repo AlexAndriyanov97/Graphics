@@ -1,6 +1,5 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
-import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Figure3D;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Matrix;
 
 import java.util.ArrayList;

@@ -77,7 +77,7 @@ public class Matrix {
         );
     }
 
-    public static Matrix E() {
+    public static Matrix getSingleMatrix() {
         return new Matrix(4,4, new double[]{
                 1., 0., 0., 0.,
                 0., 1., 0., 0.,
