@@ -34,9 +34,10 @@ public class MainFrameController {
     }
 
 
-    private void setupFileChoosersDirs() {
-        final File dataDir = new File(System.getProperty("user.dir"), "resources");
-        if (dataDir.isDirectory()) {
+
+    private void setupFileChoosersDirs(){
+        final File dataDir = new File(System.getProperty("user.dir"),"FIT_16208_Andriyanov_Raytracing_Data");
+        if(dataDir.isDirectory()){
             fileChooser.setCurrentDirectory(dataDir);
         }
     }

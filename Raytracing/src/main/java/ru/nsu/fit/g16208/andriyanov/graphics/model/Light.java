@@ -1,5 +1,7 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.model;
 
+import java.util.Vector;
+
 public class Light {
     private Vector position;
     private float[] intense;

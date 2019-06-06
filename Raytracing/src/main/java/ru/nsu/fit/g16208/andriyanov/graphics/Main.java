@@ -13,8 +13,7 @@ public class Main {
     public static void main(String[] args) {
 
         RenderModel renderModel = new RenderModel();
-//        SceneModel sceneModel = new SceneModel();
-        Loader loader = new Loader(new File(System.getProperty("/Test.scene")), new File("/StandfordBunny.render"));
+        Loader loader = new Loader(new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/Test.scene"), new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.render"));
         SceneModel sceneModel = null;
         try {
             sceneModel = loader.loadScene();
