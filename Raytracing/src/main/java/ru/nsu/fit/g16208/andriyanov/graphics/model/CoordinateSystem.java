@@ -46,7 +46,7 @@ public class CoordinateSystem {
     }
 
     public void reset(){
-        rotation = Matrix.getSingleMatrix();
+        rotation = Matrix.E();
     }
 
     public void rotateZ(double theta) {
@@ -66,8 +66,39 @@ public class CoordinateSystem {
         updateTranslation();
     }
 
+    public Point3D getCenter() {
+        return center;
+    }
+
     public Matrix getMatrix() {
         return rotation.multiply(translation    );
+    }
+
+    public void setThetaX(double thetaX) {
+        rotateX(thetaX - this.thetaX);
+    }
+
+    public void setThetaY(double thetaY) {
+        rotateY(thetaY - this.thetaY);
+    }
+
+    public void setThetaZ(double thetaZ) {
+        rotateZ(thetaZ - this.thetaZ);
+    }
+
+    public double getThetaX() {
+        return Math.atan2(rotation.get(2,1), rotation.get(2,2));
+    }
+
+    public double getThetaY() {
+        return Math.atan2(
+                -rotation.get(2,0),
+                Math.sqrt(Math.pow(rotation.get(2,1), 2) +
+                        Math.pow(rotation.get(2,2), 2)));
+    }
+
+    public double getThetaZ() {
+        return Math.atan2(rotation.get(1,0), rotation.get(0,0));
     }
 
     private void updateTranslation() {
@@ -84,5 +115,4 @@ public class CoordinateSystem {
     public Matrix getRotation() {
         return rotation;
     }
-
 }

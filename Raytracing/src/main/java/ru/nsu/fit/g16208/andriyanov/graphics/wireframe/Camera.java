@@ -9,11 +9,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Observable;
 
-public class Camera {
+import static ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Projection.findIntersection;
 
+public class Camera {
     private Matrix translation;
     private Matrix rotation;
-    protected Matrix halfCubeMatrix;
+    private Matrix halfCubeMatrix;
 
     private RenderModel renderModel;
 
@@ -27,14 +28,12 @@ public class Camera {
 
     private Camera(Point3D center, Point3D up, Point3D direction) {
         Point3D zAxis = (Point3D) center.sum(direction.multiply(-1));
-
         zAxis = (Point3D) zAxis.multiply(1. / zAxis.norm());
 
         Point3D xAxis = (Point3D) up.crossProduct(zAxis);
         xAxis = (Point3D) xAxis.multiply(1. / xAxis.norm());
 
         Point3D yAxis = (Point3D) zAxis.crossProduct(xAxis);
-
         yAxis = (Point3D) yAxis.multiply(1. / yAxis.norm());
 
         rotation = new Matrix(4, 4,
@@ -94,7 +93,7 @@ public class Camera {
         g.setColor(renderModel.getBackgroundColor());
         g.fillRect(0, 0, image.getWidth(), image.getHeight());
 
-        drawable3D.projectTo2D(new Projection(width, height), image, Matrix.getSingleMatrix());
+        drawable3D.projectTo2D(new Projector(width, height), image, Matrix.E());
         return image;
     }
 
@@ -128,23 +127,104 @@ public class Camera {
         Matrix transVector = translation.multiply(worldPoint.toHomogeneousVector());
         Matrix rotVector = rotation.multiply(transVector);
         return rotVector.toPoint3D();
+
+//        Matrix rotVector = rotation.multiply(worldPoint.toHomogeneousVector());
+//        Matrix transVector = translation.multiply(rotVector);
+//        return transVector.toPoint3D();
     }
 
     public Drawable3D toCameraCoordinateSystem(Drawable3D d, Matrix sceneMatrix) {
         return d.transform(sceneMatrix).transform(translation).transform(rotation);
     }
 
-    public boolean isInHalfCube(Point3D p) {
-        if (p.getX() < -1 || p.getX() > 1) {
-            return false;
+    public class Projector {
+        private Matrix projectionMatrix;
+
+        public Projector(int width, int height) {
+            projectionMatrix = new Matrix(4, 4, new double[]{
+                    width / 2, 0., 0., width / 2,
+                    0., -height / 2, 0., height / 2,
+                    0., 0., 1., 0.,
+                    0., 0., 0., 1
+            });
         }
-        if (p.getY() < -1 || p.getY() > 1) {
-            return false;
+
+        public Point projectPoint(Point3D worldPoint) {
+            Point3D cameraCoord = toCameraCoordinateSystem(worldPoint);
+
+            Point3D halfCubePoint = cameraCoord.transform(halfCubeMatrix);
+            Point3D projectedPoint = halfCubePoint.transform(projectionMatrix);
+
+            return new Point((int) projectedPoint.getX(), (int) projectedPoint.getY());
         }
-        if (p.getZ() < -1 || p.getZ() > 0) {
-            return false;
+
+        public Edge projectEdge(Edge3D worldEdge) {
+            Point3D camPoint1 = toCameraCoordinateSystem(worldEdge.p1);
+            Point3D camPoint2 = toCameraCoordinateSystem(worldEdge.p2);
+
+            Point3D halfCubePoint1 = camPoint1.transform(halfCubeMatrix);
+            Point3D halfCubePoint2 = camPoint2.transform(halfCubeMatrix);
+
+            if (isInHalfCube(halfCubePoint1) && isInHalfCube(halfCubePoint2)) {
+                Point3D projectedPoint1 = halfCubePoint1.transform(projectionMatrix);
+                Point3D projectedPoint2 = halfCubePoint2.transform(projectionMatrix);
+                return new Edge(
+                        new Point((int) projectedPoint1.getX(), (int) projectedPoint1.getY()),
+                        new Point((int) projectedPoint2.getX(), (int) projectedPoint2.getY())
+                );
+            }
+
+            Point3D minPoint = halfCubePoint1.getZ() < halfCubePoint2.getZ() ? halfCubePoint1 : halfCubePoint2;
+            Point3D maxPoint = halfCubePoint1.getZ() >= halfCubePoint2.getZ() ? halfCubePoint1 : halfCubePoint2;
+
+            if (maxPoint.getZ() <= -1) {
+                return null;
+            }
+            if (minPoint.getZ() < -1) {
+                minPoint = findIntersection(
+                        new Matrix(4, 1, new double[]{0., 0., 1., 1.}),
+                        minPoint,
+                        maxPoint
+                );
+            }
+
+            if (minPoint.getZ() >= 0) {
+                return null;
+            }
+            if (maxPoint.getZ() > 0) {
+                maxPoint = findIntersection(
+                        new Matrix(4, 1, new double[]{0., 0., 1., 0.}),
+                        minPoint,
+                        maxPoint
+                );
+            }
+
+            Point3D projectedPoint1 = minPoint.transform(projectionMatrix);
+            Point3D projectedPoint2 = maxPoint.transform(projectionMatrix);
+            return new Edge(
+                    new Point((int) projectedPoint1.getX(), (int) projectedPoint1.getY()),
+                    new Point((int) projectedPoint2.getX(), (int) projectedPoint2.getY())
+            );
+
         }
-        return true;
+
+//        public Point3D toCameraCoordinateSystem(Point3D worldPoint) {
+//            Matrix transVector = translation.multiply(worldPoint.toHomogeneousVector());
+//            Matrix rotVector = rotation.multiply(transVector);
+//            return rotVector.toPoint3D();
+//        }
+
+        private boolean isInHalfCube(Point3D p) {
+            if (p.getX() < -1 || p.getX() > 1) {
+                return false;
+            }
+            if (p.getY() < -1 || p.getY() > 1) {
+                return false;
+            }
+            if (p.getZ() < -1 || p.getZ() > 0) {
+                return false;
+            }
+            return true;
+        }
     }
 }
-

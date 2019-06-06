@@ -26,7 +26,7 @@ public class Scene implements Drawable3D {
     }
 
     @Override
-    public void projectTo2D(Projection projector, BufferedImage image, Matrix parentMatrix) {
+    public void projectTo2D(Camera.Projector projector, BufferedImage image, Matrix parentMatrix) {
         for (Drawable3D c : childList) {
             c.projectTo2D(projector, image, coordinateSystem.getMatrix().multiply(parentMatrix));
         }

@@ -1,7 +1,8 @@
 package ru.nsu.fit.g16208.andriyanov.graphics.Controller;
 
-import ru.nsu.fit.g16208.andriyanov.graphics.model.Point3D;
+import ru.nsu.fit.g16208.andriyanov.graphics.model.*;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Matrix;
+import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Scene;
 
 import java.awt.*;
 import java.io.*;
@@ -26,7 +27,7 @@ public class Loader {
     public SceneModel loadScene() throws IOException {
         SceneModel sceneModel = new SceneModel();
         Scene scene = new Scene(new CoordinateSystem(
-                Matrix.E(), new Point3D(0, 0, 0)
+                Matrix.getSingleMatrix(), new Point3D(0, 0, 0)
         ));
 
         try (Scanner scanner = new Scanner(sceneFile, "UTF-8")) {

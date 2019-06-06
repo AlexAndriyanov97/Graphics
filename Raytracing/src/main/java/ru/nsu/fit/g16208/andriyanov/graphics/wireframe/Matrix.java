@@ -6,295 +6,104 @@ import static java.lang.Math.cos;
 import static java.lang.Math.sin;
 
 public class Matrix {
-    private double[][] matrix;
-    private int m;
-    private int n;
+    private int width;
+    private int height;
+    private double[] matrixArray;
 
-    public Matrix(double[][] matrix) {
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-
-        for (int i = 0; i < m; i++) {
-            if (matrix[i].length != n) {
-                throw new IllegalArgumentException("Rows have not same size");
-            }
-        }
-        this.matrix = matrix;
-
-    }
-
-    public Matrix(int m, int n) {
-        this.m = m;
-        this.n = n;
-        this.matrix = new double[m][n];
-    }
-
-    public Matrix(Matrix matrix) {
-        this.matrix = matrix.matrix;
-        this.m = matrix.m;
-        this.n = matrix.n;
-    }
-
-    public Matrix(int m, int n, double[] doubles) {
-        this.m = m;
-        this.n = n;
-        this.matrix = new double[m][n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                matrix[i][j] = doubles[i * m + j];
-            }
-        }
-    }
-
-    public double getValue(int i, int j) {
-        return matrix[i][j];
-    }
-
-    public static Matrix getSingleMatrix() {
-        return getSingleMatrix(4, 4);
-    }
-
-
-    public static Matrix getSingleMatrix(int m, int n) {
-        Matrix singleMatrix = new Matrix(m, n);
-
-        for (int i = 0; i < m; ++i) {
-            for (int j = 0; j < n; ++j) {
-                singleMatrix.matrix[i][j] = i == j ? 1.0D : 0.0D;
-            }
-        }
-        return singleMatrix;
-    }
-
-    public Matrix rotateX(double angle) {
-        Matrix rotateMatrix = new Matrix(new double[][]{
-                {cos(angle), 0, sin(angle), 0},
-                {0, 1, 0, 0},
-                {-sin(angle), 0, cos(angle), 0},
-                {0, 0, 0, 1}});
-        matrix = rotateMatrix.mainRotateFunc(this);
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-        return this;
-    }
-
-    public Matrix rotateY(double angle) {
-        Matrix rotateMatrix = new Matrix(new double[][]{
-                {1, 0, 0, 0},
-                {0, cos(angle), -sin(angle), 0},
-                {0, sin(angle), cos(angle), 0},
-                {0, 0, 0, 1}});
-        matrix = rotateMatrix.mainRotateFunc(this);
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-        return this;
-    }
-
-    public Matrix rotateZ(double angle) {
-        Matrix rotateMatrix = new Matrix(new double[][]{
-                {cos(angle), -sin(angle), 0, 0},
-                {sin(angle), cos(angle), 0, 0},
-                {0, 0, 1, 0},
-                {0, 0, 0, 1}});
-        matrix = rotateMatrix.mainRotateFunc(this);
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-        return this;
-    }
-
-
-    public Matrix copy() {
-        Matrix newMatrix = new Matrix(m, n);
-        for (int i = 0; i < m; i++) {
-            if (n >= 0) System.arraycopy(matrix[i], 0, newMatrix.matrix[i], 0, n);
-        }
-        return newMatrix;
-    }
-
-
-    public Matrix resize(double value) {
-        Matrix resizeMatrix = new Matrix(new double[][]{
-                {value, 0, 0, 0},
-                {0, value, 0, 0},
-                {0, 0, value, 0},
-                {0, 0, 0, 1}});
-        matrix = resizeMatrix.mainRotateFunc(this);
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-        return this;
-    }
-
-    public Matrix shift(Vector vec) {
-        Matrix shiftMatrix = new Matrix(new double[][]{
-                {1, 0, 0, vec.getX()},
-                {0, 1, 0, vec.getY()},
-                {0, 0, 1, vec.getZ()},
-                {0, 0, 0, 1}});
-        matrix = shiftMatrix.mainRotateFunc(this);
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-        return this;
-    }
-
-    public Matrix apply(Matrix newMatrix) {
-        matrix = newMatrix.mainRotateFunc(this);
-        this.m = matrix.length;
-        this.n = matrix[0].length;
-        return this;
-    }
-
-    public Matrix rotate(double angleX, double angleY, double angleZ) {
-        rotateX(angleX);
-        rotateY(angleY);
-        rotateZ(angleZ);
-        return this;
-    }
-
-
-    public Matrix getMatrix(int i, int j, int k, int l) {
-        Matrix resultMatrix = new Matrix(j - i + 1, l - k + 1);
-
-        for (int index = i; index <= j; ++index) {
-            if (l + 1 - k >= 0)
-                System.arraycopy(matrix[index], k, resultMatrix.matrix[index - i], k - k, l + 1 - k);
-        }
-
-        return resultMatrix;
-    }
-
-    public void instance(Matrix matrix) {
-        this.matrix = matrix.matrix;
-        this.m = matrix.m;
-        this.n = matrix.n;
-    }
-
-    public double[][] mainRotateFunc(Matrix oldMatrix) {
-        Matrix resultMatrix = new Matrix(this.m, oldMatrix.n);
-        double[][] valuesOfMatrix = resultMatrix.matrix;
-        double[] vector = new double[this.n];
-        for (int i = 0; i < oldMatrix.n; ++i) {
-            for (int j = 0; j < this.n; ++j) {
-                vector[j] = oldMatrix.matrix[j][i];
-            }
-
-            for (int j = 0; j < this.m; ++j) {
-                double[] vectorC = this.matrix[j];
-                double sum = 0.0D;
-
-                for (int k = 0; k < this.n; ++k) {
-                    sum += vectorC[k] * vector[k];
-                }
-
-                valuesOfMatrix[j][i] = sum;
-            }
-        }
-
-        return resultMatrix.matrix;
-
-    }
-
-    public double[][] getValues() {
-        return matrix;
-    }
-
-    public double norm() {
-        double result = 0.0D;
-
-        for (int i = 0; i < this.m; ++i) {
-            for (int j = 0; j < this.n; ++j) {
-                result = calculate(result, matrix[i][j]);
-            }
-        }
-
-        return result;
-    }
-
-    public Matrix mult(double value) {
-        Matrix result = new Matrix(this.m, this.n);
-
-        for (int i = 0; i < this.m; ++i) {
-            for (int j = 0; j < this.n; ++j) {
-                result.matrix[i][j] = value * matrix[i][j];
-            }
-        }
-
-        return result;
-    }
-
-    public Point3D toPoint3D() {
-        if (m != 1 || n < 3) {
-            return null;
-        }
-
-        double coef = 1.;
-        if (n == 4) {
-            coef = getMatrixArray()[3];
-        }
-
-        return new Point3D(
-                getMatrixArray()[0] / coef,
-                getMatrixArray()[1] / coef,
-                getMatrixArray()[2] / coef
-        );
+    public Matrix(int width, int height, double[] matrixArray) {
+        this.width = width;
+        this.height = height;
+        this.matrixArray = matrixArray;
     }
 
     public Matrix multiply(Matrix other) {
-        int nWidth = other.m;
-        int nHeight = this.n;
+        int nWidth = other.width;
+        int nHeight = height;
 
         double[] result = new double[nWidth * nHeight];
-        double[] otherArray = other.getMatrixArray();
+        double[] otherArray = other.matrixArray;
 
         for (int i = 0; i < nHeight; i++) {
             for (int j = 0; j < nWidth; j++) {
-                for (int k = 0; k < m; k++) {
-                    result[i * nWidth + j] += matrix[i][k] * otherArray[k * nWidth + j];
+                for (int k = 0; k < width; k++) {
+                    result[i * nWidth + j] += matrixArray[i * width + k] * otherArray[k * nWidth + j];
                 }
             }
         }
         return new Matrix(nWidth, nHeight, result);
     }
 
-
-    public Matrix transpose() {
-        Matrix result = new Matrix(this.n, this.m);
-
-        for (int i = 0; i < this.m; ++i) {
-            for (int j = 0; j < this.n; ++j) {
-                result.matrix[j][i] = matrix[i][j];
+    @Override
+    public String toString() {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < height; i++) {
+            for (int j = 0; j < width; j++) {
+                stringBuilder.append(matrixArray[i * width + j]).append(" ");
             }
+            stringBuilder.append("\n");
         }
-
-        return result;
-    }
-
-
-    private static double calculate(double result, double value) {
-        double tmp;
-        if (Math.abs(result) > Math.abs(value)) {
-            tmp = value / result;
-            tmp = Math.abs(result) * Math.sqrt(1.0D + tmp * tmp);
-        } else if (value != 0.0D) {
-            tmp = result / value;
-            tmp = Math.abs(value) * Math.sqrt(1.0D + tmp * tmp);
-        } else {
-            tmp = 0.0D;
-        }
-
-        return tmp;
-    }
-
-    public Matrix applyInversed(Matrix rotation) {
-        return null;
+        return stringBuilder.toString();
     }
 
     public double[] getMatrixArray() {
-        double[] matrixArray = new double[m * n];
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                matrixArray[i * m + j] = matrix[i][j];
+        return matrixArray;
+    }
+
+    public Matrix transpose() {
+        double[] transposeArray = new double[height * width];
+
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                transposeArray[i * height + j] = matrixArray[j * width + i];
             }
         }
-        return matrixArray;
+        return new Matrix(height, width, transposeArray);
+    }
+
+    public Point3D toPoint3D() {
+        if (width != 1 || height < 3) {
+            return null;
+        }
+
+        double coef = 1.;
+        if (height == 4) {
+            coef = matrixArray[3];
+        }
+
+        return new Point3D(
+                matrixArray[0] / coef,
+                matrixArray[1] / coef,
+                matrixArray[2] / coef
+        );
+    }
+
+    public static Matrix E() {
+        return new Matrix(4,4, new double[]{
+                1., 0., 0., 0.,
+                0., 1., 0., 0.,
+                0., 0., 1., 0.,
+                0., 0., 0., 1.
+        });
+    }
+
+
+    public int getWidth() {
+        return width;
+    }
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    public double get(int i, int j) {
+        return matrixArray[i*width + j];
     }
 }
