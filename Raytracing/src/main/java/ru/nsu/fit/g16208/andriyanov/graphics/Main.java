@@ -13,9 +13,12 @@ public class Main {
     public static void main(String[] args) {
 
         RenderModel renderModel = null;
-        Loader loader = new Loader(new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/Test.scene"), new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.render"));
         SceneModel sceneModel = null;
+
         try {
+            File scene = new File("FIT_16208_Andriyanov_Raytracing_Data/Test.scene");
+            File render = new File("FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.render");
+            Loader loader = new Loader(scene, render);
             sceneModel = loader.loadScene();
             renderModel = loader.loadRenderSettings();
         } catch (IOException ignored) {
