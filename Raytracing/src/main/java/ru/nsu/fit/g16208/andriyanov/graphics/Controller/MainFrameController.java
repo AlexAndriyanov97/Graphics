@@ -32,6 +32,7 @@ public class MainFrameController {
         setupFileChoosersDirs();
         mainFrame = new MainFrame(this);
         mainFrame.setSize(800,600);
+
     }
 
 

@@ -43,12 +43,22 @@ public class RayTracer {
             this.blue = blue;
         }
 
+        public IntensityRGB(Color color) {
+            this.red = color.getRed();
+            this.green = color.getGreen();
+            this.blue = color.getBlue();
+        }
+
         public double getChannel(RGB channel) {
             switch (channel) {
-                case RED: return red;
-                case GREEN: return green;
-                case BLUE: return blue;
-                default: return 0;
+                case RED:
+                    return red;
+                case GREEN:
+                    return green;
+                case BLUE:
+                    return blue;
+                default:
+                    return 0;
             }
         }
     }
@@ -56,6 +66,7 @@ public class RayTracer {
     public RayTracer(Camera camera, SceneModel sceneModel) {
         this.camera = camera;
         this.sceneModel = sceneModel;
+        BG_COLOR = camera.getRenderModel().getBackgroundColor();
     }
 
     public BufferedImage renderScene(Scene scene, int depth) {
@@ -67,11 +78,8 @@ public class RayTracer {
             Drawable3D newDrawable = camera.toCameraCoordinateSystem(d, scene.getCoordinateSystemMatrix());
             cameraObjects.add(newDrawable);
             if (newDrawable instanceof Light3D) {
-                newLights.add((Light3D)newDrawable);
+                newLights.add((Light3D) newDrawable);
             }
-//            if (d instanceof Quadrangle) {
-//                System.out.println(((Quadrangle)d).getDiffuseCoeff(RGB.RED));
-//            }
         }
         sceneObjects = cameraObjects;
         sceneModel.setLights(newLights);
@@ -100,7 +108,7 @@ public class RayTracer {
                 intensity.green = Math.max(0, Math.min(255, intensity.green));
                 intensity.blue = Math.max(0, Math.min(255, intensity.blue));
 
-                image.setRGB(x, y, new Color((int)intensity.red, (int)intensity.green, (int)intensity.blue).getRGB());
+                image.setRGB(x, y, new Color((int) intensity.red, (int) intensity.green, (int) intensity.blue).getRGB());
             }
         }
         return image;
@@ -108,12 +116,12 @@ public class RayTracer {
 
     private IntensityRGB countIntensity(Ray ray, java.util.List<Drawable3D> sceneObjects, int depth) {
         if (depth == 0) {
-            return new IntensityRGB(0,0,0);
+            return new IntensityRGB(0, 0, 0);
         }
 
         Intersection inter = findIntersection(ray, sceneObjects);
         if (inter == null) {
-            return new IntensityRGB(0,0,0);
+            return new IntensityRGB(BG_COLOR);
         }
         Ray newRay = calcReflectedRay(ray, inter.renderable.getNormal(inter.point), inter.point);
 
