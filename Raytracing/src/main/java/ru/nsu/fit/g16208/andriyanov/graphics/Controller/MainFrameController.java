@@ -34,23 +34,22 @@ public class MainFrameController {
     }
 
 
-
-    private void setupFileChoosersDirs(){
-        final File dataDir = new File(System.getProperty("user.dir"),"FIT_16208_Andriyanov_Raytracing_Data");
-        if(dataDir.isDirectory()){
+    private void setupFileChoosersDirs() {
+        final File dataDir = new File(System.getProperty("user.dir"), "FIT_16208_Andriyanov_Raytracing_Data");
+        if (dataDir.isDirectory()) {
             fileChooser.setCurrentDirectory(dataDir);
         }
     }
 
     public Camera getCamera() {
-        if (camera == null) {
+        if (camera == null && renderModel != null) {
             camera = new Camera(renderModel);
         }
         return camera;
     }
 
     public Scene getScene() {
-        if (scene == null) {
+        if (scene == null && sceneModel != null) {
             scene = sceneModel.getScene();
         }
         return scene;
@@ -58,11 +57,10 @@ public class MainFrameController {
 
     public void render() {
         RayTracer rayTracer = new RayTracer(camera, sceneModel);
-        image = rayTracer.renderScene(scene,renderModel.getDepth());
+        image = rayTracer.renderScene(scene, renderModel.getDepth());
 
         RenderFrame rFrame = new RenderFrame(image);
     }
-
 
 
     public void onOpen() {
@@ -80,13 +78,13 @@ public class MainFrameController {
         }
     }
 
-    public void saveRenderSettings(){
+    public void saveRenderSettings() {
         try {
             int ret = fileChooser.showSaveDialog(null);
             if (ret == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
                 Loader loader = new Loader();
-                loader.saveRenderSettings(renderModel,file);
+                loader.saveRenderSettings(renderModel, file);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Can not open file",
@@ -95,12 +93,12 @@ public class MainFrameController {
     }
 
 
-    public void saveImage(){
+    public void saveImage() {
         try {
             int ret = fileChooser.showSaveDialog(null);
             if (ret == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
-                ImageIO.write(image,"jpg",file);
+                ImageIO.write(image, "jpg", file);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Can not open file",
@@ -108,14 +106,14 @@ public class MainFrameController {
         }
     }
 
-    public void init(){
+    public void init() {
         scene.reset();
     }
 
-    public void SettingsPressed(){
+    public void SettingsPressed() {
         SettingsView settingsView = new SettingsView(renderModel);
         settingsView.setLocationRelativeTo(mainFrame);
-        settingsView.setSize(600,600);
+        settingsView.setSize(600, 600);
         settingsView.setVisible(true);
         mainFrame.repaint();
     }
@@ -127,7 +125,9 @@ public class MainFrameController {
             if (ret == JFileChooser.APPROVE_OPTION) {
                 File file = fileChooser.getSelectedFile();
                 Loader loader = new Loader(file);
+
                 renderModel = loader.loadRenderSettings(file);
+
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Can not open file",

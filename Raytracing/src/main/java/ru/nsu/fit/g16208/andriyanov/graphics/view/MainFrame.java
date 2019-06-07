@@ -16,52 +16,88 @@ public class MainFrame extends BaseFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 800);
 
-        screen3D = new Screen3D(controller.getCamera(), controller.getScene());
-        add(screen3D);
+
+        if (controller.getCamera() != null || controller.getScene() != null) {
+            screen3D = new Screen3D(controller.getCamera(), controller.getScene());
+            add(screen3D);
+        }
 
 
         JMenu fileMenu = createMenu("File");
 
         createMenuItem(fileMenu, "Open", this::onOpen);
 
-        createMenuItem(fileMenu, "Save render settings", controller::saveRenderSettings);
+        createMenuItem(fileMenu, "Save render settings", this::saveRenderSettings);
 
-        createMenuItem(fileMenu,"Save image",controller::saveImage);
+        createMenuItem(fileMenu, "Save image", this::saveImage);
 
-        createMenuItem(fileMenu, "Load render settings", controller::loadRenderSettings);
+        createMenuItem(fileMenu, "Load render settings", this::loadRenderSettings);
 
         JMenu editMenu = createMenu("Edit");
 
         createMenuItem(editMenu, "init", this::init);
 
-        createMenuItem(editMenu, "Render", controller::render);
+        createMenuItem(editMenu, "Render", this::render);
 
         JMenu settingsMenu = createMenu("Settings");
 
-        createMenuItem(settingsMenu,"Settings", controller::SettingsPressed);
-
-
+        createMenuItem(settingsMenu, "Settings", this::settings);
 
 
         setJMenuBar(menuBar);
         setVisible(true);
     }
 
-    private void onOpen(){
+    private void onOpen() {
         controller.onOpen();
         updatePanel();
     }
 
-    private void init(){
-        controller.init();
+    private void loadRenderSettings(){
+        controller.loadRenderSettings();
         updatePanel();
     }
 
+    private void saveRenderSettings() {
+        if (controller.getScene() != null && controller.getCamera() != null) {
+            controller.saveRenderSettings();
+        }
+    }
+
+    private void saveImage() {
+        if (controller.getScene() != null && controller.getCamera() != null) {
+            controller.saveImage();
+        }
+    }
+
+    private void init() {
+        if (controller.getScene() != null && controller.getCamera() != null) {
+            controller.init();
+            updatePanel();
+        }
+    }
+
+    public void render() {
+        if (controller.getScene() != null && controller.getCamera() != null) {
+            controller.render();
+        }
+    }
+
+    public void settings() {
+        if (controller.getScene() != null && controller.getCamera() != null) {
+            controller.SettingsPressed();
+        }
+    }
+
     private void updatePanel() {
-        remove(screen3D);
-        screen3D = new Screen3D(controller.getCamera(), controller.getScene());
-        add(screen3D);
-        revalidate();
+        if (screen3D != null) {
+            remove(screen3D);
+        }
+        if (controller.getCamera() != null) {
+            screen3D = new Screen3D(controller.getCamera(), controller.getScene());
+            add(screen3D);
+            revalidate();
+        }
     }
 
 

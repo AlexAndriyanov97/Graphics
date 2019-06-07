@@ -355,7 +355,7 @@ public class Loader {
             //gamma
             bufferedWriter.write( "1.0"+"\n");
             //depth
-            bufferedWriter.write("3" + "\n");
+            bufferedWriter.write(renderModel.getDepth() + "\n");
             //quality
             bufferedWriter.write("FINE"+"\n");
 

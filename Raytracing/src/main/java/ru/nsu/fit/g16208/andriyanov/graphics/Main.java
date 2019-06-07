@@ -12,14 +12,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        RenderModel renderModel = new RenderModel();
+        RenderModel renderModel = null;
         Loader loader = new Loader(new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/Test.scene"), new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.render"));
         SceneModel sceneModel = null;
         try {
             sceneModel = loader.loadScene();
             renderModel = loader.loadRenderSettings();
-        } catch (IOException e) {
-            e.printStackTrace();
+        } catch (IOException ignored) {
         }
         MainFrameController mfController = new MainFrameController(renderModel, sceneModel);
     }
