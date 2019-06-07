@@ -21,7 +21,7 @@ public class CoordinateSystem {
         updateTranslation();
     }
 
-    public void rotateX(double theta) {
+    public void rotateY(double theta) {
         thetaX += theta;
         Matrix rotMatrix = new Matrix(4, 4,
                 new double[]{
@@ -31,9 +31,10 @@ public class CoordinateSystem {
                         0., 0., 0., 1.
                 });
         rotation = rotMatrix.multiply(rotation);
+        System.out.println(rotation);
     }
 
-    public void rotateY(double theta) {
+    public void rotateX(double theta) {
         thetaY += theta;
         Matrix rotMatrix = new Matrix(4, 4,
                 new double[]{
@@ -43,10 +44,16 @@ public class CoordinateSystem {
                         0., 0., 0., 1.
                 });
         rotation = rotMatrix.multiply(rotation);
+        System.out.println(rotation);
     }
 
     public void reset(){
-        rotation = Matrix.getSingleMatrix();
+        rotation = new Matrix(4,4,new double[]{
+                1,0,0,0,
+                0,1,0,0,
+                0,0,-1,0,
+                0,0,0,-1
+        });
     }
 
     public void rotateZ(double theta) {
@@ -59,6 +66,7 @@ public class CoordinateSystem {
                         0., 0., 0., 1
                 });
         rotation = rotMatrix.multiply(rotation);
+        System.out.println(rotation);
     }
 
     public void moveTo(Point3D point) {

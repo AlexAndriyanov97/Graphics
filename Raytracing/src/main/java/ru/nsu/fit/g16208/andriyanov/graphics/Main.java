@@ -16,8 +16,8 @@ public class Main {
         SceneModel sceneModel = null;
 
         try {
-            File scene = new File("FIT_16208_Andriyanov_Raytracing_Data/Test.scene");
-            File render = new File("FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.render");
+            File scene = new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.scene");
+            File render = new File("Raytracing/FIT_16208_Andriyanov_Raytracing_Data/StandfordBunny.render");
             Loader loader = new Loader(scene, render);
             sceneModel = loader.loadScene();
             renderModel = loader.loadRenderSettings();
