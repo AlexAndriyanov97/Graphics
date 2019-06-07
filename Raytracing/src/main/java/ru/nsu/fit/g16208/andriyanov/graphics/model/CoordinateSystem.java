@@ -31,7 +31,6 @@ public class CoordinateSystem {
                         0., 0., 0., 1.
                 });
         rotation = rotMatrix.multiply(rotation);
-        System.out.println(rotation);
     }
 
     public void rotateX(double theta) {
@@ -44,7 +43,6 @@ public class CoordinateSystem {
                         0., 0., 0., 1.
                 });
         rotation = rotMatrix.multiply(rotation);
-        System.out.println(rotation);
     }
 
     public void reset(){
@@ -66,7 +64,6 @@ public class CoordinateSystem {
                         0., 0., 0., 1
                 });
         rotation = rotMatrix.multiply(rotation);
-        System.out.println(rotation);
     }
 
     public void moveTo(Point3D point) {

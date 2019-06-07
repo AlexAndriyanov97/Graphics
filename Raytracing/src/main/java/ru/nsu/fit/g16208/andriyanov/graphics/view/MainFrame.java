@@ -4,6 +4,7 @@ import ru.nsu.fit.g16208.andriyanov.graphics.Controller.MainFrameController;
 import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Screen3D;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainFrame extends BaseFrame {
 
@@ -43,6 +44,26 @@ public class MainFrame extends BaseFrame {
 
         createMenuItem(settingsMenu, "Settings", this::settings);
 
+
+        createToolItem("/Open.png","Open",this::onOpen);
+
+        createToolItem("/Save.png","Save render settings",this::saveRenderSettings);
+
+        createToolItem("/saveImage.png","Save image",this::saveImage);
+
+        createToolItem("/load.png","Load render settings",this::loadRenderSettings);
+
+        createToolItem("/init.png","Init",this::init);
+
+        createToolItem("/Run.gif","Render",this::render);
+
+
+        createToolItem("/Settings.png","Settings",this::settings);
+
+
+
+        functionBar.setVisible(true);
+        add(functionBar, BorderLayout.PAGE_START);
 
         setJMenuBar(menuBar);
         setVisible(true);
