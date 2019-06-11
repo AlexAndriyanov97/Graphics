@@ -5,6 +5,8 @@ import ru.nsu.fit.g16208.andriyanov.graphics.wireframe.Screen3D;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 
 public class MainFrame extends BaseFrame {
 
@@ -17,11 +19,20 @@ public class MainFrame extends BaseFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(800, 800);
 
-
         if (controller.getCamera() != null || controller.getScene() != null) {
             screen3D = new Screen3D(controller.getCamera(), controller.getScene());
             add(screen3D);
         }
+
+        addComponentListener(new ComponentAdapter() {
+            @Override
+            public void componentResized(ComponentEvent e) {
+                if(screen3D!=null){
+                    screen3D.update();
+                }
+            }
+        });
+
 
 
         JMenu fileMenu = createMenu("File");
@@ -53,7 +64,7 @@ public class MainFrame extends BaseFrame {
 
         createToolItem("/load.png","Load render settings",this::loadRenderSettings);
 
-        createToolItem("/init.png","Init",this::init);
+        createToolItem("/Init.png","Init",this::init);
 
         createToolItem("/Run.gif","Render",this::render);
 

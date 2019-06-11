@@ -4,18 +4,21 @@ import ru.nsu.fit.g16208.andriyanov.graphics.model.RenderModel;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
-import java.awt.event.MouseWheelEvent;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 
 public class Screen3D extends JPanel {
+
+    private final static int BORDER = 20;
     private BufferedImage canvas;
     private Camera camera;
     private Scene scene;
 
+
+    private int size;
+
     private Point anchor = null;
+
 
     public Screen3D(Camera camera, Scene scene) {
         this.camera = camera;
@@ -67,6 +70,18 @@ public class Screen3D extends JPanel {
         model.setZn(model.getZn() * (1 + e.getWheelRotation() * 0.1));
         model.setZf(model.getZf() * (1 + e.getWheelRotation() * 0.1));
         repaint();
+    }
+
+    public void update(){
+        size = Math.min(getWidth(),getHeight())-BORDER*2;
+        if(size<=0){
+            return;
+        }
+
+        int width = size;
+        int height = size;
+        setSize(width,height);
+        SwingUtilities.invokeLater(this::repaint);
     }
 
 

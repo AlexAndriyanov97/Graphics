@@ -87,7 +87,7 @@ public class Camera {
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 
         Graphics g = image.getGraphics();
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         g.fillRect(0, 0, image.getWidth(), image.getHeight());
 
         drawable3D.projectTo2D(new Projector(width, height), image, Matrix.getSingleMatrix());
